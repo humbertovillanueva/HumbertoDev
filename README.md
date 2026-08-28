@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# HumbertoDev
 
-## Getting Started
+Humberto Villanueva's personal software-engineering portfolio, presented as an early-2000s pixel-football broadcast. The experience connects Humberto's story—from Peru to Utah—with his work across AI systems, building intelligence, full-stack products, and cloud software.
 
-First, run the development server:
+Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
+
+## Experience
+
+- A playable Peru number-7 football introduction with keyboard and touch controls
+- A compact World Cup music-preview player powered by Apple's public preview catalog
+- A featured Specta building-intelligence case study
+- Experience, projects, skills, personal story, and contact sections
+- Responsive layouts and reduced-motion support
+
+## Stack
+
+- Next.js 16 App Router
+- React 19
+- TypeScript 5
+- Tailwind CSS 4
+- CSS-drawn pixel artwork and animation
+- Vercel deployment through GitHub
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Before committing a change:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run lint
+npm run build
+git diff --check
+```
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
+```text
+app/
+  layout.tsx          Site metadata and document shell
+  page.tsx            Portfolio content, music player, and football game
+  globals.css         Visual system, responsive layout, and pixel artwork
+public/               Static assets
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Publishing safety
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The portfolio describes professional work only at an approved public level. Do not commit credentials, private employer code, customer names, proprietary screenshots, unpublished metrics, or unreleased product claims.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Production deploys from `main`. Work should be reviewed through a branch preview before merging.

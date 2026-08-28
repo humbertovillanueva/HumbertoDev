@@ -34,18 +34,39 @@ const spectaModules = [
 ];
 
 const experience = [
-  { years: "2026—NOW", company: "kW Engineering", role: "Software Engineering Intern", detail: "Building Specta across AI architecture, document intelligence, data reliability, ontology tooling, and production product interfaces." },
-  { years: "2024—NOW", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Technical support and troubleshooting for logistics systems in a fast-moving, customer-facing environment." },
+  { years: "2026—NOW", company: "kW Engineering", role: "Software Engineer", detail: "Building Specta across AI architecture, document intelligence, data reliability, ontology tooling, and production product interfaces." },
+  { years: "2024—MAY 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Provided technical support and troubleshooting for logistics systems in a fast-moving, customer-facing environment." },
   { years: "2023—2024", company: "Weber State University", role: "IT Support Specialist", detail: "Supported students, faculty, computer labs, and service operations while building a foundation in practical IT." },
 ];
 
-const projects = [
-  { title: "STEDI Mobile", type: "Cloud-connected mobile app", text: "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.", stack: "REACT NATIVE · EXPO · JAVASCRIPT · BLE", href: "https://github.com/STEDI-Balance/stedi-web" },
-  { title: "DispatchTrack Lite", type: "Full-stack delivery system", text: "A logistics application connecting a React interface, Java APIs, and an AWS serverless backend.", stack: "REACT · JAVA · LAMBDA · API GATEWAY", href: "https://github.com/humbertovillanueva" },
-  { title: "Serverless API", type: "AWS cloud project", text: "A deployed REST API with infrastructure, endpoints, authentication, and troubleshooting handled end to end.", stack: "JAVA · AWS SAM · LAMBDA · API GATEWAY", href: "https://github.com/humbertovillanueva" },
+type Project = {
+  title: string;
+  type: string;
+  text: string;
+  stack: string;
+  href?: string;
+};
+
+const projects: Project[] = [
+  { title: "STEDI Mobile", type: "Cloud-connected mobile app", text: "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.", stack: "REACT NATIVE · EXPO · JAVASCRIPT · BLE" },
+  { title: "DispatchTrack Lite", type: "Full-stack delivery system", text: "A logistics application connecting a React interface, Java APIs, and an AWS serverless backend.", stack: "REACT · JAVA · LAMBDA · API GATEWAY" },
+  { title: "Serverless API", type: "AWS cloud project", text: "A deployed REST API with infrastructure, endpoints, authentication, and troubleshooting handled end to end.", stack: "JAVA · AWS SAM · LAMBDA · API GATEWAY" },
 ];
 
-const skills = ["Fantom", "Svelte 5", "TypeScript", "JavaScript", "Java", "Python", "SQL", "AWS", "Docker", "REST APIs", "LLM systems", "Semantic search"];
+const skills = [
+  { name: "Fantom", context: "PRODUCTION" },
+  { name: "Svelte 5", context: "PRODUCTION" },
+  { name: "TypeScript", context: "PRODUCT" },
+  { name: "JavaScript", context: "PRODUCT" },
+  { name: "Java", context: "FULL STACK" },
+  { name: "Python", context: "WORKING" },
+  { name: "SQL", context: "WORKING" },
+  { name: "AWS", context: "DEPLOYED" },
+  { name: "Docker", context: "FOUNDATION" },
+  { name: "REST APIs", context: "DEPLOYED" },
+  { name: "LLM systems", context: "PRODUCTION" },
+  { name: "Semantic search", context: "PRODUCTION" },
+];
 
 function ArrowIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg>;
@@ -53,6 +74,16 @@ function ArrowIcon() {
 
 function GithubIcon() {
   return <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 2.75a9.25 9.25 0 0 0-2.93 18.02c.46.09.63-.2.63-.45v-1.8c-2.56.56-3.1-1.09-3.1-1.09-.42-1.06-1.02-1.34-1.02-1.34-.83-.57.06-.56.06-.56.92.07 1.4.95 1.4.95.82 1.4 2.14 1 2.66.76.08-.59.32-1 .58-1.23-2.04-.23-4.19-1.02-4.19-4.57 0-1.01.36-1.83.95-2.48-.1-.23-.41-1.17.09-2.44 0 0 .77-.25 2.54.95A8.8 8.8 0 0 1 12 7.1a8.8 8.8 0 0 1 2.31.31c1.76-1.2 2.54-.95 2.54-.95.5 1.27.19 2.21.1 2.44.59.65.94 1.47.94 2.48 0 3.56-2.15 4.33-4.2 4.56.33.29.62.85.62 1.72v2.65c0 .25.17.54.64.45A9.25 9.25 0 0 0 12 2.75Z" /></svg>;
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const content = <><span className="project-index">0{index + 1}</span><div><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="project-stack">{project.stack}</span>{project.href ? <ArrowIcon /> : <span className="project-status">CASE SUMMARY</span>}</>;
+
+  if (project.href) {
+    return <a className="pixel-project" href={project.href} target="_blank" rel="noreferrer">{content}</a>;
+  }
+
+  return <article className="pixel-project">{content}</article>;
 }
 
 function MusicPlayer() {
@@ -277,12 +308,12 @@ export default function Home() {
 
       <section className="work-section page-section" id="work">
         <div className="section-heading compact-heading"><span className="section-tag">SIDE QUESTS / 03</span><h2>MORE BUILDS</h2><p>Specta is the main match. These projects helped build the player.</p></div>
-        <div className="project-list">{projects.map((project, index) => <a className="pixel-project" href={project.href} target="_blank" rel="noreferrer" key={project.title}><span className="project-index">0{index + 1}</span><div><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="project-stack">{project.stack}</span><ArrowIcon /></a>)}</div>
+        <div className="project-list">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div>
       </section>
 
       <section className="skills-section page-section">
         <div className="skills-copy"><span className="section-tag">PLAYER ATTRIBUTES / 04</span><h2>THE<br />ROSTER</h2><p>I care less about collecting tools and more about knowing how to connect them into dependable systems.</p></div>
-        <div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill}</strong><i>{index < 6 ? "88" : "84"}</i></div>)}</div>
+        <div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill.name}</strong><i>{skill.context}</i></div>)}</div>
       </section>
 
       <section className="about-section page-section" id="about">

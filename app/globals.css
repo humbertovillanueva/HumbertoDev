@@ -167,13 +167,14 @@ svg { width:18px; height:18px; }
 .work-section .section-tag { color:var(--grass); }
 .project-list { border-top:4px solid var(--ink); }
 .pixel-project { min-height:180px; display:grid; grid-template-columns:70px 1fr 1.4fr 1fr 30px; gap:28px; align-items:center; border-bottom:3px solid var(--ink); transition:padding .2s,color .2s,background .2s; }
-.pixel-project:hover { padding:0 18px; color:var(--paper); background:var(--grass-dark); }
+a.pixel-project:hover { padding:0 18px; color:var(--paper); background:var(--grass-dark); }
 .project-index { color:var(--red); font:900 11px/1 var(--pixel); }
 .pixel-project small { color:var(--grass); font:900 9px/1 var(--pixel); letter-spacing:.1em; text-transform:uppercase; }
-.pixel-project:hover small { color:var(--lime); }
+a.pixel-project:hover small { color:var(--lime); }
 .pixel-project h3 { margin:7px 0 0; font-size:30px; letter-spacing:-.04em; }
-.pixel-project p { margin:0; color:#60645b; font-size:14px; line-height:1.55; }.pixel-project:hover p { color:#b7c0b6; }
+.pixel-project p { margin:0; color:#60645b; font-size:14px; line-height:1.55; }a.pixel-project:hover p { color:#b7c0b6; }
 .project-stack { font:800 9px/1.6 var(--pixel); }
+.project-status { justify-self:end; color:#777d74; font:800 8px/1 var(--pixel); letter-spacing:.08em; white-space:nowrap; }
 .pixel-project svg,.contact-links svg { fill:none; stroke:currentColor; stroke-width:1.7; }
 
 .skills-section { display:grid; grid-template-columns:.7fr 1.3fr; gap:90px; align-items:start; }
@@ -183,7 +184,7 @@ svg { width:18px; height:18px; }
 .skill-board { display:grid; grid-template-columns:1fr 1fr; border:3px solid var(--paper); box-shadow:10px 10px 0 #000; }
 .skill-slot { min-height:90px; display:grid; grid-template-columns:38px 1fr auto; gap:14px; align-items:center; padding:0 18px; border-right:2px solid var(--paper); border-bottom:2px solid var(--paper); }
 .skill-slot:nth-child(2n) { border-right:0; }.skill-slot:nth-last-child(-n+2) { border-bottom:0; }
-.skill-slot>span { color:var(--red); font:900 9px/1 var(--pixel); }.skill-slot strong { font-size:15px; }.skill-slot i { color:var(--lime); font:900 14px/1 var(--pixel); font-style:normal; }
+.skill-slot>span { color:var(--red); font:900 9px/1 var(--pixel); }.skill-slot strong { font-size:15px; }.skill-slot i { color:var(--lime); font:900 8px/1 var(--pixel); font-style:normal; letter-spacing:.08em; text-align:right; }
 
 .about-section { display:grid; grid-template-columns:.9fr 1.1fr; gap:90px; align-items:center; border-top:2px solid #33372f; }
 .passport-card { position:relative; min-height:560px; overflow:hidden; padding:24px; border:4px solid var(--paper); background:var(--blue); color:var(--ink); box-shadow:14px 14px 0 #000; }
@@ -273,7 +274,7 @@ svg { width:18px; height:18px; }
   .section-heading { grid-template-columns:1fr; gap:26px; }.section-heading>p { grid-column:auto; }.section-heading h2 { font-size:70px; }
   .career-row { grid-template-columns:1fr; gap:12px; }.career-row p { grid-column:auto; }.education-strip { grid-template-columns:1fr; }
   .work-section { padding-left:14px; padding-right:14px; }
-  .pixel-project { grid-template-columns:38px 1fr 24px; gap:14px; }.pixel-project p,.project-stack { grid-column:2/-1; }.pixel-project svg { grid-column:3; grid-row:1; }.pixel-project h3 { font-size:25px; }
+  .pixel-project { grid-template-columns:38px 1fr 24px; gap:14px; }.pixel-project p,.project-stack { grid-column:2/-1; }.pixel-project svg,.project-status { grid-column:3; grid-row:1; }.project-status { writing-mode:vertical-rl; }.pixel-project h3 { font-size:25px; }
   .skills-section { gap:48px; }.skill-board { grid-template-columns:1fr; }.skill-slot { border-right:0; }.skill-slot:nth-last-child(2) { border-bottom:2px solid var(--paper); }
   .about-section { gap:60px; }.passport-card { min-height:510px; padding:16px; }.pixel-avatar { transform:scale(.85); margin-top:38px; margin-bottom:8px; }.about-copy-new h2 { font-size:59px; }
   .contact-section { padding:110px 18px; }.contact-section h2 { font-size:72px; }.contact-section h2 span { -webkit-text-stroke:2px var(--ink); text-shadow:4px 4px 0 var(--ink); }
