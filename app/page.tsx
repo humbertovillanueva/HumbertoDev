@@ -113,7 +113,7 @@ export default function Home() {
   const kickBall = useCallback(() => {
     if (gameState !== "ready") return;
     if (playerPosition.x < 46) setGameState("too-far");
-    else if (playerPosition.y > 44) setGameState("miss");
+    else if (playerPosition.y < 35 || playerPosition.y > 65) setGameState("miss");
     else setGameState("kicking");
   }, [gameState, playerPosition.x, playerPosition.y]);
 
@@ -163,15 +163,16 @@ export default function Home() {
     <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work">PROJECTS</a><a href="#experience">CAREER</a><a href="#skills">SKILLS</a><a href="#about">PROFILE</a></nav><details className="mobile-nav"><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#experience">Career</a><a href="#skills">Skills</a><a href="#about">Profile</a><a href="#contact">Contact</a></nav></details><a className="header-cta" href="#contact">CONTACT</a></header>
 
     <section className={`title-screen game-${gameState}`} id="top">
-      <div className="stadium-crowd crowd-upper" aria-hidden="true" /><div className="flag-rail" aria-hidden="true">{flags.concat(flags).map((flag, index) => <span className={`rail-${(index % 6) + 1}`} key={`${flag}-${index}`}>{flag}</span>)}</div><div className="stadium-crowd crowd-lower" aria-hidden="true" />
+      <div className="stadium-roofline" aria-hidden="true" /><div className="flag-rail" aria-hidden="true">{flags.concat(flags).map((flag, index) => <span className={`rail-${(index % 6) + 1}`} key={`${flag}-${index}`}>{flag}</span>)}</div><div className="stadium-crowd crowd-lower" aria-hidden="true" />
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true">HUMBERTO</span><strong aria-hidden="true">VILLANUEVA</strong></h1></div>
       <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I turn complicated systems into dependable software that works in the real world.</p><div className="title-actions"><a href="#work">▶ VIEW PROJECTS</a><a href="#contact">CONTACT</a></div><span className="press-start">● PRESS START</span></div>
       <div className="fan-stands" aria-hidden="true">{Array.from({ length: 44 }, (_, index) => <div className={`pixel-fan tone-${(index % 5) + 1} shirt-${(index % 8) + 1}`} key={index}><i className={`fan-flag flag-${(index % 6) + 1}`} /><i className="fan-head" /><i className="fan-body" /><i className="fan-arm fan-arm-left" /><i className="fan-arm fan-arm-right" /></div>)}</div>
       <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} role="application" aria-label="Playable soccer pitch. While the pitch is visible, use arrow keys to move number 7 and press space to shoot.">
-        <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="pixel-goal" />
+        <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="field-penalty-area"><div className="field-six-yard-box" /><i className="penalty-spot" /></div><div className="pixel-goal" />
+        <div className="corner-flags" aria-hidden="true"><i className="corner-flag corner-flag-tl" /><i className="corner-flag corner-flag-tr" /><i className="corner-flag corner-flag-bl" /><i className="corner-flag corner-flag-br" /></div>
         <div className="pixel-keeper"><i className="keeper-head" /><i className="keeper-body" /><i className="keeper-arm keeper-arm-left" /><i className="keeper-arm keeper-arm-right" /><i className="keeper-leg keeper-leg-left" /><i className="keeper-leg keeper-leg-right" /></div>
         <div className="controlled-player" style={{ left: `${playerPosition.x}%`, bottom: `${playerPosition.y}%` }} aria-hidden="true"><div className="pixel-runner"><i className="runner-hair" /><i className="runner-head" /><i className="runner-shirt" /><i className="runner-arm runner-arm-one" /><i className="runner-arm runner-arm-two" /><i className="runner-shorts" /><i className="runner-leg runner-leg-one" /><i className="runner-leg runner-leg-two" /></div></div>
-        <div className={`pixel-ball game-ball ${ballIsMoving ? "ball-shot" : ""}`} style={{ left: ballIsMoving ? "91%" : `calc(${playerPosition.x}% + 56px)`, bottom: gameState === "miss" ? "72%" : ballIsMoving ? "27%" : `calc(${playerPosition.y}% + 7px)` }} aria-hidden="true"><span /></div>
+        <div className={`pixel-ball game-ball ${ballIsMoving ? "ball-shot" : ""}`} style={{ left: ballIsMoving ? "91%" : `calc(${playerPosition.x}% + 56px)`, bottom: gameState === "miss" ? "82%" : ballIsMoving ? "50%" : `calc(${playerPosition.y}% + 7px)` }} aria-hidden="true"><span /></div>
         <div className="game-hud"><span>P1 · {gameMessage}</span><strong>GOALS {String(goals).padStart(2, "0")}</strong></div>
         <div className="game-controls" aria-label="On-screen soccer controls"><button type="button" onClick={() => movePlayer(0, 4)} aria-label="Move up">↑</button><button type="button" onClick={() => movePlayer(-3, 0)} aria-label="Move left">←</button><button type="button" onClick={() => movePlayer(0, -4)} aria-label="Move down">↓</button><button type="button" onClick={() => movePlayer(3, 0)} aria-label="Move right">→</button><button className="kick-button" type="button" onClick={kickBall}>A · SHOOT</button></div><div className="goal-call">GOAL!</div><div className="goal-confetti">{Array.from({ length: 24 }, (_, index) => <i key={index} />)}</div>
       </div>
