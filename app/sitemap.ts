@@ -8,6 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/about", priority: 0.9 },
     { path: "/projects", priority: 0.9 },
     { path: "/experience", priority: 0.8 },
+    { path: "/writing", priority: 0.8 },
+    { path: "/writing/designing-portable-ai-integrations", priority: 0.8 },
+    { path: "/case-studies/dispatchtrack-lite", priority: 0.8 },
   ];
 
   return pages.map(({ path, priority }) => ({
