@@ -17,6 +17,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPage
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
           <Link href="/experience">Experience</Link>
+          <Link href="/writing">Writing</Link>
           <Link href="/#contact">Contact</Link>
         </nav>
       </header>
