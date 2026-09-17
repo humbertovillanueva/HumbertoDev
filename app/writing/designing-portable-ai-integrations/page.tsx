@@ -16,6 +16,11 @@ export const metadata: Metadata = {
     publishedTime: "2026-09-16T00:00:00-06:00",
     authors: ["Humberto Villanueva"],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Designing Portable AI Integrations Without Model Lock-In",
+    description: "A practical architecture for provider portability, local models, reliability, and measurable AI product behavior.",
+  },
 };
 
 const articleData = {
@@ -26,17 +31,36 @@ const articleData = {
   description: "A practical engineering approach to AI provider portability, capability differences, observability, and reliable product behavior.",
   url: pageUrl,
   datePublished: "2026-09-16",
-  dateModified: "2026-09-16",
+  dateModified: "2026-09-17",
   inLanguage: "en-US",
+  image: `${pageUrl}/opengraph-image`,
+  mainEntityOfPage: pageUrl,
+  isPartOf: { "@id": "https://humbertovillanueva.dev/#website" },
   author: { "@id": "https://humbertovillanueva.dev/#person" },
   publisher: { "@id": "https://humbertovillanueva.dev/#person" },
+  about: [
+    { "@type": "Thing", name: "Artificial intelligence architecture" },
+    { "@type": "Thing", name: "Large language model integration" },
+    { "@type": "Thing", name: "Software portability" },
+  ],
   keywords: ["AI integration", "LLM architecture", "software engineering", "model portability", "local AI models"],
+};
+
+const breadcrumbData = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://humbertovillanueva.dev" },
+    { "@type": "ListItem", position: 2, name: "Engineering Writing", item: "https://humbertovillanueva.dev/writing" },
+    { "@type": "ListItem", position: 3, name: "Portable AI Integrations", item: pageUrl },
+  ],
 };
 
 export default function PortableAiArticle() {
   return (
     <SeoPageShell stage="FIELD NOTE · 01" eyebrow="APPLIED AI · SOFTWARE ARCHITECTURE" title="PORTABLE AI INTEGRATIONS" intro="How to make model providers replaceable without pretending they are identical—and without spreading provider-specific logic through the product.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData).replace(/</g, "\\u003c") }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData).replace(/</g, "\\u003c") }} />
       <article className="seo-panel seo-article">
         <div className="seo-article-byline"><span>BY HUMBERTO VILLANUEVA</span><span>SEPTEMBER 16, 2026</span><span>8 MIN READ</span></div>
 
@@ -83,6 +107,20 @@ Shared layers
 
         <h2>The result</h2>
         <p>Good portability is not the ability to change an environment variable and hope. It is the ability to replace an AI dependency while keeping product behavior understandable, observable, and testable. That architecture creates room for hosted models, local deployments, and whatever provider arrives next.</p>
+
+        <aside className="seo-author-card" aria-label="About the author">
+          <img src="/humbertopic.jpeg" alt="Humberto Villanueva" width="112" height="112" />
+          <div>
+            <span className="seo-label">ABOUT THE AUTHOR</span>
+            <h2>Humberto Villanueva</h2>
+            <p>Software engineer in Utah building applied AI integrations, reliable data systems, APIs, and smart-building technology.</p>
+            <nav aria-label="Author links">
+              <Link href="/about">About Humberto</Link>
+              <a href="https://github.com/humbertovillanueva" rel="me">GitHub</a>
+              <a href="https://www.linkedin.com/in/humberto-villanueva-dev/" rel="me">LinkedIn</a>
+            </nav>
+          </div>
+        </aside>
 
         <p className="seo-disclosure">This article describes general engineering principles from my experience and independent study. It does not disclose proprietary architecture, source code, customer information, or confidential details from kW Engineering.</p>
       </article>

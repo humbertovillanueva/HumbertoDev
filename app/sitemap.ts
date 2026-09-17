@@ -15,7 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return pages.map(({ path, priority }) => ({
     url: `${siteUrl}${path}`,
-    lastModified: "2026-09-16",
+    lastModified: path === "/writing/designing-portable-ai-integrations" ? "2026-09-17" : "2026-09-16",
     changeFrequency: "monthly",
     priority,
     ...(path === "" ? { images: [`${siteUrl}/humbertopic.jpeg`] } : {}),
