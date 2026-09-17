@@ -62,7 +62,7 @@ const structuredData = {
       description:
         "Software engineer from Lima, Peru, based in Utah, building AI-native products, reliable data systems, and building intelligence.",
       sameAs: [
-        "https://www.linkedin.com/in/humberto-villanueva-753084347/",
+        "https://www.linkedin.com/in/humberto-villanueva-dev/",
         "https://github.com/humbertovillanueva",
       ],
       worksFor: {

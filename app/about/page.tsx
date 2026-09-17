@@ -32,7 +32,7 @@ const profileData = {
     image: "https://humbertovillanueva.dev/humbertopic.jpeg",
     description: "Software engineer from Lima, Peru, based in Utah, working across AI systems, full-stack products, data reliability, and building intelligence.",
     sameAs: [
-      "https://www.linkedin.com/in/humberto-villanueva-753084347/",
+      "https://www.linkedin.com/in/humberto-villanueva-dev/",
       "https://github.com/humbertovillanueva",
     ],
   },
