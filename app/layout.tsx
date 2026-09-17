@@ -105,15 +105,6 @@ const structuredData = {
       inLanguage: "en-US",
       author: { "@id": `${siteUrl}/#person` },
     },
-    {
-      "@type": "ProfilePage",
-      "@id": `${siteUrl}/#profile-page`,
-      url: siteUrl,
-      name: "Humberto Villanueva — Software Engineer in Utah",
-      isPartOf: { "@id": `${siteUrl}/#website` },
-      mainEntity: { "@id": `${siteUrl}/#person` },
-      dateModified: "2026-09-16",
-    },
   ],
 };
 
