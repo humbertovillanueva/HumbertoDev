@@ -10,7 +10,15 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - A compact World Cup music-preview player powered by Apple's public preview catalog
 - A featured Specta building-intelligence case study
 - Experience, projects, skills, personal story, and contact sections
+- An engineering-writing hub with long-form technical articles
+- A dedicated DispatchTrack Lite architecture case study
 - Responsive layouts and reduced-motion support
+
+## Featured pages
+
+- [Engineering writing](https://humbertovillanueva.dev/writing)
+- [Designing Portable AI Integrations Without Model Lock-In](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations)
+- [DispatchTrack Lite case study](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite)
 
 ## Stack
 
@@ -45,6 +53,8 @@ app/
   layout.tsx          Site metadata and document shell
   page.tsx            Portfolio content, music player, and football game
   globals.css         Visual system, responsive layout, and pixel artwork
+  writing/            Engineering-writing hub and articles
+  case-studies/       Long-form project case studies
 public/               Static assets
 ```
 
