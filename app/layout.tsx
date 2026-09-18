@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   icons: {
-    icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
+    icon: [{ url: "/icon.png", type: "image/png", sizes: "192x192" }],
   },
   openGraph: {
     title: "Humberto Villanueva — Software Engineer in Utah",
