@@ -1,4 +1,3 @@
-import copy
 import datetime as dt
 import unittest
 from sync import due, validate
@@ -26,6 +25,9 @@ class SyncTests(unittest.TestCase):
         one = dict(self.card,title='One',repo='reality-commit')
         two = dict(one,title='Two')
         with self.assertRaises(ValueError):validate({'projects':[self.card,one,two]},[self.card],self.evidence)
+    def test_rejects_unsourced_addition(self):
+        item = dict(self.card,title='Invented')
+        with self.assertRaises(ValueError):validate({'projects':[self.card,item]},[self.card],self.evidence)
     def test_rejects_markup(self):
         item = dict(self.card,title='<script>',repo='reality-commit')
         with self.assertRaises(ValueError):validate({'projects':[self.card,item]},[self.card],self.evidence)

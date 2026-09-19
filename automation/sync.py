@@ -76,6 +76,8 @@ def validate(proposal, current, evidence):
             raise ValueError('Duplicate title')
         seen_titles.add(title)
         repo = item['repo']
+        if not repo and item not in current:
+            raise ValueError('New projects require a verified repository')
         if repo:
             if repo not in allowed or not re.fullmatch(r'[A-Za-z0-9_.-]+', repo) or repo in seen_repos:
                 raise ValueError('Unverified or duplicate repository')
