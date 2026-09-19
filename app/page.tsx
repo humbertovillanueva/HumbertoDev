@@ -1,5 +1,7 @@
 "use client";
 
+import projects from "./projects.json";
+
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 
 const worldCupTracks = [
@@ -18,11 +20,7 @@ const experience = [
   { years: "2023—2024", company: "Weber State University", role: "IT Support Specialist", detail: "Supported students, faculty, computer labs, and service operations while building a foundation in practical IT." },
 ];
 
-const projects = [
-  { title: "STEDI Mobile", type: "Cloud-connected mobile app", text: "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.", stack: "REACT NATIVE · EXPO · JAVASCRIPT · BLE" },
-  { title: "DispatchTrack Lite", type: "Full-stack delivery system", text: "A logistics application connecting a React interface, Java APIs, and an AWS serverless backend.", stack: "REACT · JAVA · LAMBDA · API GATEWAY" },
-  { title: "Serverless API", type: "AWS cloud project", text: "A deployed REST API with infrastructure, endpoints, authentication, and troubleshooting handled end to end.", stack: "JAVA · AWS SAM · LAMBDA · API GATEWAY" },
-];
+
 
 const skills = [
   { name: "Fantom", context: "PRODUCTION" }, { name: "Svelte 5", context: "PRODUCTION" },
@@ -96,7 +94,7 @@ function MusicPlayer() {
 }
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span><i>READY</i></article>;
+  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span>{project.repo && <a href={`https://github.com/humbertovillanueva/${project.repo}`} className="project-source">View project ↗</a>}<i>{project.status}</i></article>;
 }
 
 export default function Home() {
@@ -180,7 +178,7 @@ export default function Home() {
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work"><div className="screen-heading"><span>STAGE 01</span><h2>PROJECT SELECT</h2><p>Current product work and selected independent builds.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—04</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
+    <section className="game-screen projects-screen" id="work"><div className="screen-heading"><span>STAGE 01</span><h2>PROJECT SELECT</h2><p>Current product work and selected independent builds.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
 
     <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>CAREER SAVE DATA</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
 

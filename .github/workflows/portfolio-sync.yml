@@ -1,0 +1,132 @@
+name: Weekly portfolio sync
+on:
+  schedule:
+    - cron: '0 9,10 * * 0'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish after all checks and Vercel preview pass
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: weekly-portfolio-sync
+  cancel-in-progress: false
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.due.outputs.run }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+      - id: due
+        env:
+          EVENT: ${{ github.event_name }}
+          ENABLED: ${{ vars.PORTFOLIO_SYNC_ENABLED }}
+        run: |
+          if [ "$EVENT" = workflow_dispatch ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+          elif [ "$ENABLED" = true ]; then
+            echo "run=$(python3 automation/sync.py due)" >> "$GITHUB_OUTPUT"
+          else
+            echo 'run=false' >> "$GITHUB_OUTPUT"
+          fi
+  prepare:
+    needs: gate
+    if: needs.gate.outputs.run == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      changed: ${{ steps.changed.outputs.changed }}
+      base: ${{ steps.base.outputs.sha }}
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          ref: main
+          persist-credentials: false
+      - id: base
+        run: echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Check OpenAI connection
+        env:
+          KEY_PRESENT: ${{ secrets.OPENAI_API_KEY != '' }}
+        run: |
+          if [ "$KEY_PRESENT" != true ]; then
+            echo 'Add OPENAI_API_KEY to this repository’s Actions secrets before running.' >&2
+            exit 1
+          fi
+      - name: Collect public evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: python3 automation/sync.py collect /tmp/portfolio-evidence.json
+      - name: Propose content updates
+        uses: openai/codex-action@f367b1e9572fd064ea71ef925ca24ee0f01080af
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          permission-profile: ':read-only'
+          prompt-file: automation/prompt.md
+          output-schema-file: automation/schema.json
+          output-file: /tmp/portfolio-candidate.json
+      - name: Apply validated data
+        run: |
+          git diff --exit-code
+          python3 automation/test_sync.py
+          python3 automation/sync.py apply /tmp/portfolio-candidate.json /tmp/portfolio-evidence.json
+      - id: changed
+        run: |
+          if git diff --quiet -- app/projects.json; then
+            echo 'changed=false' >> "$GITHUB_OUTPUT"
+            echo 'Portfolio already current; nothing published.' >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        if: steps.changed.outputs.changed == 'true'
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Validate and preview
+        if: steps.changed.outputs.changed == 'true'
+        run: |
+          npm ci --no-audit --no-fund
+          npm run lint
+          npm run build
+          git diff --check
+          npm exec -- playwright install --with-deps chromium
+          npm start > /tmp/portfolio-server.log 2>&1 &
+          for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3000 > /dev/null && break || sleep 2; done
+          node automation/smoke.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: steps.changed.outputs.changed == 'true'
+        with:
+          name: validated-portfolio-data
+          path: app/projects.json
+          retention-days: 14
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: steps.changed.outputs.changed == 'true'
+        with:
+          name: portfolio-preview
+          path: /tmp/portfolio-screenshots
+          retention-days: 14
+  publish:
+    needs: prepare
+    if: needs.prepare.outputs.changed == 'true' && (github.event_name == 'schedule' || inputs.publish)
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: write
+      pull-requests: write
+      statuses: read
+    steps:
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09
+        with:
+          ref: ${{ needs.prepare.outputs.base }}
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: validated-portfolio-data
+          path: app
+      - name: Publish and verify production
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BASE_SHA: ${{ needs.prepare.outputs.base }}
+        run: python3 automation/publish.py
