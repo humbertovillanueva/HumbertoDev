@@ -1,0 +1,34 @@
+[
+  {
+    "title": "Reality Commit",
+    "type": "Local-first physical-space prototype",
+    "text": "Compare site captures, manually annotate assets, review changes, and save an evidence-backed history in your browser. Built with local storage and JSON export.",
+    "stack": "REACT · TYPESCRIPT · VITE · INDEXEDDB",
+    "repo": "reality-commit",
+    "status": "PROTOTYPE"
+  },
+  {
+    "title": "STEDI Mobile",
+    "type": "Cloud-connected mobile app",
+    "text": "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.",
+    "stack": "REACT NATIVE · EXPO · JAVASCRIPT · BLE",
+    "repo": "",
+    "status": "READY"
+  },
+  {
+    "title": "DispatchTrack Lite",
+    "type": "Full-stack delivery system",
+    "text": "A logistics application connecting a React interface, Java APIs, and an AWS serverless backend.",
+    "stack": "REACT · JAVA · LAMBDA · API GATEWAY",
+    "repo": "",
+    "status": "READY"
+  },
+  {
+    "title": "Serverless API",
+    "type": "AWS cloud project",
+    "text": "A deployed REST API with infrastructure, endpoints, authentication, and troubleshooting handled end to end.",
+    "stack": "JAVA · AWS SAM · LAMBDA · API GATEWAY",
+    "repo": "",
+    "status": "READY"
+  }
+]

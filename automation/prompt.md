@@ -1,0 +1,1 @@
+Use .agents/skills/portfolio-sync/SKILL.md. Read app/projects.json and /tmp/portfolio-evidence.json. Produce the complete projects object conforming to automation/schema.json, preserving curated cards and updating only source-supported project content. Make no filesystem changes. Your final output is the proposed data, not a status report.

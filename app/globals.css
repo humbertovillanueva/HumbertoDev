@@ -244,3 +244,6 @@ section[id] { scroll-margin-top:120px; }
 }
 
 @media (prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; animation-duration:.01ms!important; animation-iteration-count:1!important; } }
+
+.project-source { margin-top:14px; width:fit-content; color:var(--blue-dark); font-weight:800; text-decoration:underline; text-underline-offset:3px; }
+.project-source:focus-visible { outline:3px solid var(--blue-dark); outline-offset:4px; }
