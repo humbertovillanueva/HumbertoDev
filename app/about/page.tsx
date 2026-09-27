@@ -1,3 +1,5 @@
+import { SocialProfileLinks } from "../social-profile-links";
+import { socialProfileUrls } from "../social-profiles";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SeoPageShell } from "../seo-page-shell";
@@ -22,7 +24,7 @@ const profileData = {
   "@id": `${pageUrl}/#profile-page`,
   url: pageUrl,
   name: "About Humberto Villanueva",
-  dateModified: "2026-09-16",
+  dateModified: "2026-09-26",
   mainEntity: {
     "@type": "Person",
     "@id": "https://humbertovillanueva.dev/#person",
@@ -31,10 +33,7 @@ const profileData = {
     url: "https://humbertovillanueva.dev",
     image: "https://humbertovillanueva.dev/humbertopic.jpeg",
     description: "Software engineer from Lima, Peru, based in Utah, working across AI systems, full-stack products, data reliability, and building intelligence.",
-    sameAs: [
-      "https://www.linkedin.com/in/humberto-villanueva-dev/",
-      "https://github.com/humbertovillanueva",
-    ],
+    sameAs: socialProfileUrls,
   },
 };
 
@@ -59,6 +58,7 @@ export default function AboutPage() {
         <article className="seo-panel"><span className="seo-label">FOCUS</span><h2>AI + Full Stack</h2><p>AI systems, document intelligence, cloud services, reliable APIs, product interfaces, and building data.</p></article>
         <article className="seo-panel"><span className="seo-label">BEYOND CODE</span><h2>Peru · Family · Football</h2><p>Family and faith keep me grounded. Football keeps me competitive. Real Madrid and number 7 are permanent parts of the story.</p></article>
       </section>
+      <section className="seo-panel seo-panel-wide"><h2>Find Humberto Villanueva online</h2><p>Professional work and personal interests, each in their own place.</p><SocialProfileLinks /></section>
       <div className="seo-next-links"><Link href="/projects">Explore selected projects →</Link><Link href="/experience">View career and education →</Link></div>
     </SeoPageShell>
   );

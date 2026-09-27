@@ -1,3 +1,4 @@
+import { socialProfileUrls } from "./social-profiles";
 import type { Metadata } from "next";
 import "./globals.css";
 
@@ -61,10 +62,7 @@ const structuredData = {
       jobTitle: "Software Engineer",
       description:
         "Software engineer from Lima, Peru, based in Utah, building AI-native products, reliable data systems, and building intelligence.",
-      sameAs: [
-        "https://www.linkedin.com/in/humberto-villanueva-dev/",
-        "https://github.com/humbertovillanueva",
-      ],
+      sameAs: socialProfileUrls,
       worksFor: {
         "@type": "Organization",
         name: "kW Engineering",
