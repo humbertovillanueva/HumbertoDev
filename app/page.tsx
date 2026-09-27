@@ -3,6 +3,7 @@
 import { SocialProfileLinks } from "./social-profile-links";
 
 import projects from "./projects.json";
+import { ProjectLinks } from "./project-links";
 
 import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
 
@@ -88,13 +89,13 @@ function MusicPlayer() {
     <span className="music-label">SOUND</span>
     <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={!activePreview} aria-label={isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
     <div className="now-playing"><span>{track.year}</span><strong>{activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
-    <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer">↗</a>
+    <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer" aria-label="Open this song in Apple Music">↗</a>
     {activePreview && <audio ref={audioRef} src={activePreview.previewUrl} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} preload="metadata" loop />}
   </aside>;
 }
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span>{project.repo && <a href={`https://github.com/humbertovillanueva/${project.repo}`} className="project-source">View project ↗</a>}<i>{project.status}</i></article>;
+  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span><ProjectLinks repo={project.repo} /><i>{project.status}</i></article>;
 }
 
 export default function Home() {
@@ -120,7 +121,7 @@ export default function Home() {
       if (event.metaKey || event.ctrlKey || event.altKey) return;
       if ((event.target as HTMLElement | null)?.closest("a, button, input, textarea, select, summary, [contenteditable='true']")) return;
       const field = fieldRef.current;
-      if (!field) return;
+      if (!field || document.activeElement !== field) return;
       const bounds = field.getBoundingClientRect();
       if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
       if (!["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(event.code)) return;
@@ -142,7 +143,7 @@ export default function Home() {
   }, [gameState]);
 
   const ballIsMoving = gameState === "kicking" || gameState === "goal" || gameState === "miss";
-  const gameMessage = gameState === "goal" ? "GOOOOOL!" : gameState === "too-far" ? "GET CLOSER" : gameState === "miss" ? "OVER THE BAR!" : gameState === "kicking" ? "SHOT!" : "ARROWS MOVE · SPACE SHOOTS";
+  const gameMessage = gameState === "goal" ? "GOOOOOL!" : gameState === "too-far" ? "GET CLOSER" : gameState === "miss" ? "OVER THE BAR!" : gameState === "kicking" ? "SHOT!" : "FOCUS PITCH · ARROWS MOVE · SPACE SHOOTS";
 
   const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -165,7 +166,7 @@ export default function Home() {
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true">HUMBERTO</span><strong aria-hidden="true">VILLANUEVA</strong></h1></div>
       <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I turn complicated systems into dependable software that works in the real world.</p><div className="title-actions"><a href="#work">▶ VIEW PROJECTS</a><a href="#contact">CONTACT</a></div><span className="press-start">● PRESS START</span></div>
       <div className="fan-stands" aria-hidden="true">{Array.from({ length: 44 }, (_, index) => <div className={`pixel-fan tone-${(index % 5) + 1} shirt-${(index % 8) + 1}`} key={index}><i className={`fan-flag flag-${(index % 6) + 1}`} /><i className="fan-head" /><i className="fan-body" /><i className="fan-arm fan-arm-left" /><i className="fan-arm fan-arm-right" /></div>)}</div>
-      <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} role="application" aria-label="Playable soccer pitch. While the pitch is visible, use arrow keys to move number 7 and press space to shoot.">
+      <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} tabIndex={0} role="group" aria-label="Soccer game. Focus this pitch to use arrow keys to move and space to shoot. Tab moves to the on-screen controls.">
         <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="field-penalty-area"><div className="field-six-yard-box" /><i className="penalty-spot" /></div><div className="pixel-goal" />
         <div className="corner-flags" aria-hidden="true"><i className="corner-flag corner-flag-tl" /><i className="corner-flag corner-flag-tr" /><i className="corner-flag corner-flag-bl" /><i className="corner-flag corner-flag-br" /></div>
         <div className="pixel-keeper"><i className="keeper-head" /><i className="keeper-body" /><i className="keeper-arm keeper-arm-left" /><i className="keeper-arm keeper-arm-right" /><i className="keeper-leg keeper-leg-left" /><i className="keeper-leg keeper-leg-right" /></div>
