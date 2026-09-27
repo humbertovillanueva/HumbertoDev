@@ -96,6 +96,7 @@ jobs:
           npm start > /tmp/portfolio-server.log 2>&1 &
           for i in $(seq 1 30); do curl -fsS http://127.0.0.1:3000 > /dev/null && break || sleep 2; done
           node automation/smoke.mjs
+          node automation/interactions.mjs
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: steps.changed.outputs.changed == 'true'
         with:

@@ -1,11 +1,12 @@
 "use client";
 
+import { ContactForm } from "./contact-form";
 import { SocialProfileLinks } from "./social-profile-links";
 
 import projects from "./projects.json";
 import { ProjectLinks } from "./project-links";
 
-import { useCallback, useEffect, useRef, useState, type FormEvent } from "react";
+import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 
 const worldCupTracks = [
   { year: "2010", title: "Waka Waka (This Time for Africa)", artist: "Shakira ft. Freshlyground" },
@@ -45,6 +46,8 @@ function MusicPlayer() {
   const [trackIndex, setTrackIndex] = useState(0);
   const [preview, setPreview] = useState<{ index: number; previewUrl: string; appleUrl: string } | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [failedIndex, setFailedIndex] = useState<number | null>(null);
+  const [retry, setRetry] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
   const continuePlaybackRef = useRef(false);
   const track = worldCupTracks[trackIndex];
@@ -52,22 +55,29 @@ function MusicPlayer() {
 
   const changeTrack = useCallback((direction: number) => {
     if (isPlaying) continuePlaybackRef.current = true;
+    audioRef.current?.pause();
     setIsPlaying(false);
     setTrackIndex((current) => (current + direction + worldCupTracks.length) % worldCupTracks.length);
   }, [isPlaying]);
 
   useEffect(() => {
     const controller = new AbortController();
+    let active = true;
+    const timeout = window.setTimeout(() => { controller.abort(); }, 10000);
     const query = encodeURIComponent(`${track.title} ${track.artist}`);
     void fetch(`https://itunes.apple.com/search?term=${query}&country=US&media=music&entity=song&limit=5`, { signal: controller.signal })
-      .then((response) => response.json())
+      .then((response) => { if (!response.ok) throw new Error("Preview unavailable"); return response.json(); })
       .then((data: { results?: Array<{ previewUrl?: string; trackViewUrl?: string }> }) => {
+        if (!active) return;
         const result = data.results?.find((item) => item.previewUrl);
+        if (!result?.previewUrl) { setFailedIndex(trackIndex); return; }
+        setFailedIndex(null);
         if (result?.previewUrl) setPreview({ index: trackIndex, previewUrl: result.previewUrl, appleUrl: result.trackViewUrl ?? "https://music.apple.com/" });
       })
-      .catch(() => undefined);
-    return () => controller.abort();
-  }, [track.artist, track.title, trackIndex]);
+      .catch(() => { if (active) setFailedIndex(trackIndex); })
+      .finally(() => window.clearTimeout(timeout));
+    return () => { active = false; window.clearTimeout(timeout); controller.abort(); };
+  }, [track.artist, track.title, trackIndex, retry]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -87,10 +97,10 @@ function MusicPlayer() {
 
   return <aside className="worldcup-player" aria-label="World Cup music player">
     <span className="music-label">SOUND</span>
-    <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={!activePreview} aria-label={isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
-    <div className="now-playing"><span>{track.year}</span><strong>{activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
-    <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer" aria-label="Open this song in Apple Music">↗</a>
-    {activePreview && <audio ref={audioRef} src={activePreview.previewUrl} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} preload="metadata" loop />}
+    <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={!activePreview || failedIndex === trackIndex} aria-label={isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
+    <div className="now-playing"><span>{track.year}</span><strong>{failedIndex === trackIndex ? `PREVIEW UNAVAILABLE · ${track.title}` : activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
+    {failedIndex === trackIndex ? <button className="apple-link" type="button" aria-label="Retry song preview" onClick={() => { setFailedIndex(null); setPreview(null); setRetry(value => value + 1); }}>↻</button> : <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer" aria-label="Open this song in Apple Music">↗</a>}
+    {activePreview && <audio ref={audioRef} src={activePreview.previewUrl} onError={() => { setFailedIndex(trackIndex); setIsPlaying(false); continuePlaybackRef.current = false; }} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} preload="metadata" loop />}
   </aside>;
 }
 
@@ -145,21 +155,17 @@ export default function Home() {
   const ballIsMoving = gameState === "kicking" || gameState === "goal" || gameState === "miss";
   const gameMessage = gameState === "goal" ? "GOOOOOL!" : gameState === "too-far" ? "GET CLOSER" : gameState === "miss" ? "OVER THE BAR!" : gameState === "kicking" ? "SHOT!" : "FOCUS PITCH · ARROWS MOVE · SPACE SHOOTS";
 
-  const handleContactSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const company = String(data.get("company") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
-    const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\nCompany: ${company || "Not provided"}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:hachevillanueva99@gmail.com?subject=${subject}&body=${body}`;
-  };
-
   return <main className="retro-site">
+    <div className="skip-links"><a href="#work">Skip to projects</a><a href="#contact">Skip to contact</a></div>
     <MusicPlayer />
-    <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work">PROJECTS</a><a href="#experience">CAREER</a><a href="#skills">SKILLS</a><a href="#about">PROFILE</a><a href="/writing">WRITING</a></nav><details className="mobile-nav"><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#experience">Career</a><a href="#skills">Skills</a><a href="#about">Profile</a><a href="/writing">Writing</a><a href="#contact">Contact</a></nav></details><a className="header-cta" href="#contact">CONTACT</a></header>
+    <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work">PROJECTS</a><a href="#experience">CAREER</a><a href="#skills">SKILLS</a><a href="#about">PROFILE</a><a href="/writing">WRITING</a></nav><details className="mobile-nav" onClick={(event: MouseEvent<HTMLDetailsElement>) => {
+      if ((event.target as HTMLElement).closest("a")) event.currentTarget.open = false;
+    }} onKeyDown={(event) => {
+      if (event.key === "Escape") {
+        event.currentTarget.open = false;
+        event.currentTarget.querySelector("summary")?.focus();
+      }
+    }}><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#experience">Career</a><a href="#skills">Skills</a><a href="#about">Profile</a><a href="/writing">Writing</a><a href="#contact">Contact</a></nav></details><a className="header-cta" href="#contact">CONTACT</a></header>
 
     <section className={`title-screen game-${gameState}`} id="top">
       <div className="stadium-roofline" aria-hidden="true" /><div className="flag-rail" aria-hidden="true">{flags.concat(flags).map((flag, index) => <span className={`rail-${(index % 6) + 1}`} key={`${flag}-${index}`}>{flag}</span>)}</div><div className="stadium-crowd crowd-lower" aria-hidden="true" />
@@ -179,7 +185,7 @@ export default function Home() {
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work"><div className="screen-heading"><span>STAGE 01</span><h2>PROJECT SELECT</h2><p>Current product work and selected independent builds.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
+    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>PROJECT SELECT</h2><p>Current product work and selected independent builds.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
 
     <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>CAREER SAVE DATA</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
 
@@ -187,7 +193,7 @@ export default function Home() {
 
     <section className="game-screen profile-screen" id="about"><div className="screen-heading light-heading"><span>STAGE 04</span><h2>PLAYER PROFILE</h2><p>The person behind the work.</p></div><div className="profile-window"><div className="profile-facts"><span><small>FOCUS</small>SOFTWARE ENGINEERING</span><span><small>BASE</small>UTAH, USA</span><span><small>CLUB</small>REAL MADRID</span><span><small>NUMBER</small>07</span></div><div className="profile-story"><p>I build software that connects useful ideas with real-world needs. Family and faith keep me grounded. Football keeps me competitive. Curiosity keeps me building.</p><p>I&apos;m happiest when I&apos;m solving a hard problem with good people—then watching Real Madrid and arguing about the match afterward.</p><span>● READY FOR THE NEXT CHALLENGE</span></div></div></section>
 
-    <section className="continue-screen" id="contact"><span>FINAL STAGE</span><h2>CONTINUE?</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><form className="message-form" onSubmit={handleContactSubmit}><label><span>YOUR NAME *</span><input type="text" name="name" autoComplete="name" required /></label><label><span>YOUR EMAIL *</span><input type="email" name="email" autoComplete="email" required /></label><label><span>COMPANY / TEAM</span><input type="text" name="company" autoComplete="organization" /></label><label className="message-field"><span>MESSAGE *</span><textarea name="message" rows={6} required /></label><button type="submit">▶ SEND MESSAGE</button></form><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Submitting opens your email app with the transmission ready to send.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
+    <section className="continue-screen" id="contact" tabIndex={-1}><span>FINAL STAGE</span><h2>CONTINUE?</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><ContactForm /><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Open a draft in your email app, or copy your message to send it yourself.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
     <footer className="game-footer"><span>© 2026 HUMBERTO VILLANUEVA</span><nav aria-label="Portfolio pages"><a href="/about">ABOUT</a><a href="/projects">PROJECTS</a><a href="/experience">EXPERIENCE</a><a href="/writing">WRITING</a></nav><a href="#top">RESTART ↑</a></footer>
   </main>;
 }
