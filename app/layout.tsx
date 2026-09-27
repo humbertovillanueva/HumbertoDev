@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     template: "%s | Humberto Villanueva",
   },
   description:
-    "Humberto Villanueva is a software engineer from Peru based in Utah, building AI-native products, reliable data systems, and building intelligence at kW Engineering.",
+    "Humberto Villanueva is a software engineer based in Utah, building AI-native products, reliable data systems, and building intelligence at kW Engineering.",
   metadataBase: new URL(siteUrl),
   authors: [{ name: "Humberto Villanueva", url: siteUrl }],
   creator: "Humberto Villanueva",
@@ -61,7 +61,7 @@ const structuredData = {
       image: `${siteUrl}/humbertopic.jpeg`,
       jobTitle: "Software Engineer",
       description:
-        "Software engineer from Lima, Peru, based in Utah, building AI-native products, reliable data systems, and building intelligence.",
+        "Software engineer based in Utah, building AI-native products, reliable data systems, and building intelligence.",
       sameAs: socialProfileUrls,
       worksFor: {
         "@type": "Organization",
