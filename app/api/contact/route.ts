@@ -1,6 +1,6 @@
 import { checkBotId } from 'botid/server';
 import { createHash } from 'node:crypto';
-import { validateContact, emailBody } from '@/lib/contact';
+import { validateContact, emailBody, emailHtml } from '@/lib/contact';
 
 export const runtime = 'nodejs';
 const recipient = 'hachevillanueva99@gmail.com';
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     const response = await fetch('https://api.resend.com/emails', {
       method:'POST',
       headers:{Authorization:`Bearer ${apiKey}`,'Content-Type':'application/json','Idempotency-Key':`contact-${digest}`},
-      body:JSON.stringify({from:sender,to:[recipient],reply_to:data.email,subject:`Portfolio inquiry from ${data.name}`,text:emailBody(data)}),
+      body:JSON.stringify({from:sender,to:[recipient],reply_to:data.email,subject:`Portfolio inquiry from ${data.name}`,text:emailBody(data),html:emailHtml(data)}),
       signal:AbortSignal.timeout(12000),
     });
     if (!response.ok) return fail(response.status === 429 ? 'Sending is busy. Please try later or use the email draft option.' : 'We could not send your message. Your text is still here; try again or use the email draft option.',response.status===429 ? 429 : 502);
