@@ -17,6 +17,11 @@ try {
  await page.getByRole('button',{name:'SEND MESSAGE',exact:true}).click();
  await expect(page.getByRole('status')).toContainText('accepted for delivery');
  expect(ids[0]).toBe(ids[1]);
+ await expect(page.getByRole('heading',{name:'Message sent',exact:true})).toBeVisible();
+ await expect(page.getByLabel('MESSAGE *',{exact:true})).toHaveCount(0);
+ await expect(page.locator('.contact-success')).toBeFocused();
+ await page.getByRole('button',{name:'SEND ANOTHER MESSAGE',exact:true}).click();
+ await expect(page.getByLabel('YOUR NAME')).toBeFocused();
  await expect(page.getByLabel('MESSAGE *',{exact:true})).toHaveValue('');
  const valid={name:'Visitor',email:'visitor@example.com',company:'',message:'Testing validation',website:'',submissionId:'12345678-1234-4123-8123-123456789012'};
  const response=await page.request.post(base+'/api/contact',{headers:{Origin:base},data:valid});

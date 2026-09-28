@@ -7,6 +7,16 @@ const emailAddress = "hachevillanueva99@gmail.com";
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("");
+  const [sent, setSent] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+  const restartRef = useRef(false);
+  useEffect(() => {
+    if (sent) confirmationRef.current?.focus();
+    else if (restartRef.current) {
+      formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus();
+      restartRef.current = false;
+    }
+  }, [sent]);
   const [sending, setSending] = useState(false);
   const [canSend, setCanSend] = useState(false);
   useEffect(() => {
@@ -61,7 +71,7 @@ export function ContactForm() {
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error(typeof result.error === "string" ? result.error : "We could not send your message. Try again or use the email draft option.");
       setStatus("Your message was accepted for delivery to Humberto. Thank you for getting in touch.");
-      formRef.current.reset();
+      setSent(true);
       submissionRef.current = null;
     } catch (error) {
       setStatus(error instanceof Error && error.name === "Error" ? error.message : "Sending could not be confirmed. Your text is still here; retry or use the email draft option.");
@@ -78,6 +88,18 @@ export function ContactForm() {
       setStatus("Clipboard access is unavailable. Your message is still here; select and copy it manually, then email hachevillanueva99@gmail.com.");
     }
   }
+
+  if (sent) return <div className="message-form contact-success" ref={confirmationRef} tabIndex={-1} aria-labelledby="contact-sent-title">
+    <div role="status">
+      <h3 id="contact-sent-title">Message sent</h3>
+      <p>Thank you for getting in touch. Your message was accepted for delivery to Humberto.</p>
+    </div>
+    <button type="button" onClick={() => {
+      restartRef.current = true;
+      setStatus("");
+      setSent(false);
+    }}>SEND ANOTHER MESSAGE</button>
+  </div>;
 
   return <form ref={formRef} className="message-form" onSubmit={sendMessage} aria-busy={sending} onInput={(event) => {
     const target = event.target;

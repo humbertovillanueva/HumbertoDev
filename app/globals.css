@@ -328,3 +328,8 @@ body { -webkit-font-smoothing:antialiased; }
 .contact-fields { display:contents; border:0; padding:0; margin:0; }
 .contact-trap { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 .message-form button:disabled { opacity:.65; cursor:wait; }
+
+.contact-success { grid-template-columns:1fr; align-content:center; min-height:360px; }
+.contact-success h3 { margin:0 0 18px; color:var(--yellow); font:950 28px/1.3 var(--pixel); }
+.contact-success p { margin:0; font:400 18px/1.6 Arial,Helvetica,sans-serif; }
+.contact-success:focus-visible { outline:3px solid var(--yellow); outline-offset:-8px; }
