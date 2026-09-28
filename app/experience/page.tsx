@@ -5,7 +5,7 @@ import { SeoPageShell } from "../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/experience";
 
 export const metadata: Metadata = {
-  title: "Experience — Humberto Villanueva, Software Engineer",
+  title: "Software Engineering Experience",
   description: "Professional experience and education for Humberto Villanueva, a software engineer at kW Engineering based in Utah.",
   alternates: { canonical: pageUrl },
   openGraph: { title: "Experience — Humberto Villanueva", description: "Software engineering, technical support, and education across kW Engineering, Ryder Last Mile, Weber State University, and Ensign College.", url: pageUrl },

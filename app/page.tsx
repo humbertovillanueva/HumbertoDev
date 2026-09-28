@@ -1,5 +1,7 @@
 "use client";
 
+import Image from "next/image";
+import { ProjectPreview, ProjectEvidence } from "./project-evidence";
 import { ContactForm } from "./contact-form";
 import { SocialProfileLinks } from "./social-profile-links";
 
@@ -44,6 +46,7 @@ function SpectaMark() {
 
 function MusicPlayer() {
   const [trackIndex, setTrackIndex] = useState(0);
+  const [musicEnabled, setMusicEnabled] = useState(false);
   const [preview, setPreview] = useState<{ index: number; previewUrl: string; appleUrl: string } | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [failedIndex, setFailedIndex] = useState<number | null>(null);
@@ -61,6 +64,7 @@ function MusicPlayer() {
   }, [isPlaying]);
 
   useEffect(() => {
+    if (!musicEnabled) return;
     const controller = new AbortController();
     let active = true;
     const timeout = window.setTimeout(() => { controller.abort(); }, 10000);
@@ -77,7 +81,7 @@ function MusicPlayer() {
       .catch(() => { if (active) setFailedIndex(trackIndex); })
       .finally(() => window.clearTimeout(timeout));
     return () => { active = false; window.clearTimeout(timeout); controller.abort(); };
-  }, [track.artist, track.title, trackIndex, retry]);
+  }, [track.artist, track.title, trackIndex, retry, musicEnabled]);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -86,6 +90,7 @@ function MusicPlayer() {
   }, [activePreview]);
 
   const togglePlayback = () => {
+    if (!musicEnabled) { setMusicEnabled(true); return; }
     const audio = audioRef.current;
     if (!audio || !activePreview) return;
     if (isPlaying) { continuePlaybackRef.current = false; audio.pause(); }
@@ -97,15 +102,15 @@ function MusicPlayer() {
 
   return <aside className="worldcup-player" aria-label="World Cup music player">
     <span className="music-label">SOUND</span>
-    <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={!activePreview || failedIndex === trackIndex} aria-label={isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
-    <div className="now-playing"><span>{track.year}</span><strong>{failedIndex === trackIndex ? `PREVIEW UNAVAILABLE · ${track.title}` : activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
+    <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={musicEnabled && (!activePreview || failedIndex === trackIndex)} aria-label={!musicEnabled ? "Load music previews" : isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
+    <div className="now-playing"><span>{track.year}</span><strong>{!musicEnabled ? "OPTIONAL SOUNDTRACK · PRESS PLAY TO LOAD" : failedIndex === trackIndex ? `PREVIEW UNAVAILABLE · ${track.title}` : activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
     {failedIndex === trackIndex ? <button className="apple-link" type="button" aria-label="Retry song preview" onClick={() => { setFailedIndex(null); setPreview(null); setRetry(value => value + 1); }}>↻</button> : <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer" aria-label="Open this song in Apple Music">↗</a>}
     {activePreview && <audio ref={audioRef} src={activePreview.previewUrl} onError={() => { setFailedIndex(trackIndex); setIsPlaying(false); continuePlaybackRef.current = false; }} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} preload="metadata" loop />}
   </aside>;
 }
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span><ProjectLinks repo={project.repo} /><i>{project.status}</i></article>;
+  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><ProjectPreview repo={project.repo} /><p>{project.text}</p><ProjectEvidence repo={project.repo} /><span className="cartridge-stack">{project.stack}</span><ProjectLinks repo={project.repo} /><i>{project.status}</i></article>;
 }
 
 export default function Home() {
@@ -170,7 +175,7 @@ export default function Home() {
     <section className={`title-screen game-${gameState}`} id="top">
       <div className="stadium-roofline" aria-hidden="true" /><div className="flag-rail" aria-hidden="true">{flags.concat(flags).map((flag, index) => <span className={`rail-${(index % 6) + 1}`} key={`${flag}-${index}`}>{flag}</span>)}</div><div className="stadium-crowd crowd-lower" aria-hidden="true" />
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true">HUMBERTO</span><strong aria-hidden="true">VILLANUEVA</strong></h1></div>
-      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I turn complicated systems into dependable software that works in the real world.</p><div className="title-actions"><a href="#work">▶ VIEW PROJECTS</a><a href="#contact">CONTACT</a></div><span className="press-start">● PRESS START</span></div>
+      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build full-stack applications, AI integrations, and software that turns building data into useful decisions.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span></div>
       <div className="fan-stands" aria-hidden="true">{Array.from({ length: 44 }, (_, index) => <div className={`pixel-fan tone-${(index % 5) + 1} shirt-${(index % 8) + 1}`} key={index}><i className={`fan-flag flag-${(index % 6) + 1}`} /><i className="fan-head" /><i className="fan-body" /><i className="fan-arm fan-arm-left" /><i className="fan-arm fan-arm-right" /></div>)}</div>
       <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} tabIndex={0} role="group" aria-label="Soccer game. Focus this pitch to use arrow keys to move and space to shoot. Tab moves to the on-screen controls.">
         <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="field-penalty-area"><div className="field-six-yard-box" /><i className="penalty-spot" /></div><div className="pixel-goal" />
@@ -185,15 +190,15 @@ export default function Home() {
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>PROJECT SELECT</h2><p>Current product work and selected independent builds.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
+    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Working demos, the decisions behind them, and what each build can do today.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
 
-    <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>CAREER SAVE DATA</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
+    <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>EXPERIENCE</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
 
-    <section className="game-screen skills-screen" id="skills"><div className="screen-heading"><span>STAGE 03</span><h2>PLAYER ATTRIBUTES</h2><p>Tools connected into dependable systems—not trophies collected for display.</p></div><div className="stats-console"><aside className="player-card"><div className="card-top"><span>PLAYER 1</span><b>07</b></div><div className="pixel-avatar" aria-hidden="true"><i className="avatar-hair" /><i className="avatar-face" /><i className="avatar-shirt" /></div><strong>H. VILLANUEVA</strong><small>SOFTWARE ENGINEER</small><div className="card-flags"><span>PER</span><i>→</i><span>USA</span></div></aside><div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill.name}</strong><i>{skill.context}</i></div>)}</div></div></section>
+    <section className="game-screen skills-screen" id="skills"><div className="screen-heading"><span>STAGE 03</span><h2>ENGINEERING TOOLKIT</h2><p>Tools connected into dependable systems—not trophies collected for display.</p></div><div className="stats-console"><aside className="player-card"><div className="card-top"><span>PLAYER 1</span><b>07</b></div><div className="pixel-avatar" aria-hidden="true"><i className="avatar-hair" /><i className="avatar-face" /><i className="avatar-shirt" /></div><strong>H. VILLANUEVA</strong><small>SOFTWARE ENGINEER</small><div className="card-flags"><span>UTAH</span><i>·</i><span>USA</span></div></aside><div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill.name}</strong><i>{skill.context}</i></div>)}</div></div></section>
 
-    <section className="game-screen profile-screen" id="about"><div className="screen-heading light-heading"><span>STAGE 04</span><h2>PLAYER PROFILE</h2><p>The person behind the work.</p></div><div className="profile-window"><div className="profile-facts"><span><small>FOCUS</small>SOFTWARE ENGINEERING</span><span><small>BASE</small>UTAH, USA</span><span><small>CLUB</small>REAL MADRID</span><span><small>NUMBER</small>07</span></div><div className="profile-story"><p>I build software that connects useful ideas with real-world needs. Family and faith keep me grounded. Football keeps me competitive. Curiosity keeps me building.</p><p>I&apos;m happiest when I&apos;m solving a hard problem with good people—then watching Real Madrid and arguing about the match afterward.</p><span>● READY FOR THE NEXT CHALLENGE</span></div></div></section>
+    <section className="game-screen profile-screen" id="about"><div className="screen-heading light-heading"><span>STAGE 04</span><h2>PLAYER PROFILE</h2><p>The person behind the work.</p></div><div className="profile-window"><div className="profile-facts"><span><small>FOCUS</small>SOFTWARE ENGINEERING</span><span><small>BASE</small>UTAH, USA</span><span><small>CLUB</small>REAL MADRID</span><span><small>NUMBER</small>07</span></div><div className="profile-story"><Image className="profile-portrait" src="/humbertopic.jpeg" alt="Humberto Villanueva, software engineer" width={160} height={160} sizes="160px" /><a className="profile-about-link" href="/about">Meet Humberto →</a><p>I build software that connects useful ideas with real-world needs. Family and faith keep me grounded. Football keeps me competitive. Curiosity keeps me building.</p><p>I&apos;m happiest when I&apos;m solving a hard problem with good people—then watching Real Madrid and arguing about the match afterward.</p><span>● READY FOR THE NEXT CHALLENGE</span></div></div></section>
 
-    <section className="continue-screen" id="contact" tabIndex={-1}><span>FINAL STAGE</span><h2>CONTINUE?</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><ContactForm /><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Open a draft in your email app, or copy your message to send it yourself.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
+    <section className="continue-screen" id="contact" tabIndex={-1}><span>FINAL STAGE</span><h2>LET’S TALK</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><ContactForm /><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Open a draft in your email app, or copy your message to send it yourself.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
     <footer className="game-footer"><span>© 2026 HUMBERTO VILLANUEVA</span><nav aria-label="Portfolio pages"><a href="/about">ABOUT</a><a href="/projects">PROJECTS</a><a href="/experience">EXPERIENCE</a><a href="/writing">WRITING</a></nav><a href="#top">RESTART ↑</a></footer>
   </main>;
 }

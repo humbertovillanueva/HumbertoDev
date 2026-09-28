@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { SocialProfileLinks } from "../social-profile-links";
 import { socialProfileUrls } from "../social-profiles";
 import type { Metadata } from "next";
@@ -7,7 +8,7 @@ import { SeoPageShell } from "../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/about";
 
 export const metadata: Metadata = {
-  title: "About Humberto Villanueva — Software Engineer in Utah",
+  title: "About — Software Engineer in Utah",
   description:
     "Meet Humberto Villanueva, a software engineer based in Utah and focused on AI systems, full-stack products, cloud software, and building intelligence.",
   alternates: { canonical: pageUrl },
@@ -24,7 +25,7 @@ const profileData = {
   "@id": `${pageUrl}/#profile-page`,
   url: pageUrl,
   name: "About Humberto Villanueva",
-  dateModified: "2026-09-26",
+  dateModified: "2026-09-27",
   mainEntity: {
     "@type": "Person",
     "@id": "https://humbertovillanueva.dev/#person",
@@ -47,6 +48,7 @@ export default function AboutPage() {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileData).replace(/</g, "\\u003c") }} />
       <section className="seo-panel seo-panel-wide">
+        <Image className="profile-portrait" src="/humbertopic.jpeg" width={160} height={160} sizes="160px" alt="Humberto Villanueva, software engineer based in Utah" />
         <span className="seo-label">THE PERSON BEHIND THE WORK</span>
         <h2>Software engineering grounded in real-world problems</h2>
         <p>I’m a software engineer based in Utah, where I work across product interfaces, AI integration, document intelligence, data reliability, and software for the built environment.</p>

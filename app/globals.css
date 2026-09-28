@@ -261,3 +261,66 @@ section[id] { scroll-margin-top:120px; }
 button.apple-link { padding:0; background:var(--black); cursor:pointer; }
 .player-buttons button:disabled { cursor:not-allowed; }
 @media (prefers-reduced-motion:reduce) { * { transition-duration:.01ms!important; } }
+
+/* Portfolio content: keep the stadium identity, make the work easier to read. */
+:root { --red:#b82e20; }
+body { -webkit-font-smoothing:antialiased; }
+.retro-site { image-rendering:auto; }
+.retro-site::after { display:none; }
+.title-screen { height:auto; min-height:0; padding:156px 24px 28px; background:#073a50; }
+.title-lockup { position:relative; top:auto; left:auto; transform:none; margin:0 auto; }
+.title-lockup h1 span,.title-lockup h1 strong { font-size:clamp(44px,7vw,94px); line-height:1; -webkit-text-stroke:2px var(--yellow); text-shadow:5px 5px 0 var(--black); }
+.hero-console { position:relative; top:auto; left:auto; transform:none; width:min(720px,100%); margin:28px auto 0; }
+.hero-blurb { max-width:680px; font:400 20px/1.6 Arial,Helvetica,sans-serif; border:0; box-shadow:none; background:transparent; }
+.role-ribbon { font-size:12px; line-height:1.5; }
+.title-actions a { min-height:48px; font-size:12px; }
+.press-start { font:600 12px/1.6 Arial,Helvetica,sans-serif; animation:none; }
+.pixel-field { position:relative; height:310px; width:min(1000px,100%); margin:32px auto 0; border:4px solid var(--cream); }
+.stadium-roofline,.flag-rail,.fan-stands,.crowd-lower { display:none; }
+.cartridge-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px; }
+.game-cartridge { min-width:0; padding:28px; }
+.game-cartridge p,.mission-copy p,.profile-story p,.career-row p,.contact-channel p,.seo-panel p,.seo-article p,.seo-article li { font:400 17px/1.75 Arial,Helvetica,sans-serif; }
+.cartridge-title h3 { font-size:32px; line-height:1.1; }
+.cartridge-title small,.cartridge-stack,.game-cartridge>i,.screen-heading>span,.seo-label,.seo-number { font-size:12px; line-height:1.6; }
+.project-preview { margin:8px 0 22px; }
+.project-preview img { display:block; width:100%; height:auto; border:1px solid #52636a; border-radius:4px; }
+.project-preview figcaption { margin-top:8px; font:400 12px/1.5 Arial,Helvetica,sans-serif; color:#44524a; }
+.project-evidence { margin:20px 0 0; display:grid; gap:16px; }
+.project-evidence dt { font:700 13px/1.5 Arial,Helvetica,sans-serif; color:var(--green-dark); }
+.project-evidence dd { margin:4px 0 0; font:400 15px/1.65 Arial,Helvetica,sans-serif; color:#35423d; }
+.project-links { margin-top:12px; }
+.project-links a { min-height:44px; display:inline-flex; align-items:center; }
+.profile-portrait { display:block; object-fit:cover; border-radius:50%; border:4px solid var(--cream); margin:0 0 20px; }
+.profile-about-link { margin-bottom:22px; font-size:17px; text-decoration:underline; text-underline-offset:4px; }
+.message-form input,.message-form textarea { font:400 16px/1.6 Arial,Helvetica,sans-serif; }
+.message-form label span,.message-form button,.contact-channel small,.social-profile-groups .social-group-label { font-size:12px; line-height:1.6; }
+.contact-channel>a { font-size:13px; overflow-wrap:anywhere; }
+.seo-page-hero h1 { overflow-wrap:anywhere; line-height:1.05; font-size:clamp(34px,7vw,86px); }
+.seo-page-intro { font:400 18px/1.7 Arial,Helvetica,sans-serif; }
+.seo-panel,.seo-page-content,.seo-project { min-width:0; }
+.seo-project .project-preview { max-width:780px; margin-top:24px; }
+.seo-page-header nav { flex-wrap:wrap; }
+.seo-page-header nav a { font-size:12px; min-height:44px; display:flex; align-items:center; }
+.seo-page-header nav a:last-child { display:flex; }
+.page-skip { position:fixed; top:10px; left:10px; padding:14px; z-index:300; transform:translateY(-200%); background:var(--yellow); color:var(--black); }
+.page-skip:focus { transform:translateY(0); }
+.seo-page a:focus-visible { outline:3px solid currentColor; outline-offset:4px; }
+@media(max-width:760px) {
+  .cartridge-grid { grid-template-columns:1fr; }
+  .title-screen { padding:130px 16px 24px; }
+  .title-lockup { width:100%; }
+  .title-lockup h1 span,.title-lockup h1 strong { font-size:clamp(34px,9.5vw,64px); }
+  .hero-blurb { font-size:18px; padding:8px 0; }
+  .pixel-field { height:300px; }
+  .game-hud { font-size:9px; }
+  .game-controls { grid-template-columns:repeat(4,40px); }
+  .game-controls button { width:40px; min-width:40px; height:40px; }
+  .game-cartridge { padding:22px; }
+  .screen-heading h2 { font-size:clamp(28px,8vw,44px); overflow-wrap:anywhere; }
+  .screen-heading p { font:400 16px/1.6 Arial,Helvetica,sans-serif; }
+  .seo-page-header { align-items:flex-start; flex-direction:column; gap:8px; padding:16px; }
+  .seo-home-link { font-size:12px; }
+  .seo-page-header nav { gap:6px; }
+  .seo-page-header nav a { padding:8px; }
+  .seo-page-hero { padding:42px 16px; }
+}

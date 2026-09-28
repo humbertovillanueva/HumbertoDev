@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { ProjectPreview, ProjectEvidence } from "../project-evidence";
 import { ProjectLinks } from "../project-links";
 import projectData from "../projects.json";
 import { SeoPageShell } from "../seo-page-shell";
@@ -7,7 +8,7 @@ import { SeoPageShell } from "../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/projects";
 
 export const metadata: Metadata = {
-  title: "Software Projects — Humberto Villanueva",
+  title: "Software Projects",
   description: "Selected software engineering projects by Humberto Villanueva across React Native, Java, AWS, APIs, BLE, AI systems, and full-stack product development.",
   alternates: { canonical: pageUrl },
   openGraph: { title: "Software Projects — Humberto Villanueva", description: "Mobile, cloud, API, AI, and full-stack software projects by Humberto Villanueva.", url: pageUrl },
@@ -25,7 +26,7 @@ export default function ProjectsPage() {
   return (
     <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="PROJECTS" intro="Product work and independent builds spanning AI, mobile development, cloud infrastructure, APIs, and reliable full-stack systems.">
       <section className="seo-project-list">
-        {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2>{project.title}</h2><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}<strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
+        {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2>{project.title}</h2><ProjectPreview repo={project.repo} /><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}<ProjectEvidence repo={project.repo} /><strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
       </section>
       <div className="seo-next-links"><Link href="/experience">Continue to experience →</Link><Link href="/writing">Read engineering notes →</Link></div>
     </SeoPageShell>

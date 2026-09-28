@@ -3,40 +3,40 @@
     "title": "Reality Commit",
     "type": "Local-first physical-space prototype",
     "text": "Compare site captures, manually annotate assets, review changes, and save an evidence-backed history in your browser. Built with local storage and JSON export.",
-    "stack": "REACT \u00b7 TYPESCRIPT \u00b7 VITE \u00b7 INDEXEDDB",
+    "stack": "REACT · TYPESCRIPT · VITE · INDEXEDDB",
     "repo": "reality-commit",
     "status": "PROTOTYPE"
-  },
-  {
-    "title": "STEDI Mobile",
-    "type": "Cloud-connected mobile app",
-    "text": "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.",
-    "stack": "REACT NATIVE \u00b7 EXPO \u00b7 JAVASCRIPT \u00b7 BLE",
-    "repo": "",
-    "status": "READY"
   },
   {
     "title": "DispatchTrack Lite",
     "type": "Interactive delivery demo",
     "text": "Create deliveries, assign drivers, resolve exceptions, and review delivery history. The public demo saves fictional records in your browser; the Java backend is a separate implementation.",
-    "stack": "REACT \u00b7 JAVA \u00b7 REST APIs \u00b7 LOCAL STORAGE",
+    "stack": "REACT · JAVA · REST APIs · LOCAL STORAGE",
     "repo": "dispatchtrack-demo",
     "status": "DEMO"
-  },
-  {
-    "title": "Serverless API",
-    "type": "AWS cloud project",
-    "text": "A deployed REST API with infrastructure, endpoints, authentication, and troubleshooting handled end to end.",
-    "stack": "JAVA \u00b7 AWS SAM \u00b7 LAMBDA \u00b7 API GATEWAY",
-    "repo": "",
-    "status": "READY"
   },
   {
     "title": "AWS Cloud Quest",
     "type": "Interactive cloud study game",
     "text": "Practice 50 cloud questions with shuffled answers, immediate feedback, and score and streak tracking. Runs directly in your browser.",
-    "stack": "HTML \u00b7 CSS \u00b7 JAVASCRIPT",
+    "stack": "HTML · CSS · JAVASCRIPT",
     "repo": "aws-cloud-quest.",
     "status": "DEMO"
+  },
+  {
+    "title": "STEDI Mobile",
+    "type": "Cloud-connected mobile app",
+    "text": "React Native onboarding, UI workflows, BLE integration, input reliability, and EAS delivery pipelines.",
+    "stack": "REACT NATIVE · EXPO · JAVASCRIPT · BLE",
+    "repo": "",
+    "status": "COURSEWORK"
+  },
+  {
+    "title": "Serverless API",
+    "type": "AWS cloud project",
+    "text": "Java REST API work using AWS SAM, Lambda, and API Gateway, including endpoint integration and deployment troubleshooting.",
+    "stack": "JAVA · AWS SAM · LAMBDA · API GATEWAY",
+    "repo": "",
+    "status": "CASE WORK"
   }
 ]

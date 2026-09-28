@@ -11,6 +11,7 @@ type SeoPageShellProps = {
 export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPageShellProps) {
   return (
     <main className="seo-page">
+      <a className="page-skip" href="#page-content">Skip to content</a>
       <header className="seo-page-header">
         <Link href="/" className="seo-home-link">HV · 07</Link>
         <nav aria-label="Portfolio pages">
@@ -27,7 +28,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPage
         <h1>{title}</h1>
         <p className="seo-page-intro">{intro}</p>
       </section>
-      <div className="seo-page-content">{children}</div>
+      <div className="seo-page-content" id="page-content" tabIndex={-1}>{children}</div>
       <footer className="seo-page-footer">
         <span>HUMBERTO VILLANUEVA · SOFTWARE ENGINEER · UTAH</span>
         <Link href="/">RETURN TO STADIUM →</Link>

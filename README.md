@@ -1,18 +1,20 @@
 # HumbertoDev
 
-Humberto Villanueva's personal software-engineering portfolio, presented as an early-2000s pixel-football broadcast. The experience connects Humberto's story—from Peru to Utah—with his work across AI systems, building intelligence, full-stack products, and cloud software.
+Humberto Villanueva's personal software-engineering portfolio, presented as an early-2000s pixel-football broadcast. The experience connects his work across AI systems, building intelligence, full-stack products, and cloud software.
 
 Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 
 ## Experience
 
 - A playable Peru number-7 football introduction with keyboard and touch controls
-- A compact World Cup music-preview player powered by Apple's public preview catalog
-- A featured Specta building-intelligence case study
+- An opt-in World Cup music-preview player; no catalog request is made until a visitor loads previews
+- A clearly attributed summary of professional work on Specta
 - Experience, projects, skills, personal story, and contact sections
 - An engineering-writing hub with long-form technical articles
 - A dedicated DispatchTrack Lite architecture case study
-- Responsive layouts and reduced-motion support
+- Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
+- Actual demo screenshots, engineering decisions, and prototype limits
+- Contact draft preparation and clipboard fallback (no server-side message delivery)
 
 ## Featured pages
 
@@ -32,7 +34,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 ## Local development
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -45,6 +47,22 @@ npm run lint
 npm run build
 git diff --check
 ```
+
+For browser checks, start the production build with `npm start` in another terminal, then run:
+
+```bash
+npx playwright install chromium
+node automation/smoke.mjs
+node automation/interactions.mjs
+node automation/pages.mjs
+python3 automation/test_sync.py
+```
+
+Set `PREVIEW_URL` to test a different server. Page checks cover seven routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
+
+## Contact delivery
+
+The contact form prepares an email draft or copies it to the clipboard. It does not send mail or store submissions. Direct delivery still needs a configured email provider, verified sender domain, secret stored in the deployment environment, and server-side validation and abuse controls. Never add a delivery confirmation until the service has accepted a message.
 
 ## Project structure
 

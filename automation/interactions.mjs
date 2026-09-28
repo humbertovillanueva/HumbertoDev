@@ -7,8 +7,12 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     let fail = true;
-    await page.route('https://itunes.apple.com/**', route => route.fulfill({status: fail ? 503 : 200, contentType:'application/json', body: fail ? '{}' : JSON.stringify({results:[{previewUrl:base+'/test-audio.mp3',trackViewUrl:'https://music.apple.com/'}]})}));
+    let musicRequests = 0;
+    await page.route('https://itunes.apple.com/**', route => { musicRequests++; return route.fulfill({status: fail ? 503 : 200, contentType:'application/json', body: fail ? '{}' : JSON.stringify({results:[{previewUrl:base+'/test-audio.mp3',trackViewUrl:'https://music.apple.com/'}]})}); });
     await page.goto(base);
+    await expect(page.getByRole("button", {name:"Load music previews"})).toBeVisible();
+    expect(musicRequests).toBe(0);
+    await page.getByRole("button", {name:"Load music previews"}).click();
     await expect(page.getByRole('button', {name:'Retry song preview'})).toBeVisible();
     await expect(page.getByRole('button', {name:'Play song', exact:true})).toBeDisabled();
     // Empty search results must also stop loading and offer recovery.

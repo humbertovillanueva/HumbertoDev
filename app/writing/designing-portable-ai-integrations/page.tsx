@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
@@ -109,7 +110,7 @@ Shared layers
         <p>Good portability is not the ability to change an environment variable and hope. It is the ability to replace an AI dependency while keeping product behavior understandable, observable, and testable. That architecture creates room for hosted models, local deployments, and whatever provider arrives next.</p>
 
         <aside className="seo-author-card" aria-label="About the author">
-          <img src="/humbertopic.jpeg" alt="Humberto Villanueva" width="112" height="112" />
+          <Image src="/humbertopic.jpeg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />
           <div>
             <span className="seo-label">ABOUT THE AUTHOR</span>
             <h2>Humberto Villanueva</h2>
