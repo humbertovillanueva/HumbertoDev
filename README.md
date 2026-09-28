@@ -14,7 +14,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - A dedicated DispatchTrack Lite architecture case study
 - Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
 - Actual demo screenshots, engineering decisions, and prototype limits
-- Contact draft preparation and clipboard fallback (no server-side message delivery)
+- Resend contact delivery with validation and bot protection, plus email-draft and clipboard fallbacks
 
 ## Featured pages
 
@@ -62,7 +62,7 @@ Set `PREVIEW_URL` to test a different server. Page checks cover seven routes at 
 
 ## Contact delivery
 
-The contact form prepares an email draft or copies it to the clipboard. It does not send mail or store submissions. Direct delivery still needs a configured email provider, verified sender domain, secret stored in the deployment environment, and server-side validation and abuse controls. Never add a delivery confirmation until the service has accepted a message.
+The contact form supports server-side delivery through Resend when its production configuration is enabled. It falls back to email-draft and clipboard options when unavailable. See [contact delivery setup and verification](docs/contact-delivery.md) for the required environment variables, safeguards, and delivery test.
 
 ## Project structure
 

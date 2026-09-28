@@ -1,12 +1,23 @@
 "use client";
 
-import { useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 const emailAddress = "hachevillanueva99@gmail.com";
 
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("");
+  const [sending, setSending] = useState(false);
+  const [canSend, setCanSend] = useState(false);
+  useEffect(() => {
+    const controller = new AbortController();
+    void fetch("/api/contact", {signal:controller.signal})
+      .then(response => response.ok ? response.json() : null)
+      .then(result => { if (!controller.signal.aborted) setCanSend(result?.enabled === true); })
+      .catch(() => {});
+    return () => controller.abort();
+  }, []);
+  const submissionRef = useRef<string | null>(null);
 
   function readMessage() {
     const form = formRef.current;
@@ -25,12 +36,36 @@ export function ContactForm() {
     };
   }
 
-  function openEmail(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  function openEmail() {
     const draft = readMessage();
     if (!draft) return;
     setStatus("Your email app should open with a draft. Send it there to finish. If nothing opens, use Copy message and paste it into your email service.");
     window.location.href = `mailto:${emailAddress}?subject=${encodeURIComponent(draft.subject)}&body=${encodeURIComponent(draft.body)}`;
+  }
+
+  async function sendMessage(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!canSend) { openEmail(); return; }
+    if (sending || !readMessage() || !formRef.current) return;
+    const data = new FormData(formRef.current);
+    submissionRef.current ??= crypto.randomUUID();
+    setSending(true);
+    setStatus("Sending your message…");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...Object.fromEntries(data), submissionId: submissionRef.current }),
+        signal: AbortSignal.timeout(20000),
+      });
+      const result = await response.json();
+      if (!response.ok || result.ok !== true) throw new Error(typeof result.error === "string" ? result.error : "We could not send your message. Try again or use the email draft option.");
+      setStatus("Your message was accepted for delivery to Humberto. Thank you for getting in touch.");
+      formRef.current.reset();
+      submissionRef.current = null;
+    } catch (error) {
+      setStatus(error instanceof Error && error.name === "Error" ? error.message : "Sending could not be confirmed. Your text is still here; retry or use the email draft option.");
+    } finally { setSending(false); }
   }
 
   async function copyMessage() {
@@ -44,18 +79,23 @@ export function ContactForm() {
     }
   }
 
-  return <form ref={formRef} className="message-form" onSubmit={openEmail} onInput={(event) => {
+  return <form ref={formRef} className="message-form" onSubmit={sendMessage} aria-busy={sending} onInput={(event) => {
     const target = event.target;
     if (target instanceof HTMLInputElement || target instanceof HTMLTextAreaElement) target.setCustomValidity("");
+    submissionRef.current = null;
     setStatus("");
   }}>
-    <p className="contact-help">Prepare an email draft or copy your message. Nothing is sent from this website.</p>
+    <p className="contact-help">{canSend ? "Send a message to Humberto’s inbox. Your details are used to respond to your inquiry and processed by our email provider. You can also open a draft or copy your message." : "Prepare an email draft or copy your message. Direct sending is currently unavailable."}</p>
+    <fieldset disabled={sending} className="contact-fields">
+    <div className="contact-trap" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <label><span>YOUR NAME *</span><input type="text" name="name" autoComplete="name" maxLength={100} required /></label>
     <label><span>YOUR EMAIL *</span><input type="email" name="email" autoComplete="email" maxLength={254} required /></label>
     <label><span>COMPANY / TEAM</span><input type="text" name="company" autoComplete="organization" maxLength={150} /></label>
     <label className="message-field"><span>MESSAGE *</span><textarea name="message" rows={6} maxLength={1500} required /></label>
-    <button type="submit">▶ OPEN EMAIL DRAFT</button>
+    {canSend && <button type="submit">{sending ? "SENDING…" : "SEND MESSAGE"}</button>}
+    <button type="button" onClick={openEmail}>OPEN EMAIL DRAFT</button>
     <button type="button" onClick={copyMessage}>COPY MESSAGE</button>
+    </fieldset>
     <p className="contact-feedback" role="status">{status}</p>
   </form>;
 }
