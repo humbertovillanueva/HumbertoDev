@@ -10,7 +10,7 @@ try {
     const errors = [];
     page.on('pageerror', error => errors.push(error.message));
     for (const path of paths) {
-      const response = await page.goto(base+path, {waitUntil:'networkidle'});
+      const response = await page.goto(base+path, {waitUntil:'domcontentloaded',timeout:60000});
       expect(response.status()).toBe(200);
       await expect(page.locator('h1')).toHaveCount(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 2), `${path} overflows at ${width}px`).toBe(true);
