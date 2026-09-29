@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Designing Portable AI Integrations — an engineering field note by Humberto Villanueva";
+export const alt = "Designing Portable AI Integrations | an engineering field note by Humberto Villanueva";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

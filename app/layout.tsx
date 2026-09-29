@@ -6,11 +6,11 @@ const siteUrl = "https://humbertovillanueva.dev";
 
 export const metadata: Metadata = {
   title: {
-    default: "Humberto Villanueva — Software Engineer in Utah",
+    default: "Humberto Villanueva | Software Engineer in Utah",
     template: "%s | Humberto Villanueva",
   },
   description:
-    "Humberto Villanueva is a software engineer based in Utah, building AI-native products, reliable data systems, and building intelligence at kW Engineering.",
+    "Humberto Villanueva is a software engineer based in Utah, building web applications, AI integrations, and software for building data at kW Engineering.",
   metadataBase: new URL(siteUrl),
   authors: [{ name: "Humberto Villanueva", url: siteUrl }],
   creator: "Humberto Villanueva",
@@ -23,19 +23,19 @@ export const metadata: Metadata = {
     icon: [{ url: "/icon.png", type: "image/png", sizes: "192x192" }],
   },
   openGraph: {
-    title: "Humberto Villanueva — Software Engineer in Utah",
+    title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building AI systems, reliable data products, and building intelligence.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, and software for building data.",
     url: "/",
-    siteName: "Humberto Villanueva — Portfolio",
+    siteName: "Humberto Villanueva | Portfolio",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Humberto Villanueva — Software Engineer in Utah",
+    title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building AI systems, reliable data products, and building intelligence.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, and software for building data.",
   },
   robots: {
     index: true,
@@ -61,7 +61,7 @@ const structuredData = {
       image: `${siteUrl}/humbertopic.jpeg`,
       jobTitle: "Software Engineer",
       description:
-        "Software engineer based in Utah, building AI-native products, reliable data systems, and building intelligence.",
+        "Software engineer based in Utah, building web applications, AI integrations, and software for building data.",
       sameAs: socialProfileUrls,
       worksFor: {
         "@type": "Organization",
@@ -97,7 +97,7 @@ const structuredData = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "Humberto Villanueva — Software Engineer Portfolio",
+      name: "Humberto Villanueva | Software Engineer Portfolio",
       description:
         "The software engineering portfolio of Humberto Villanueva.",
       inLanguage: "en-US",

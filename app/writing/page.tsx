@@ -5,11 +5,11 @@ import { SeoPageShell } from "../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/writing";
 
 export const metadata: Metadata = {
-  title: "Engineering Writing — AI, Full Stack & Smart Buildings",
+  title: "Engineering Writing | AI, Full Stack & Smart Buildings",
   description: "First-hand engineering notes from Humberto Villanueva about applied AI, reliable software systems, full-stack development, and smart-building technology.",
   alternates: { canonical: pageUrl },
   openGraph: {
-    title: "Engineering Writing — Humberto Villanueva",
+    title: "Engineering Writing | Humberto Villanueva",
     description: "Practical notes about applied AI, software architecture, reliable systems, and smart-building technology.",
     url: pageUrl,
   },
@@ -41,7 +41,7 @@ const articles = [{
 
 export default function WritingPage() {
   return (
-    <SeoPageShell stage="STAGE 03" eyebrow="FIELD NOTES FROM THE BUILD" title="WRITING" intro="Practical lessons from building software across AI integration, APIs, product interfaces, cloud systems, and the physical world.">
+    <SeoPageShell stage="STAGE 03" eyebrow="FIELD NOTES FROM THE BUILD" title="WRITING" intro="Notes on software I’m building, decisions I’ve worked through, and things I’ve learned along the way.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionData).replace(/</g, "\\u003c") }} />
       <section className="seo-writing-list">
         {articles.map((article, index) => (
@@ -58,7 +58,7 @@ export default function WritingPage() {
       <section className="seo-panel seo-panel-wide">
         <span className="seo-label">EDITORIAL PROMISE</span>
         <h2>Experience before volume</h2>
-        <p>These notes document problems I have actually explored, systems I have built, and lessons I can explain. Employer-specific implementation details remain private; the engineering principles are shared so other builders can use them.</p>
+        <p>I write about problems I’ve worked through and explain the choices I made. I keep private work details out of these articles.</p>
       </section>
       <div className="seo-next-links"><Link href="/case-studies/dispatchtrack-lite">Read a project case study →</Link><Link href="/projects">Explore all projects →</Link></div>
     </SeoPageShell>

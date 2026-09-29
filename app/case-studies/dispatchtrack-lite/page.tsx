@@ -5,11 +5,11 @@ import { SeoPageShell } from "../../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/case-studies/dispatchtrack-lite";
 
 export const metadata: Metadata = {
-  title: "DispatchTrack Lite Case Study — React, Java & AWS",
+  title: "DispatchTrack Lite Case Study | React, Java & AWS",
   description: "Try Humberto Villanueva’s browser-based delivery demo and explore its React workflows, separate Java API, and original AWS architecture.",
   alternates: { canonical: pageUrl },
   openGraph: {
-    title: "DispatchTrack Lite — Software Engineering Case Study",
+    title: "DispatchTrack Lite | Software Engineering Case Study",
     description: "An interactive delivery demo with driver assignments, exception recovery, and a case study of the separate Java API and original AWS architecture.",
     url: pageUrl,
   },
@@ -29,7 +29,7 @@ const caseStudyData = {
 
 export default function DispatchTrackCaseStudy() {
   return (
-    <SeoPageShell stage="CASE STUDY · 01" eyebrow="INDEPENDENT FULL-STACK PROJECT" title="DISPATCHTRACK LITE" intro="Create deliveries, assign drivers, and resolve exceptions in an interactive browser demo, backed by a separate Java API implementation.">
+    <SeoPageShell stage="CASE STUDY · 01" eyebrow="INDEPENDENT FULL-STACK PROJECT" title="DISPATCHTRACK LITE" intro="Create deliveries, assign drivers, and resolve exceptions in a browser demo. This case study also covers the separate Java API.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyData).replace(/</g, "\\u003c") }} />
       <section className="seo-case-summary">
         <article className="seo-panel"><span className="seo-label">ROLE</span><h2>Full-stack engineer</h2><p>Product flow, interface, API contracts, serverless deployment, and end-to-end troubleshooting.</p></article>
@@ -62,7 +62,7 @@ export default function DispatchTrackCaseStudy() {
         </ul>
 
         <h2>Hard parts</h2>
-        <p>The difficult work was at the boundaries: browser-to-API communication, cross-origin configuration, environment differences, permissions, and turning cloud errors into something actionable. Those problems reinforced that full-stack engineering is often less about isolated code and more about making several systems agree.</p>
+        <p>The difficult work was at the boundaries: browser-to-API communication, cross-origin configuration, environment differences, permissions, and turning cloud errors into something actionable. I had to trace requests across those boundaries to find where they failed.</p>
 
         <h2>Result and lessons</h2>
         <p>The current browser demo supports driver assignments, guarded status transitions, exception recovery, and saved event history. The separate Java API implements persistent records, validation, and conflict handling. Turning this into a shared service still requires a hosted backend, authentication, company-level data isolation, backups, and operational monitoring.</p>

@@ -59,7 +59,7 @@ const breadcrumbData = {
 
 export default function PortableAiArticle() {
   return (
-    <SeoPageShell stage="FIELD NOTE · 01" eyebrow="APPLIED AI · SOFTWARE ARCHITECTURE" title="PORTABLE AI INTEGRATIONS" intro="How to make model providers replaceable without pretending they are identical—and without spreading provider-specific logic through the product.">
+    <SeoPageShell stage="FIELD NOTE · 01" eyebrow="APPLIED AI · SOFTWARE ARCHITECTURE" title="PORTABLE AI INTEGRATIONS" intro="How I would organize an AI integration so changing providers does not mean rewriting the product.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData).replace(/</g, "\\u003c") }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData).replace(/</g, "\\u003c") }} />
       <article className="seo-panel seo-article">
@@ -95,7 +95,7 @@ Shared layers
         <div className="seo-callout"><strong>ENGINEERING RULE</strong><p>Log enough to debug the system, but never treat prompts, documents, or model responses as harmless telemetry. Privacy and retention need deliberate policies.</p></div>
 
         <h2>Evaluation makes portability measurable</h2>
-        <p>Swapping models safely requires a representative evaluation set. For a document workflow, that can include answer quality, citation correctness, structured-output validity, latency, and failure recovery. The goal is not to declare one model universally best. It is to know whether a change preserves the behavior users depend on.</p>
+        <p>Swapping models safely requires a representative evaluation set. For a document workflow, that can include answer quality, citation correctness, structured-output validity, latency, and failure recovery. Use those results to check whether the replacement still does what your users need.</p>
 
         <h2>What I would build first</h2>
         <ol>
@@ -107,7 +107,7 @@ Shared layers
         </ol>
 
         <h2>The result</h2>
-        <p>Good portability is not the ability to change an environment variable and hope. It is the ability to replace an AI dependency while keeping product behavior understandable, observable, and testable. That architecture creates room for hosted models, local deployments, and whatever provider arrives next.</p>
+        <p>Before switching providers, run the same evaluation cases against both adapters. Check the outputs, latency, and failure handling. Keep the adapter boundary small enough that you can explain what changed and why.</p>
 
         <aside className="seo-author-card" aria-label="About the author">
           <Image src="/humbertopic.jpeg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />

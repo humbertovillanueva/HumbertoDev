@@ -8,18 +8,18 @@ export const metadata: Metadata = {
   title: "Software Engineering Experience",
   description: "Professional experience and education for Humberto Villanueva, a software engineer at kW Engineering based in Utah.",
   alternates: { canonical: pageUrl },
-  openGraph: { title: "Experience — Humberto Villanueva", description: "Software engineering, technical support, and education across kW Engineering, Ryder Last Mile, Weber State University, and Ensign College.", url: pageUrl },
+  openGraph: { title: "Experience | Humberto Villanueva", description: "Software engineering, technical support, and education across kW Engineering, Ryder Last Mile, Weber State University, and Ensign College.", url: pageUrl },
 };
 
 const roles = [
-  { years: "2026—NOW", company: "kW Engineering", role: "Software Engineer", detail: "Contributing to Specta across AI architecture, document intelligence, data reliability, ontology tooling, and production interfaces." },
-  { years: "2024—MAY 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Provided technical support and troubleshooting for logistics systems in a fast-moving, customer-facing environment." },
-  { years: "2023—2024", company: "Weber State University", role: "IT Support Specialist", detail: "Supported students, faculty, computer labs, and service operations while building a foundation in practical IT." },
+  { years: "2026 to present", company: "kW Engineering", role: "Software Engineer", detail: "Contributing to Specta across AI architecture, document intelligence, data reliability, ontology tooling, and production interfaces." },
+  { years: "2024 to May 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Troubleshot logistics systems and helped customers resolve technical issues." },
+  { years: "2023 to 2024", company: "Weber State University", role: "IT Support Specialist", detail: "Helped students and faculty with technical issues and supported campus computer labs." },
 ];
 
 export default function ExperiencePage() {
   return (
-    <SeoPageShell stage="STAGE 02" eyebrow="CAREER + EDUCATION" title="EXPERIENCE" intro="A path from hands-on IT support to production software engineering, shaped by practical troubleshooting and continued learning.">
+    <SeoPageShell stage="STAGE 02" eyebrow="CAREER + EDUCATION" title="EXPERIENCE" intro="I started in IT support, helping people troubleshoot their systems. Today I work as a software engineer at kW Engineering.">
       <section className="seo-timeline">
         {roles.map((item, index) => <article className="seo-panel seo-role" key={item.company}><span className="seo-number">0{index + 1}</span><span className="seo-label">{item.years}</span><h2>{item.role}</h2><h3>{item.company}</h3><p>{item.detail}</p></article>)}
       </section>

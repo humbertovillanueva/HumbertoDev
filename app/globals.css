@@ -357,3 +357,17 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
  .soccer-dialog { padding:10px; }
  .soccer-dialog-heading h2 { font-size:14px; }
 }
+
+/* Carry the section patterns into the opening without crowding the introduction. */
+.title-screen { background:#073a50; border-bottom:6px solid var(--cream); padding-bottom:64px; }
+.title-screen::before { content:""; position:absolute; inset:118px auto 0 0; width:12px; background:repeating-linear-gradient(135deg,var(--cyan) 0 8px,#079cae 8px 16px); pointer-events:none; }
+.title-screen::after { content:""; position:absolute; inset:118px 0 0 auto; width:12px; background:repeating-linear-gradient(135deg,var(--cyan) 0 8px,#079cae 8px 16px); pointer-events:none; }
+.soccer-launcher { gap:10px; padding:8px 14px; min-height:44px; margin:20px auto 0; font-size:11px; }
+.soccer-launcher>span:first-child { font-size:24px; }
+.soccer-dialog { width:min(760px,calc(100% - 24px)); }
+.soccer-dialog .pixel-field { height:min(320px,60dvh); }
+@media(max-width:600px) {
+ .title-screen { padding-bottom:40px; }
+ .title-screen::before,.title-screen::after { top:102px; width:5px; }
+}
+.seo-panel .soccer-dialog-heading h2 { color:var(--cream); }

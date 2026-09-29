@@ -21,9 +21,9 @@ const worldCupTracks = [
 ];
 
 const experience = [
-  { years: "2026—NOW", company: "kW Engineering", role: "Software Engineer", detail: "Contributing to kW Engineering’s Specta product across AI architecture, document intelligence, data reliability, ontology tooling, and production interfaces." },
-  { years: "2024—MAY 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Provided technical support and troubleshooting for logistics systems in a fast-moving, customer-facing environment." },
-  { years: "2023—2024", company: "Weber State University", role: "IT Support Specialist", detail: "Supported students, faculty, computer labs, and service operations while building a foundation in practical IT." },
+  { years: "2026 to present", company: "kW Engineering", role: "Software Engineer", detail: "Contributing to kW Engineering’s Specta product across AI architecture, document intelligence, data reliability, ontology tooling, and production interfaces." },
+  { years: "2024 to May 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Troubleshot logistics systems and helped customers resolve technical issues." },
+  { years: "2023 to 2024", company: "Weber State University", role: "IT Support Specialist", detail: "Helped students and faculty with technical issues and supported campus computer labs." },
 ];
 
 
@@ -37,7 +37,6 @@ const skills = [
   { name: "LLM systems", context: "PRODUCTION" }, { name: "Semantic search", context: "PRODUCTION" },
 ];
 
-const flags = ["PER", "ARG", "BRA", "ESP", "FRA", "JPN", "MAR", "KOR"];
 
 
 function SpectaMark() {
@@ -114,54 +113,6 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 }
 
 export default function Home() {
-  const gameDialogRef = useRef<HTMLDialogElement>(null);
-  const gameLauncherRef = useRef<HTMLButtonElement>(null);
-  const fieldRef = useRef<HTMLDivElement>(null);
-  const [playerPosition, setPlayerPosition] = useState({ x: 16, y: 24 });
-  const [gameState, setGameState] = useState<"ready" | "too-far" | "kicking" | "goal" | "miss">("ready");
-  const [goals, setGoals] = useState(0);
-
-  const movePlayer = useCallback((xChange: number, yChange: number) => {
-    if (gameState !== "ready") return;
-    setPlayerPosition((current) => ({ x: Math.min(78, Math.max(4, current.x + xChange)), y: Math.min(62, Math.max(8, current.y + yChange)) }));
-  }, [gameState]);
-
-  const kickBall = useCallback(() => {
-    if (gameState !== "ready") return;
-    if (playerPosition.x < 46) setGameState("too-far");
-    else if (playerPosition.y < 35 || playerPosition.y > 65) setGameState("miss");
-    else setGameState("kicking");
-  }, [gameState, playerPosition.x, playerPosition.y]);
-
-  useEffect(() => {
-    const handleGlobalGameKeys = (event: KeyboardEvent) => {
-      if (event.metaKey || event.ctrlKey || event.altKey) return;
-      if ((event.target as HTMLElement | null)?.closest("a, button, input, textarea, select, summary, [contenteditable='true']")) return;
-      const field = fieldRef.current;
-      if (!field || document.activeElement !== field) return;
-      const bounds = field.getBoundingClientRect();
-      if (bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
-      if (!["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", "Space"].includes(event.code)) return;
-      event.preventDefault();
-      if (event.code === "ArrowUp") movePlayer(0, 4);
-      if (event.code === "ArrowDown") movePlayer(0, -4);
-      if (event.code === "ArrowLeft") movePlayer(-3, 0);
-      if (event.code === "ArrowRight") movePlayer(3, 0);
-      if (event.code === "Space") kickBall();
-    };
-    window.addEventListener("keydown", handleGlobalGameKeys);
-    return () => window.removeEventListener("keydown", handleGlobalGameKeys);
-  }, [kickBall, movePlayer]);
-
-  useEffect(() => {
-    if (gameState === "kicking") { const timer = window.setTimeout(() => { setGoals((current) => current + 1); setGameState("goal"); }, 650); return () => window.clearTimeout(timer); }
-    if (gameState === "goal") { const timer = window.setTimeout(() => { setPlayerPosition({ x: 16, y: 24 }); setGameState("ready"); }, 1800); return () => window.clearTimeout(timer); }
-    if (gameState === "too-far" || gameState === "miss") { const timer = window.setTimeout(() => setGameState("ready"), 1100); return () => window.clearTimeout(timer); }
-  }, [gameState]);
-
-  const ballIsMoving = gameState === "kicking" || gameState === "goal" || gameState === "miss";
-  const gameMessage = gameState === "goal" ? "GOOOOOL!" : gameState === "too-far" ? "GET CLOSER" : gameState === "miss" ? "OVER THE BAR!" : gameState === "kicking" ? "SHOT!" : "FOCUS PITCH · ARROWS MOVE · SPACE SHOOTS";
-
   return <main className="retro-site">
     <div className="skip-links"><a href="#work">Skip to projects</a><a href="#contact">Skip to contact</a></div>
     <MusicPlayer />
@@ -174,37 +125,23 @@ export default function Home() {
       }
     }}><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#experience">Career</a><a href="#skills">Skills</a><a href="#about">Profile</a><a href="/writing">Writing</a><a href="#contact">Contact</a></nav></details><a className="header-cta" href="#contact">CONTACT</a></header>
 
-    <section className={`title-screen game-${gameState}`} id="top">
-      <div className="stadium-roofline" aria-hidden="true" /><div className="flag-rail" aria-hidden="true">{flags.concat(flags).map((flag, index) => <span className={`rail-${(index % 6) + 1}`} key={`${flag}-${index}`}>{flag}</span>)}</div><div className="stadium-crowd crowd-lower" aria-hidden="true" />
+    <section className="title-screen" id="top">
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true">HUMBERTO</span><strong aria-hidden="true">VILLANUEVA</strong></h1></div>
-      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build full-stack applications, AI integrations, and software that turns building data into useful decisions.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span></div>
-      <div className="fan-stands" aria-hidden="true">{Array.from({ length: 44 }, (_, index) => <div className={`pixel-fan tone-${(index % 5) + 1} shirt-${(index % 8) + 1}`} key={index}><i className={`fan-flag flag-${(index % 6) + 1}`} /><i className="fan-head" /><i className="fan-body" /><i className="fan-arm fan-arm-left" /><i className="fan-arm fan-arm-right" /></div>)}</div>
-      <button className="soccer-launcher" ref={gameLauncherRef} type="button" aria-haspopup="dialog" onClick={() => { gameDialogRef.current?.showModal(); fieldRef.current?.focus(); }}><span aria-hidden="true">⚽</span><span>PLAY A QUICK MATCH<small>A little football, when you feel like it.</small></span></button>
-      <dialog className="soccer-dialog" ref={gameDialogRef} aria-labelledby="soccer-title" onClose={() => { setGameState("ready"); gameLauncherRef.current?.focus(); }}>
-      <div className="soccer-dialog-heading"><h2 id="soccer-title">QUICK MATCH</h2><button type="button" onClick={() => gameDialogRef.current?.close()}>CLOSE GAME ×</button></div>
-      <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} tabIndex={0} role="group" aria-label="Soccer game. Focus this pitch to use arrow keys to move and space to shoot. Tab moves to the on-screen controls.">
-        <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="field-penalty-area"><div className="field-six-yard-box" /><i className="penalty-spot" /></div><div className="pixel-goal" />
-        <div className="corner-flags" aria-hidden="true"><i className="corner-flag corner-flag-tl" /><i className="corner-flag corner-flag-tr" /><i className="corner-flag corner-flag-bl" /><i className="corner-flag corner-flag-br" /></div>
-        <div className="pixel-keeper"><i className="keeper-head" /><i className="keeper-body" /><i className="keeper-arm keeper-arm-left" /><i className="keeper-arm keeper-arm-right" /><i className="keeper-leg keeper-leg-left" /><i className="keeper-leg keeper-leg-right" /></div>
-        <div className="controlled-player" style={{ left: `${playerPosition.x}%`, bottom: `${playerPosition.y}%` }} aria-hidden="true"><div className="pixel-runner"><i className="runner-hair" /><i className="runner-head" /><i className="runner-shirt" /><i className="runner-arm runner-arm-one" /><i className="runner-arm runner-arm-two" /><i className="runner-shorts" /><i className="runner-leg runner-leg-one" /><i className="runner-leg runner-leg-two" /></div></div>
-        <div className={`pixel-ball game-ball ${ballIsMoving ? "ball-shot" : ""}`} style={{ left: ballIsMoving ? "91%" : `calc(${playerPosition.x}% + 56px)`, bottom: gameState === "miss" ? "82%" : ballIsMoving ? "50%" : `calc(${playerPosition.y}% + 7px)` }} aria-hidden="true"><span /></div>
-        <div className="game-hud"><span>P1 · {gameMessage}</span><strong>GOALS {String(goals).padStart(2, "0")}</strong></div>
-        <div className="game-controls" aria-label="On-screen soccer controls"><button type="button" onClick={() => movePlayer(0, 4)} aria-label="Move up">↑</button><button type="button" onClick={() => movePlayer(-3, 0)} aria-label="Move left">←</button><button type="button" onClick={() => movePlayer(0, -4)} aria-label="Move down">↓</button><button type="button" onClick={() => movePlayer(3, 0)} aria-label="Move right">→</button><button className="kick-button" type="button" onClick={kickBall}>A · SHOOT</button></div><div className="goal-call">GOAL!</div><div className="goal-confetti">{Array.from({ length: 24 }, (_, index) => <i key={index} />)}</div>
-      </div>
-      </dialog>
+      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build web applications, connect AI tools, and help people make sense of building data.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span></div>
+
     </section>
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Working demos, the decisions behind them, and what each build can do today.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At my current job as a Software Engineer at kW Engineering, I contribute across AI integration, document intelligence, data reliability, and production product experiences for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02—{String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
+    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Projects you can try, with notes on how they work and what still needs work.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At kW Engineering, I work on Specta’s AI integrations, document processing, data reliability, and interfaces for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02 to {String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
 
     <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>EXPERIENCE</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
 
-    <section className="game-screen skills-screen" id="skills"><div className="screen-heading"><span>STAGE 03</span><h2>ENGINEERING TOOLKIT</h2><p>Tools connected into dependable systems—not trophies collected for display.</p></div><div className="stats-console"><aside className="player-card"><div className="card-top"><span>PLAYER 1</span><b>07</b></div><div className="pixel-avatar" aria-hidden="true"><i className="avatar-hair" /><i className="avatar-face" /><i className="avatar-shirt" /></div><strong>H. VILLANUEVA</strong><small>SOFTWARE ENGINEER</small><div className="card-flags"><span>UTAH</span><i>·</i><span>USA</span></div></aside><div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill.name}</strong><i>{skill.context}</i></div>)}</div></div></section>
+    <section className="game-screen skills-screen" id="skills"><div className="screen-heading"><span>STAGE 03</span><h2>ENGINEERING TOOLKIT</h2><p>The languages and tools I use at work and in my own projects.</p></div><div className="stats-console"><aside className="player-card"><div className="card-top"><span>PLAYER 1</span><b>07</b></div><div className="pixel-avatar" aria-hidden="true"><i className="avatar-hair" /><i className="avatar-face" /><i className="avatar-shirt" /></div><strong>H. VILLANUEVA</strong><small>SOFTWARE ENGINEER</small><div className="card-flags"><span>UTAH</span><i>·</i><span>USA</span></div></aside><div className="skill-board">{skills.map((skill, index) => <div className="skill-slot" key={skill.name}><span>{String(index + 1).padStart(2, "0")}</span><strong>{skill.name}</strong><i>{skill.context}</i></div>)}</div></div></section>
 
-    <section className="game-screen profile-screen" id="about"><div className="screen-heading light-heading"><span>STAGE 04</span><h2>PLAYER PROFILE</h2><p>The person behind the work.</p></div><div className="profile-window"><div className="profile-facts"><span><small>FOCUS</small>SOFTWARE ENGINEERING</span><span><small>BASE</small>UTAH, USA</span><span><small>CLUB</small>REAL MADRID</span><span><small>NUMBER</small>07</span></div><div className="profile-story"><Image className="profile-portrait" src="/humbertopic.jpeg" alt="Humberto Villanueva, software engineer" width={160} height={160} sizes="160px" /><a className="profile-about-link" href="/about">Meet Humberto →</a><p>I build software that connects useful ideas with real-world needs. Family and faith keep me grounded. Football keeps me competitive. Curiosity keeps me building.</p><p>I&apos;m happiest when I&apos;m solving a hard problem with good people—then watching Real Madrid and arguing about the match afterward.</p><span>● READY FOR THE NEXT CHALLENGE</span></div></div></section>
+    <section className="game-screen profile-screen" id="about"><div className="screen-heading light-heading"><span>STAGE 04</span><h2>PLAYER PROFILE</h2><p>The person behind the work.</p></div><div className="profile-window"><div className="profile-facts"><span><small>FOCUS</small>SOFTWARE ENGINEERING</span><span><small>BASE</small>UTAH, USA</span><span><small>CLUB</small>REAL MADRID</span><span><small>NUMBER</small>07</span></div><div className="profile-story"><Image className="profile-portrait" src="/humbertopic.jpeg" alt="Humberto Villanueva, software engineer" width={160} height={160} sizes="160px" /><a className="profile-about-link" href="/about">Meet Humberto →</a><p>I like figuring out why something is broken and working through a fix. Away from the screen, I spend time with my family and follow football.</p><p>I enjoy solving hard problems with good people. I also enjoy watching Real Madrid and arguing about the match afterward.</p><span>● READY FOR THE NEXT CHALLENGE</span></div></div></section>
 
-    <section className="continue-screen" id="contact" tabIndex={-1}><span>FINAL STAGE</span><h2>LET’S TALK</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><ContactForm /><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Open a draft in your email app, or copy your message to send it yourself.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
+    <section className="continue-screen" id="contact" tabIndex={-1}><span>FINAL STAGE</span><h2>LET’S TALK</h2><div className="contact-terminal"><div className="window-bar"><span>MESSAGE TERMINAL // NEW TRANSMISSION</span><b>ONLINE</b></div><div className="contact-terminal-body"><ContactForm /><aside className="contact-channel"><span>CHANNEL 07</span><h3>LET&apos;S BUILD THE NEXT ONE.</h3><p>Tell me who you are, what you&apos;re building, and where I can help.</p><small>Use the form to reach me, or email me directly.</small><a href="mailto:hachevillanueva99@gmail.com">HACHEVILLANUEVA99@GMAIL.COM</a><SocialProfileLinks /></aside></div></div></section>
     <footer className="game-footer"><span>© 2026 HUMBERTO VILLANUEVA</span><nav aria-label="Portfolio pages"><a href="/about">ABOUT</a><a href="/projects">PROJECTS</a><a href="/experience">EXPERIENCE</a><a href="/writing">WRITING</a></nav><a href="#top">RESTART ↑</a></footer>
   </main>;
 }

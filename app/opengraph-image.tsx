@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Humberto Villanueva — Software Engineer portfolio in a retro 1993 football stadium";
+export const alt = "Humberto Villanueva | Software Engineer portfolio in a retro 1993 football stadium";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

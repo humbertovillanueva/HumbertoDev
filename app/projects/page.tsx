@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   title: "Software Projects",
   description: "Selected software engineering projects by Humberto Villanueva across React Native, Java, AWS, APIs, BLE, AI systems, and full-stack product development.",
   alternates: { canonical: pageUrl },
-  openGraph: { title: "Software Projects — Humberto Villanueva", description: "Mobile, cloud, API, AI, and full-stack software projects by Humberto Villanueva.", url: pageUrl },
+  openGraph: { title: "Software Projects | Humberto Villanueva", description: "Mobile, cloud, API, AI, and full-stack software projects by Humberto Villanueva.", url: pageUrl },
 };
 
 const projects = [
-  { number: "01", title: "Specta at kW Engineering", type: "CURRENT PRODUCT WORK", summary: "Contributing to a production building-intelligence product across AI integration, document intelligence, data reliability, ontology tooling, and product experiences for building operators.", stack: "AI SYSTEMS · DOCUMENT INTELLIGENCE · FULL-STACK PRODUCT", repo: "", note: "Specta is a kW Engineering product. It is not my personal software." },
+  { number: "01", title: "Specta at kW Engineering", type: "CURRENT PRODUCT WORK", summary: "I work on Specta’s AI integrations, document processing, data reliability, ontology tools, and interfaces for building operators.", stack: "AI SYSTEMS · DOCUMENT INTELLIGENCE · FULL-STACK PRODUCT", repo: "", note: "Specta is a kW Engineering product. It is not my personal software." },
   ...projectData.map((project, index) => ({
     number: String(index + 2).padStart(2, "0"), title: project.title,
     repo: project.repo, type: project.type, summary: project.text, stack: project.stack, note: undefined,
@@ -24,7 +24,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="PROJECTS" intro="Product work and independent builds spanning AI, mobile development, cloud infrastructure, APIs, and reliable full-stack systems.">
+    <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="PROJECTS" intro="My work includes web applications, mobile apps, APIs, and AI integrations. Each project below explains my role and its current scope.">
       <section className="seo-project-list">
         {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2>{project.title}</h2><ProjectPreview repo={project.repo} /><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}<ProjectEvidence repo={project.repo} /><strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
       </section>
