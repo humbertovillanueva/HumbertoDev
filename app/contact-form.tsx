@@ -70,7 +70,7 @@ export function ContactForm() {
       });
       const result = await response.json();
       if (!response.ok || result.ok !== true) throw new Error(typeof result.error === "string" ? result.error : "We could not send your message. Try again or use the email draft option.");
-      setStatus("Your message was accepted for delivery to Humberto. Thank you for getting in touch.");
+      setStatus("Thank you for getting in touch. Your message has been sent to Humberto.");
       setSent(true);
       submissionRef.current = null;
     } catch (error) {
@@ -92,7 +92,7 @@ export function ContactForm() {
   if (sent) return <div className="message-form contact-success" ref={confirmationRef} tabIndex={-1} aria-labelledby="contact-sent-title">
     <div role="status">
       <h3 id="contact-sent-title">Message sent</h3>
-      <p>Thank you for getting in touch. Your message was accepted for delivery to Humberto.</p>
+      <p>Thank you for getting in touch. Your message has been sent to Humberto.</p>
     </div>
     <button type="button" onClick={() => {
       restartRef.current = true;

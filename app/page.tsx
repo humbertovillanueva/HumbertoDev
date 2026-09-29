@@ -114,6 +114,8 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 }
 
 export default function Home() {
+  const gameDialogRef = useRef<HTMLDialogElement>(null);
+  const gameLauncherRef = useRef<HTMLButtonElement>(null);
   const fieldRef = useRef<HTMLDivElement>(null);
   const [playerPosition, setPlayerPosition] = useState({ x: 16, y: 24 });
   const [gameState, setGameState] = useState<"ready" | "too-far" | "kicking" | "goal" | "miss">("ready");
@@ -177,6 +179,9 @@ export default function Home() {
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true">HUMBERTO</span><strong aria-hidden="true">VILLANUEVA</strong></h1></div>
       <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build full-stack applications, AI integrations, and software that turns building data into useful decisions.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span></div>
       <div className="fan-stands" aria-hidden="true">{Array.from({ length: 44 }, (_, index) => <div className={`pixel-fan tone-${(index % 5) + 1} shirt-${(index % 8) + 1}`} key={index}><i className={`fan-flag flag-${(index % 6) + 1}`} /><i className="fan-head" /><i className="fan-body" /><i className="fan-arm fan-arm-left" /><i className="fan-arm fan-arm-right" /></div>)}</div>
+      <button className="soccer-launcher" ref={gameLauncherRef} type="button" aria-haspopup="dialog" onClick={() => { gameDialogRef.current?.showModal(); fieldRef.current?.focus(); }}><span aria-hidden="true">⚽</span><span>PLAY A QUICK MATCH<small>A little football, when you feel like it.</small></span></button>
+      <dialog className="soccer-dialog" ref={gameDialogRef} aria-labelledby="soccer-title" onClose={() => { setGameState("ready"); gameLauncherRef.current?.focus(); }}>
+      <div className="soccer-dialog-heading"><h2 id="soccer-title">QUICK MATCH</h2><button type="button" onClick={() => gameDialogRef.current?.close()}>CLOSE GAME ×</button></div>
       <div className={`pixel-field game-${gameState}`} id="pitch" ref={fieldRef} tabIndex={0} role="group" aria-label="Soccer game. Focus this pitch to use arrow keys to move and space to shoot. Tab moves to the on-screen controls.">
         <div className="field-perspective" /><div className="field-center-line" /><div className="field-circle" /><div className="field-penalty-area"><div className="field-six-yard-box" /><i className="penalty-spot" /></div><div className="pixel-goal" />
         <div className="corner-flags" aria-hidden="true"><i className="corner-flag corner-flag-tl" /><i className="corner-flag corner-flag-tr" /><i className="corner-flag corner-flag-bl" /><i className="corner-flag corner-flag-br" /></div>
@@ -186,6 +191,7 @@ export default function Home() {
         <div className="game-hud"><span>P1 · {gameMessage}</span><strong>GOALS {String(goals).padStart(2, "0")}</strong></div>
         <div className="game-controls" aria-label="On-screen soccer controls"><button type="button" onClick={() => movePlayer(0, 4)} aria-label="Move up">↑</button><button type="button" onClick={() => movePlayer(-3, 0)} aria-label="Move left">←</button><button type="button" onClick={() => movePlayer(0, -4)} aria-label="Move down">↓</button><button type="button" onClick={() => movePlayer(3, 0)} aria-label="Move right">→</button><button className="kick-button" type="button" onClick={kickBall}>A · SHOOT</button></div><div className="goal-call">GOAL!</div><div className="goal-confetti">{Array.from({ length: 24 }, (_, index) => <i key={index} />)}</div>
       </div>
+      </dialog>
     </section>
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>

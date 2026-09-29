@@ -15,7 +15,7 @@ try {
  await expect(page.getByRole('status')).toContainText('Service unavailable');
  await expect(page.getByLabel('MESSAGE *',{exact:true})).toHaveValue('Contact delivery test');
  await page.getByRole('button',{name:'SEND MESSAGE',exact:true}).click();
- await expect(page.getByRole('status')).toContainText('accepted for delivery');
+ await expect(page.getByRole('status')).toContainText('sent to Humberto');
  expect(ids[0]).toBe(ids[1]);
  await expect(page.getByRole('heading',{name:'Message sent',exact:true})).toBeVisible();
  await expect(page.getByLabel('MESSAGE *',{exact:true})).toHaveCount(0);
