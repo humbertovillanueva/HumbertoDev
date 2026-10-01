@@ -22,12 +22,16 @@ export function ContactForm() {
   const [checkingDelivery, setCheckingDelivery] = useState(true);
   useEffect(() => {
     const controller = new AbortController();
+    const timeout = window.setTimeout(() => {
+      controller.abort();
+      setCheckingDelivery(false);
+    }, 8000);
     void fetch("/api/contact", {signal:controller.signal})
       .then(response => response.ok ? response.json() : null)
       .then(result => { if (!controller.signal.aborted) setCanSend(result?.enabled === true); })
       .catch(() => {})
-      .finally(() => { if (!controller.signal.aborted) setCheckingDelivery(false); });
-    return () => controller.abort();
+      .finally(() => { window.clearTimeout(timeout); if (!controller.signal.aborted) setCheckingDelivery(false); });
+    return () => { window.clearTimeout(timeout); controller.abort(); };
   }, []);
   const submissionRef = useRef<string | null>(null);
 
