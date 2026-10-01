@@ -10,7 +10,7 @@ export function ProjectLinks({ repo }: { repo: string }) {
   if (!repo) return null;
   return <div className="project-links">
     {demos[repo] && <a className="project-source" href={demos[repo]}>Try the demo ↗</a>}
-    <a className="project-source" href={`https://github.com/humbertovillanueva/${repo}`}>View project ↗</a>
+    <a className="project-source" href={`https://github.com/humbertovillanueva/${repo}`}>View source code ↗</a>
     {repo === "dispatchtrack-demo" && <Link className="project-source" href="/case-studies/dispatchtrack-lite">Read the case study →</Link>}
   </div>;
 }

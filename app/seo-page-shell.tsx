@@ -13,7 +13,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPage
     <main className="seo-page">
       <a className="page-skip" href="#page-content">Skip to content</a>
       <header className="seo-page-header">
-        <Link href="/" className="seo-home-link">HV · 07</Link>
+        <Link href="/" className="seo-home-link" aria-label="Humberto Villanueva home">HV · 07</Link>
         <nav aria-label="Portfolio pages">
           <Link href="/about">About</Link>
           <Link href="/projects">Projects</Link>
@@ -31,7 +31,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPage
       <div className="seo-page-content" id="page-content" tabIndex={-1}>{children}</div>
       <footer className="seo-page-footer">
         <span>HUMBERTO VILLANUEVA · SOFTWARE ENGINEER · UTAH</span>
-        <Link href="/">RETURN TO STADIUM →</Link>
+        <Link href="/">BACK TO HOME →</Link>
       </footer>
     </main>
   );

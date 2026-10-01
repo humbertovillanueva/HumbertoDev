@@ -19,12 +19,14 @@ export function ContactForm() {
   }, [sent]);
   const [sending, setSending] = useState(false);
   const [canSend, setCanSend] = useState(false);
+  const [checkingDelivery, setCheckingDelivery] = useState(true);
   useEffect(() => {
     const controller = new AbortController();
     void fetch("/api/contact", {signal:controller.signal})
       .then(response => response.ok ? response.json() : null)
       .then(result => { if (!controller.signal.aborted) setCanSend(result?.enabled === true); })
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => { if (!controller.signal.aborted) setCheckingDelivery(false); });
     return () => controller.abort();
   }, []);
   const submissionRef = useRef<string | null>(null);
@@ -107,7 +109,7 @@ export function ContactForm() {
     submissionRef.current = null;
     setStatus("");
   }}>
-    <p className="contact-help">{canSend ? "Send a message to Humberto’s inbox. Your details are used to respond to your inquiry and processed by our email provider. You can also open a draft or copy your message." : "Prepare an email draft or copy your message. Direct sending is currently unavailable."}</p>
+    <p className="contact-help">{checkingDelivery ? "Checking message delivery…" : canSend ? "Send a message to Humberto’s inbox. Your details are used to respond to your inquiry and processed by our email provider. " : "Prepare an email draft or copy your message. Direct sending is currently unavailable."}</p>
     <fieldset disabled={sending} className="contact-fields">
     <div className="contact-trap" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <label><span>YOUR NAME *</span><input type="text" name="name" autoComplete="name" maxLength={100} required /></label>
@@ -115,8 +117,8 @@ export function ContactForm() {
     <label><span>COMPANY / TEAM</span><input type="text" name="company" autoComplete="organization" maxLength={150} /></label>
     <label className="message-field"><span>MESSAGE *</span><textarea name="message" rows={6} maxLength={1500} required /></label>
     {canSend && <button type="submit">{sending ? "SENDING…" : "SEND MESSAGE"}</button>}
-    <button type="button" onClick={openEmail}>OPEN EMAIL DRAFT</button>
-    <button type="button" onClick={copyMessage}>COPY MESSAGE</button>
+    <button type="button" className={canSend ? "contact-alternative" : undefined} onClick={openEmail}>OPEN EMAIL DRAFT</button>
+    <button type="button" className="contact-alternative" onClick={copyMessage}>COPY MESSAGE</button>
     </fieldset>
     <p className="contact-feedback" role="status">{status}</p>
   </form>;

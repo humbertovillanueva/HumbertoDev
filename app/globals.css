@@ -403,3 +403,7 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
  .hero-blurb { margin:18px auto; }
  .hero-scroll { margin-top:18px; }
 }
+
+/* Keep sending prominent while retaining the two email fallbacks. */
+.message-form button.contact-alternative { background:transparent; color:var(--cream); border:1px solid var(--cream); box-shadow:none; min-height:44px; font-size:11px; }
+.message-form button.contact-alternative:hover { background:rgba(255,245,200,.08); transform:none; }
