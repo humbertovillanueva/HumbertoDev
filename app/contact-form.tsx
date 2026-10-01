@@ -7,6 +7,7 @@ const emailAddress = "hachevillanueva99@gmail.com";
 export function ContactForm() {
   const formRef = useRef<HTMLFormElement>(null);
   const [status, setStatus] = useState("");
+  const [messageLength, setMessageLength] = useState(0);
   const [sent, setSent] = useState(false);
   const confirmationRef = useRef<HTMLDivElement>(null);
   const restartRef = useRef(false);
@@ -103,6 +104,7 @@ export function ContactForm() {
     <button type="button" onClick={() => {
       restartRef.current = true;
       setStatus("");
+      setMessageLength(0);
       setSent(false);
     }}>SEND ANOTHER MESSAGE</button>
   </div>;
@@ -119,7 +121,7 @@ export function ContactForm() {
     <label><span>YOUR NAME *</span><input type="text" name="name" autoComplete="name" maxLength={100} required /></label>
     <label><span>YOUR EMAIL *</span><input type="email" name="email" autoComplete="email" maxLength={254} required /></label>
     <label><span>COMPANY / TEAM</span><input type="text" name="company" autoComplete="organization" maxLength={150} /></label>
-    <label className="message-field"><span>MESSAGE *</span><textarea name="message" rows={6} maxLength={1500} required /></label>
+    <label className="message-field"><span id="message-label">MESSAGE *</span><textarea aria-labelledby="message-label" name="message" rows={6} maxLength={1500} aria-describedby="message-length" onChange={(event) => setMessageLength(event.target.value.length)} required /><small id="message-length" className="message-length">{messageLength.toLocaleString()} / 1,500 characters</small></label>
     {canSend && <button type="submit">{sending ? "SENDING…" : "SEND MESSAGE"}</button>}
     <button type="button" className={canSend ? "contact-alternative" : undefined} onClick={openEmail}>OPEN EMAIL DRAFT</button>
     <button type="button" className="contact-alternative" onClick={copyMessage}>COPY MESSAGE</button>

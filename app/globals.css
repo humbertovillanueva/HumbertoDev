@@ -420,3 +420,4 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
  .game-footer>a { justify-self:center; }
 }
 .seo-page-header nav a[aria-current="page"] { text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:6px; }
+.message-length { display:block; margin-top:8px; text-align:right; color:var(--cream); font:400 13px/1.5 Arial,Helvetica,sans-serif; }
