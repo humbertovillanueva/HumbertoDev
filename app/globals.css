@@ -407,3 +407,6 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 /* Keep sending prominent while retaining the two email fallbacks. */
 .message-form button.contact-alternative { background:transparent; color:var(--cream); border:1px solid var(--cream); box-shadow:none; min-height:44px; font-size:11px; }
 .message-form button.contact-alternative:hover { background:rgba(255,245,200,.08); transform:none; }
+.case-study-image { margin:28px 0 0; }
+.case-study-image img { display:block; width:100%; height:auto; border:1px solid #52636a; }
+.case-study-image figcaption { margin-top:12px; font:400 14px/1.6 Arial,Helvetica,sans-serif; color:#35423d; }

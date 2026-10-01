@@ -1,7 +1,7 @@
 import { chromium, expect } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const base = process.env.PREVIEW_URL || 'http://127.0.0.1:3000';
-const paths = ['/', '/about', '/projects', '/experience', '/writing', '/writing/designing-portable-ai-integrations', '/case-studies/dispatchtrack-lite'];
+const paths = ['/', '/about', '/projects', '/experience', '/writing', '/writing/designing-portable-ai-integrations', '/case-studies/dispatchtrack-lite', '/case-studies/reality-commit'];
 const browser = await chromium.launch();
 try {
   for (const width of [320, 390, 768, 1440]) {
@@ -32,5 +32,5 @@ try {
     expect(errors).toEqual([]);
     await context.close();
   }
-  console.log('Seven pages passed at four widths; images, canonical links, headings, and 404 recovery verified.');
+  console.log('Eight pages passed at four widths; images, canonical links, headings, and 404 recovery verified.');
 } finally {await browser.close();}
