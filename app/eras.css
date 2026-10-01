@@ -1,0 +1,76 @@
+/* Shared era control: a compact toolbar in the document flow. */
+.era-selector { position:sticky; top:0; z-index:160; min-height:48px; display:flex; align-items:center; justify-content:center; gap:8px; padding:4px 12px; background:#090b09; color:#fff5c8; border-bottom:2px solid #fff5c8; font:700 11px/1.3 "Courier New",monospace; }
+.era-selector>span { margin-right:12px; }
+.era-selector button { min-height:38px; padding:8px 12px; border:1px solid #fff5c8; background:transparent; color:inherit; cursor:pointer; }
+.era-selector button[aria-pressed="true"] { background:#f5e42b; color:#090b09; }
+.era-selector button:focus-visible { outline:3px solid #12c3d6; outline-offset:2px; }
+.game-header { top:48px; position:fixed; }
+/* Keep navigation available once the first toolbar has scrolled away. */
+@media(max-width:640px) { .era-selector>span { margin-right:2px; font-size:10px; } .era-description { display:none; } }
+
+/* 2000: desktop windows, title bars, bevels and a quiet teal workspace. */
+html[data-era="2000"] { --pixel:Tahoma,Verdana,Arial,sans-serif; --cream:#f4f4ef; --yellow:#ffe49a; --cyan:#b8dded; --lime:#d5e5f1; --black:#182333; --blue-dark:#153e79; --green-dark:#215b40; background:#36777b; }
+html[data-era="2000"] body { background:#36777b; color:#182333; font-family:Tahoma,Verdana,Arial,sans-serif; -webkit-font-smoothing:antialiased; }
+html[data-era="2000"] .era-selector { background:#d4d0c8; color:#182333; border-bottom:2px solid white; font-family:Tahoma,Verdana,sans-serif; }
+html[data-era="2000"] .era-selector button { color:#182333; background:linear-gradient(#fafafa,#d4d0c8); border:2px solid; border-color:white #686868 #686868 white; }
+html[data-era="2000"] .era-selector button[aria-pressed="true"] { background:#e7edf7; border-color:#686868 white white #686868; }
+html[data-era="2000"] .retro-site { background:#36777b; image-rendering:auto; }
+html[data-era="2000"] .retro-site::after { display:none; }
+html[data-era="2000"] :is(h1,h2,h3) { -webkit-text-stroke:0!important; text-shadow:none!important; font-family:Tahoma,Verdana,Arial,sans-serif; letter-spacing:-.025em; }
+html[data-era="2000"] .game-header { background:#d4d0c8; border:2px solid; border-color:#fff #686868 #686868 #fff; box-shadow:0 2px 5px #0003; }
+html[data-era="2000"] .game-nav a { color:#182333; border:0; font-size:12px; }
+html[data-era="2000"] :is(.game-nav,.mobile-nav) a[aria-current="location"] { color:#153e79; text-decoration-color:#153e79; }
+html[data-era="2000"] :is(.header-cta,.title-actions a,.all-projects-link,.project-links a,.seo-next-links a,.seo-home-link,.soccer-launcher,.message-form button,.preview-dialog-bar button,.mobile-nav summary) { background:linear-gradient(#fff,#d4d0c8); border:2px solid; border-color:#fff #686868 #686868 #fff; color:#172d53; box-shadow:1px 1px 0 #333; font-family:Tahoma,Verdana,sans-serif; text-shadow:none; }
+html[data-era="2000"] .mobile-nav nav { background:#ece9e2; color:#182333; }
+html[data-era="2000"] .title-screen { margin:90px auto 28px; width:min(1100px,calc(100% - 32px)); min-height:calc(100svh - 150px); padding:130px 48px 50px; background:linear-gradient(115deg,#f5f7f8,#d9e6f0); border:3px solid; border-color:white #606870 #606870 white; box-shadow:8px 8px 0 #184b4f66; }
+html[data-era="2000"] .title-screen::before { content:"Humberto Villanueva · Personal website"; inset:0 0 auto; width:100%; height:34px; padding:8px 12px; color:white; background:linear-gradient(90deg,#092964,#668ec5); font:700 13px Tahoma,sans-serif; text-align:left; }
+html[data-era="2000"] .title-screen::after { display:none; }
+html[data-era="2000"] .title-lockup h1 :is(span,strong) { color:#183966; font-family:Tahoma,Verdana,sans-serif; font-style:normal; font-size:clamp(35px,7vw,96px); letter-spacing:-.055em; -webkit-text-stroke:0; text-shadow:1px 2px white; }
+html[data-era="2000"] .role-ribbon { color:#183966; background:#fff; border:1px solid #8398ae; box-shadow:none; }
+html[data-era="2000"] :is(.hero-blurb,.press-start,.hero-scroll) { color:#253c55; text-shadow:none; }
+html[data-era="2000"] .game-ticker { background:#d4d0c8; color:#182333; border-block:2px solid #fff; }
+html[data-era="2000"] .game-screen { background:#36777b; border:0; padding-top:64px; padding-bottom:64px; }
+html[data-era="2000"] .screen-heading { background:#d4d0c8; color:#182333; border:2px solid; border-color:white #666 #666 white; box-shadow:3px 3px #19494c; }
+html[data-era="2000"] .screen-heading :is(h2,p,span) { color:#173867; }
+html[data-era="2000"] :is(.active-mission,.game-cartridge,.save-window,.stats-console,.profile-window,.contact-terminal,.seo-panel,.seo-article) { background:#ece9e2; color:#182333; border:3px solid; border-color:white #666 #666 white; box-shadow:4px 4px 0 #14363b55; border-radius:0; }
+html[data-era="2000"] .window-bar { background:linear-gradient(90deg,#092964,#668ec5); color:white; border:0; }
+html[data-era="2000"] :is(.window-bar span,.window-bar b) { color:white; }
+html[data-era="2000"] :is(.game-cartridge h3,.mission-copy h3,.contact-channel h3,.seo-panel h2,.seo-panel h3) { color:#153e79; }
+html[data-era="2000"] :is(.game-cartridge p,.mission-copy p,.profile-story p,.career-row p,.seo-panel p,.seo-panel li) { color:#263549; }
+html[data-era="2000"] :is(.ownership-note,.mission-skills span,.cartridge-stack,.cartridge-title small,.cartridge-number,.mission-status,.select-label,.career-years,.career-row strong,.career-row h3,.education-window,.profile-facts,.skill-slot i) { color:#173867; }
+html[data-era="2000"] :is(.ownership-note,.select-label,.education-window,.profile-facts,.contact-channel,.message-form,.skill-board,.player-card) { background:#e5e8e9; }
+html[data-era="2000"] .mission-logo { background:#153e79; }
+html[data-era="2000"] .game-cartridge>i { color:#173867; background:#d4dce8; }
+html[data-era="2000"] .project-preview img { image-rendering:auto; }
+html[data-era="2000"] :is(.project-preview figcaption,.cartridge-links a,.project-evidence dd,.project-evidence dt,.profile-story>span,.profile-about-link) { color:#183966; }
+html[data-era="2000"] .continue-screen { background:#36777b; border:0; }
+html[data-era="2000"] .continue-screen>h2 { color:white; }
+html[data-era="2000"] :is(.message-form,.contact-channel) :is(p,label,small,a,h3,.social-group-label) { color:#183966; }
+html[data-era="2000"] :is(.message-form input,.message-form textarea) { background:white; color:#182333; border:2px inset #c0c0c0; box-shadow:none; }
+html[data-era="2000"] .contact-success h3 { color:#153e79; }
+html[data-era="2000"] :is(.game-footer,.seo-page-footer) { background:#d4d0c8; color:#182333; border-top:2px solid white; }
+html[data-era="2000"] .seo-page { background:#36777b; }
+html[data-era="2000"] .seo-page-header { background:#d4d0c8; color:#182333; border-bottom:2px solid white; }
+html[data-era="2000"] .seo-page-hero { background:linear-gradient(100deg,#092964,#547da9); color:white; border-bottom:2px solid white; }
+html[data-era="2000"] .seo-page-hero h1 { color:white; }
+html[data-era="2000"] .seo-page-intro { background:#ece9e2; color:#182333; border:2px inset #fff; box-shadow:none; }
+html[data-era="2000"] :is(.seo-label,.seo-article a,.seo-panel a,.seo-article p,.seo-article li) { color:#153e79; }
+html[data-era="2000"] .preview-dialog { background:#ece9e2; border:3px outset #eee; box-shadow:5px 5px #0005; }
+html[data-era="2000"] .preview-dialog-bar { background:linear-gradient(90deg,#092964,#668ec5); }
+html[data-era="2000"] .preview-dialog p { color:#182333; }
+html[data-era="2000"] .preview-dialog .preview-swipe-hint { color:#153e79; }
+html[data-era="2000"] :is(.worldcup-player,.music-toggle) { background:#d4d0c8; color:#182333; }
+html[data-era="2000"] a:focus-visible,html[data-era="2000"] button:focus-visible { outline:3px solid #e87500; outline-offset:3px; }
+@media(max-width:640px) {
+ html[data-era="2000"] .title-screen { width:calc(100% - 20px); margin-top:68px; padding:70px 18px 36px; min-height:calc(100svh - 160px); }
+ html[data-era="2000"] .title-lockup h1 :is(span,strong) { font-size:clamp(30px,9vw,52px); }
+ html[data-era="2000"] .game-screen { padding:40px 14px; }
+ html[data-era="2000"] .role-ribbon { font-size:10px; }
+}
+html[data-era="2000"] :is(.select-label b,.profile-facts small,.education-window>span,.education-window small,.game-footer a,.seo-page-footer a) { color:#183966; }
+html[data-era="2000"] .continue-screen::before,html[data-era="2000"] .continue-screen::after { display:none; }
+html[data-era="2000"] .profile-story { background:#ece9e2; }
+html[data-era="2000"] .contact-channel :is(.social-link,.social-profile-link) { background:linear-gradient(#fff,#d4d0c8); color:#183966; border:2px outset #ddd; }
+html[data-era="2000"] .message-form label>span { color:#183966; }
+/* Theme switching restores the current section explicitly. */
+html { overflow-anchor:none; }

@@ -1,6 +1,8 @@
 import { socialProfileUrls } from "./social-profiles";
 import type { Metadata } from "next";
 import "./globals.css";
+import "./eras.css";
+import { EraSelector } from "./era-selector";
 
 const siteUrl = "https://humbertovillanueva.dev";
 
@@ -112,7 +114,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: `try{document.documentElement.dataset.era=localStorage.getItem("portfolio-era")==="2000"?"2000":"1986"}catch{}` }} /></head>
       <body>
         <script
           type="application/ld+json"
@@ -120,6 +123,7 @@ export default function RootLayout({
             __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
           }}
         />
+        <EraSelector />
         {children}
       </body>
     </html>
