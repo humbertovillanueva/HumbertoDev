@@ -410,3 +410,12 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 .case-study-image { margin:28px 0 0; }
 .case-study-image img { display:block; width:100%; height:auto; border:1px solid #52636a; }
 .case-study-image figcaption { margin-top:12px; font:400 14px/1.6 Arial,Helvetica,sans-serif; color:#35423d; }
+
+/* Readable footer links remain available on narrow screens. */
+.game-footer,.seo-page-footer { font-size:13px; line-height:1.6; padding-top:24px; padding-bottom:24px; }
+.game-footer nav { display:flex; flex-wrap:wrap; justify-content:center; gap:8px 20px; }
+.game-footer nav a,.game-footer>a,.seo-page-footer a { display:inline-flex; align-items:center; min-height:44px; font-size:14px; }
+@media(max-width:1000px) {
+ .game-footer { grid-template-columns:1fr; text-align:center; padding:24px 20px; }
+ .game-footer>a { justify-self:center; }
+}
