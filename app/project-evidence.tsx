@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { PreviewZoom } from "./preview-zoom";
 
 const evidence: Record<string, { image: string; alt: string; decision: string; limit: string }> = {
   "reality-commit": {
@@ -21,7 +21,7 @@ const evidence: Record<string, { image: string; alt: string; decision: string; l
 export function ProjectPreview({ repo }: { repo: string }) {
   const item = evidence[repo];
   if (!item) return null;
-  return <figure className="project-preview"><Image src={`/projects/${item.image}.webp`} width={1280} height={850} sizes="(max-width: 760px) 100vw, 50vw" alt={item.alt} /><figcaption>Actual demo · sample data · September 2026</figcaption></figure>;
+  return <figure className="project-preview"><PreviewZoom src={`/projects/${item.image}.webp`} alt={item.alt} /><figcaption>Actual demo · sample data · September 2026</figcaption></figure>;
 }
 
 export function ProjectEvidence({ repo }: { repo: string }) {

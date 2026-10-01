@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 };
 
 const projects = [
-  { number: "01", title: "Specta at kW Engineering", type: "CURRENT PRODUCT WORK", summary: "I work on Specta’s AI integrations, document processing, data reliability, ontology tools, and interfaces for building operators.", stack: "AI SYSTEMS · DOCUMENT INTELLIGENCE · FULL-STACK PRODUCT", repo: "", note: "Specta is a kW Engineering product. It is not my personal software." },
+  { number: "01", title: "Specta at kW Engineering", type: "CURRENT PRODUCT WORK", summary: "I work on Specta’s AI integrations, document processing, data reliability, ontology tools, and interfaces for building operators.", stack: "AI SYSTEMS · DOCUMENT INTELLIGENCE · FULL-STACK PRODUCT", repo: "", note: "Built at kW Engineering. My role: Software Engineer." },
   ...projectData.map((project, index) => ({
     number: String(index + 2).padStart(2, "0"), title: project.title,
     repo: project.repo, type: project.type, summary: project.text, stack: project.stack, note: undefined,

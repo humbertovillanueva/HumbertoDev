@@ -56,7 +56,7 @@ export default function AboutPage() {
         <p>When something breaks, I want to know why. I trace the issue through the interface, API, and data, then check that the fix holds up.</p>
       </section>
       <section className="seo-card-grid">
-        <article className="seo-panel"><span className="seo-label">CURRENT ROLE</span><h2>Software Engineer</h2><p>I contribute to kW Engineering’s Specta product. Specta is a kW Engineering product, not my personal software.</p></article>
+        <article className="seo-panel"><span className="seo-label">CURRENT ROLE</span><h2>Software Engineer</h2><p>I contribute to Specta at kW Engineering, working on AI integrations, document processing, and product interfaces.</p></article>
         <article className="seo-panel"><span className="seo-label">EDUCATION</span><h2>Software Engineering</h2><p>B.S. Software Engineering from Ensign College and a Computer Science Certificate from Weber State University.</p></article>
         <article className="seo-panel"><span className="seo-label">FOCUS</span><h2>AI + Full Stack</h2><p>AI systems, document intelligence, cloud services, reliable APIs, product interfaces, and building data.</p></article>
         <article className="seo-panel"><span className="seo-label">BEYOND CODE</span><h2>Family · Football</h2><p>Family and faith keep me grounded. Football keeps me competitive. I follow Real Madrid, and number 7 is my favorite.</p><SoccerGame /></article>
