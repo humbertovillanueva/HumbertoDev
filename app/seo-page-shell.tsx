@@ -1,3 +1,4 @@
+import { PageNavigation } from "./page-navigation";
 import Link from "next/link";
 
 type SeoPageShellProps = {
@@ -14,13 +15,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, children }: SeoPage
       <a className="page-skip" href="#page-content">Skip to content</a>
       <header className="seo-page-header">
         <Link href="/" className="seo-home-link" aria-label="Humberto Villanueva home">HV · 07</Link>
-        <nav aria-label="Portfolio pages">
-          <Link href="/about">About</Link>
-          <Link href="/projects">Projects</Link>
-          <Link href="/experience">Experience</Link>
-          <Link href="/writing">Writing</Link>
-          <Link href="/#contact">Contact</Link>
-        </nav>
+        <PageNavigation />
       </header>
       <section className="seo-page-hero">
         <span>{stage}</span>

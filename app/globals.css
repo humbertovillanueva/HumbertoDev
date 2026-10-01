@@ -419,3 +419,4 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
  .game-footer { grid-template-columns:1fr; text-align:center; padding:24px 20px; }
  .game-footer>a { justify-self:center; }
 }
+.seo-page-header nav a[aria-current="page"] { text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:6px; }
