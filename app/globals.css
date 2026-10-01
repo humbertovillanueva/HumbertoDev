@@ -421,3 +421,20 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 }
 .seo-page-header nav a[aria-current="page"] { text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:6px; }
 .message-length { display:block; margin-top:8px; text-align:right; color:var(--cream); font:400 13px/1.5 Arial,Helvetica,sans-serif; }
+
+/* Music stays optional and outside the primary navigation. */
+.worldcup-player { top:auto; bottom:16px; right:16px; left:auto; transform:none; width:auto; height:auto; display:flex; flex-direction:column; max-width:calc(100% - 32px); }
+.music-toggle { align-self:flex-end; min-height:44px; padding:10px 16px; border:0; background:var(--black); color:var(--cream); cursor:pointer; font:700 12px/1.5 var(--pixel); }
+.music-controls-panel:not([hidden]) { display:grid; grid-template-columns:auto auto minmax(0,1fr) 36px; width:min(680px,calc(100vw - 38px)); min-height:38px; border-top:2px solid var(--cream); }
+.game-header { top:0; }
+.title-screen::before,.title-screen::after { top:68px; }
+.social-profile-groups .social-group-label { color:var(--cream); -webkit-text-stroke:0; text-shadow:none; letter-spacing:.06em; }
+.seo-page .social-profile-groups .social-group-label { color:var(--black); }
+.all-projects-link { display:table; margin:32px auto 0; padding:14px 20px; background:var(--cream); color:var(--black); border:3px solid var(--black); font:700 14px/1.5 var(--pixel); }
+@media(max-width:760px) {
+ .music-label { display:none; }
+ .music-controls-panel:not([hidden]) { grid-template-columns:auto minmax(0,1fr) 36px; }
+ .title-screen::before,.title-screen::after { top:54px; }
+ .worldcup-player { bottom:10px; right:10px; max-width:calc(100% - 20px); }
+ .music-controls-panel:not([hidden]) { width:calc(100vw - 26px); }
+}

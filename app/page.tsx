@@ -10,6 +10,8 @@ import { ProjectLinks } from "./project-links";
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 
+const featuredProjects = projects.filter(project => project.repo);
+
 const worldCupTracks = [
   { year: "2010", title: "Waka Waka (This Time for Africa)", artist: "Shakira ft. Freshlyground" },
   { year: "2010", title: "Wavin’ Flag", artist: "K’NAAN" },
@@ -44,6 +46,7 @@ function SpectaMark() {
 }
 
 function MusicPlayer() {
+  const [expanded, setExpanded] = useState(false);
   const [trackIndex, setTrackIndex] = useState(0);
   const [musicEnabled, setMusicEnabled] = useState(false);
   const [preview, setPreview] = useState<{ index: number; previewUrl: string; appleUrl: string } | null>(null);
@@ -89,7 +92,7 @@ function MusicPlayer() {
   }, [activePreview]);
 
   const togglePlayback = () => {
-    if (!musicEnabled) { setMusicEnabled(true); return; }
+    if (!musicEnabled) { continuePlaybackRef.current = true; setMusicEnabled(true); return; }
     const audio = audioRef.current;
     if (!audio || !activePreview) return;
     if (isPlaying) { continuePlaybackRef.current = false; audio.pause(); }
@@ -99,11 +102,14 @@ function MusicPlayer() {
     }
   };
 
-  return <aside className="worldcup-player" aria-label="World Cup music player">
+  return <aside className={`worldcup-player ${expanded ? "music-expanded" : "music-collapsed"}`} aria-label="World Cup music player">
+    <button className="music-toggle" type="button" aria-expanded={expanded} aria-controls="music-controls" onClick={() => setExpanded(value => !value)}>{expanded ? "Hide music −" : isPlaying ? "Music playing ♫" : "Music ♫"}</button>
+    <div id="music-controls" className="music-controls-panel" hidden={!expanded}>
     <span className="music-label">SOUND</span>
     <div className="player-buttons"><button type="button" onClick={() => changeTrack(-1)} aria-label="Previous World Cup song">◀</button><button type="button" onClick={togglePlayback} disabled={musicEnabled && (!activePreview || failedIndex === trackIndex)} aria-label={!musicEnabled ? "Load music previews" : isPlaying ? "Pause song" : "Play song"}>{isPlaying ? "Ⅱ" : "▶"}</button><button type="button" onClick={() => changeTrack(1)} aria-label="Next World Cup song">▶</button></div>
     <div className="now-playing"><span>{track.year}</span><strong>{!musicEnabled ? "OPTIONAL SOUNDTRACK · PRESS PLAY TO LOAD" : failedIndex === trackIndex ? `PREVIEW UNAVAILABLE · ${track.title}` : activePreview ? track.title : `LOADING ${track.title}...`}</strong><small>{track.artist}</small></div>
     {failedIndex === trackIndex ? <button className="apple-link" type="button" aria-label="Retry song preview" onClick={() => { setFailedIndex(null); setPreview(null); setRetry(value => value + 1); }}>↻</button> : <a className="apple-link" href={activePreview?.appleUrl ?? "https://music.apple.com/"} target="_blank" rel="noreferrer" aria-label="Open this song in Apple Music">↗</a>}
+    </div>
     {activePreview && <audio ref={audioRef} src={activePreview.previewUrl} onError={() => { setFailedIndex(trackIndex); setIsPlaying(false); continuePlaybackRef.current = false; }} onPlay={() => setIsPlaying(true)} onPause={() => setIsPlaying(false)} preload="metadata" loop />}
   </aside>;
 }
@@ -133,7 +139,7 @@ export default function Home() {
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Projects you can try, with notes on how they work and what still needs work.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At kW Engineering, I work on Specta’s AI integrations, document processing, data reliability, and interfaces for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02 to {String(projects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{projects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div></section>
+    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Projects you can try, with notes on how they work and what still needs work.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note"><strong>IMPORTANT:</strong> Specta is a kW Engineering product. It is not my personal software.</p><p>At kW Engineering, I work on Specta’s AI integrations, document processing, data reliability, and interfaces for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02 to {String(featuredProjects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{featuredProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div><a className="all-projects-link" href="/projects">View all projects →</a></section>
 
     <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>EXPERIENCE</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div></section>
 
