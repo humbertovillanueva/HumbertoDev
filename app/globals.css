@@ -441,9 +441,9 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 
 /* A chrome glint passes through the name only, then rests. */
 .title-lockup h1 [data-name] { position:relative; }
-.title-lockup h1 [data-name]::after { content:attr(data-name); position:absolute; inset:0; color:transparent; -webkit-text-stroke:0; text-shadow:none; background:linear-gradient(180deg,transparent 40%,#fff5c8 49%,white 50%,transparent 60%); background-size:100% 350%; background-position:0 100%; background-clip:text; -webkit-background-clip:text; pointer-events:none; animation:name-glint 9s ease-in-out infinite; }
-.title-lockup h1 strong[data-name]::after { animation-delay:.35s; }
-@keyframes name-glint { 0%,65% {background-position:0 100%;opacity:0} 68%{opacity:.9} 86%{background-position:0 0;opacity:.9} 90%,100%{background-position:0 0;opacity:0} }
+.title-lockup h1 [data-name]::after { content:attr(data-name); position:absolute; inset:0; color:transparent; -webkit-text-stroke:0; text-shadow:none; background:linear-gradient(180deg,transparent 40%,#fff5c8 49%,white 50%,transparent 60%); background-size:100% 350%; background-position:0 100%; background-clip:text; -webkit-background-clip:text; pointer-events:none; animation:name-glint 6s ease-in-out infinite; }
+.title-lockup h1 strong[data-name]::after { animation-delay:.2s; }
+@keyframes name-glint { 0% {background-position:0 100%;opacity:0} 4%{opacity:.9} 20%{background-position:0 0;opacity:.9} 24%,100%{background-position:0 0;opacity:0} }
 .preview-open { display:block; width:100%; padding:0; border:0; background:var(--black); color:var(--cream); cursor:zoom-in; text-align:left; }
 .preview-open span { display:block; padding:12px; font:700 11px/1.5 var(--pixel); }
 .preview-dialog { padding:0; width:min(1280px,calc(100% - 24px)); max-height:90dvh; border:4px solid var(--cream); color:var(--cream); background:var(--black); box-shadow:8px 8px 0 #000; }
@@ -468,3 +468,8 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 @media(prefers-reduced-motion:reduce) { .title-lockup h1 [data-name]::after { animation:none; display:none; } }
 .preview-dialog { margin:auto; }
 .seo-role p { grid-column:1 / -1; }
+
+.game-nav a[aria-current="location"],.mobile-nav a[aria-current="location"] { color:var(--yellow); text-decoration:underline; text-decoration-thickness:3px; text-underline-offset:8px; }
+.header-cta[aria-current="location"] { outline:3px solid var(--yellow); outline-offset:3px; }
+.preview-dialog .preview-swipe-hint { display:none; }
+@media(max-width:800px) { .preview-dialog .preview-swipe-hint { display:block; padding:8px 12px; color:var(--yellow); border-bottom:2px solid var(--cream); font:700 11px/1.5 var(--pixel); } }

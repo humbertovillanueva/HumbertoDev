@@ -119,17 +119,35 @@ function ProjectCard({ project, index }: { project: (typeof projects)[number]; i
 }
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState("");
+  useEffect(() => {
+    const sections = ["work", "experience", "skills", "about", "contact"];
+    let frame = 0;
+    const update = () => {
+      const marker = (document.querySelector(".game-header")?.getBoundingClientRect().bottom ?? 68) + 100;
+      let current = "";
+      for (const id of sections) {
+        if ((document.getElementById(id)?.getBoundingClientRect().top ?? Infinity) <= marker) current = id;
+      }
+      setActiveSection(current);
+    };
+    const schedule = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(update); };
+    schedule();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); };
+  }, []);
   return <main className="retro-site">
     <div className="skip-links"><a href="#work">Skip to projects</a><a href="#contact">Skip to contact</a></div>
     <MusicPlayer />
-    <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work">PROJECTS</a><a href="#experience">CAREER</a><a href="#skills">SKILLS</a><a href="#about">PROFILE</a><a href="/writing">WRITING</a></nav><details className="mobile-nav" onClick={(event: MouseEvent<HTMLDetailsElement>) => {
+    <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work" aria-current={activeSection === "work" ? "location" : undefined}>PROJECTS</a><a href="#experience" aria-current={activeSection === "experience" ? "location" : undefined}>CAREER</a><a href="#skills" aria-current={activeSection === "skills" ? "location" : undefined}>SKILLS</a><a href="#about" aria-current={activeSection === "about" ? "location" : undefined}>PROFILE</a><a href="/writing">WRITING</a></nav><details className="mobile-nav" onClick={(event: MouseEvent<HTMLDetailsElement>) => {
       if ((event.target as HTMLElement).closest("a")) event.currentTarget.open = false;
     }} onKeyDown={(event) => {
       if (event.key === "Escape") {
         event.currentTarget.open = false;
         event.currentTarget.querySelector("summary")?.focus();
       }
-    }}><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work">Projects</a><a href="#experience">Career</a><a href="#skills">Skills</a><a href="#about">Profile</a><a href="/writing">Writing</a><a href="#contact">Contact</a></nav></details><a className="header-cta" href="#contact">CONTACT</a></header>
+    }}><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work" aria-current={activeSection === "work" ? "location" : undefined}>Projects</a><a href="#experience" aria-current={activeSection === "experience" ? "location" : undefined}>Career</a><a href="#skills" aria-current={activeSection === "skills" ? "location" : undefined}>Skills</a><a href="#about" aria-current={activeSection === "about" ? "location" : undefined}>Profile</a><a href="/writing">Writing</a><a href="#contact" aria-current={activeSection === "contact" ? "location" : undefined}>Contact</a></nav></details><a className="header-cta" href="#contact" aria-current={activeSection === "contact" ? "location" : undefined}>CONTACT</a></header>
 
     <section className="title-screen" id="top">
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true" data-name="HUMBERTO">HUMBERTO</span><strong aria-hidden="true" data-name="VILLANUEVA">VILLANUEVA</strong></h1></div>
