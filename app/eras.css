@@ -244,3 +244,21 @@ html[data-era="2000"] .era-selector select { border-radius:0; background:var(--d
 }
 html[data-era="2000"] :is(.seo-panel,.seo-article) p a { text-decoration:underline; color:#0000aa; }
 html[data-era="2000"] a.seo-inline-link { background:#d4d0c8; color:#000080; border:2px outset white; box-shadow:1px 1px #404040; }
+
+/* Shared overlays and secondary navigation keep the selected desktop era. */
+html[data-era="2000"] :is(.game-footer,.seo-page-footer,.contact-channel,.project-preview,.soccer-dialog,.worldcup-player) { font-family:Tahoma,Verdana,sans-serif; text-shadow:none; }
+html[data-era="2000"] .preview-open { border:2px inset white; background:#d4d0c8; box-shadow:none; }
+html[data-era="2000"] .preview-open>span { background:#d4d0c8; color:#000080; font:12px Tahoma,sans-serif; }
+html[data-era="2000"] .soccer-dialog { background:#d4d0c8; color:#111; border:3px outset white; box-shadow:3px 3px #003f3f; }
+html[data-era="2000"] .soccer-dialog-heading { background:linear-gradient(90deg,#000080,#1084d0); color:white; padding:8px; }
+html[data-era="2000"] .soccer-dialog-heading h2 { color:white; font:700 16px Tahoma,sans-serif; text-shadow:none; }
+html[data-era="2000"] :is(.soccer-dialog-heading button,.game-controls button,.music-toggle,.worldcup-player button) { background:#d4d0c8; color:#111; border:2px outset white; box-shadow:none; border-radius:0; font-family:Tahoma,sans-serif; }
+html[data-era="2000"] .contact-channel h3 { font:700 27px/1.2 Tahoma,sans-serif; text-shadow:none; -webkit-text-stroke:0; }
+html[data-era="2000"] .social-group-label { font:700 13px Tahoma,sans-serif; text-shadow:none; }
+html[data-era="2000"] :is(.seo-article-meta span,.seo-article-byline span,.seo-author-card,.seo-disclosure,.seo-architecture,.seo-architecture span) { background:#d4d0c8; color:#111; border:2px outset white; border-radius:0; box-shadow:none; font-family:Tahoma,sans-serif; }
+html[data-era="2000"] .seo-architecture i { color:#000080; }
+html[data-era="2000"] .seo-author-card a { background:#d4d0c8; color:#000080; border:2px outset white; font:12px Tahoma,sans-serif; }
+html[data-era="2000"] .seo-article pre { background:#fff; color:#111; border:2px inset white; box-shadow:none; }
+html[data-era="2000"] :is(.seo-panel,.seo-article) h2 { font-size:25px; line-height:1.25; }
+html[data-era="2000"] :is(.seo-panel,.seo-article) h3 { font-size:18px; line-height:1.4; }
+html[data-era="2000"] :is(.game-footer,.seo-page-footer,.music-toggle,.worldcup-player,.social-profile-groups) * { font-family:Tahoma,Verdana,sans-serif; text-shadow:none; }
