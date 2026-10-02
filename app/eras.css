@@ -262,3 +262,46 @@ html[data-era="2000"] .seo-article pre { background:#fff; color:#111; border:2px
 html[data-era="2000"] :is(.seo-panel,.seo-article) h2 { font-size:25px; line-height:1.25; }
 html[data-era="2000"] :is(.seo-panel,.seo-article) h3 { font-size:18px; line-height:1.4; }
 html[data-era="2000"] :is(.game-footer,.seo-page-footer,.music-toggle,.worldcup-player,.social-profile-groups) * { font-family:Tahoma,Verdana,sans-serif; text-shadow:none; }
+
+/* Personal desktop: keep the shell available on every page. */
+.desktop-taskbar { display:none; }
+html:is([data-era="2000"],[data-era="2026"]) :is(.profile-portrait,.seo-author-card>img) { display:none; }
+html:is([data-era="2000"],[data-era="2026"]) .seo-author-card { grid-template-columns:1fr; }
+html[data-era="2000"] body { padding-bottom:52px; }
+html[data-era="2000"] .desktop-intro { grid-template-columns:1fr; min-height:245px; background:linear-gradient(90deg,#fff 75%,#edf1fa); }
+html[data-era="2000"] .desktop-intro h1 { font-size:clamp(30px,4vw,48px); }
+html[data-era="2000"] .desktop-directory { background:transparent; border:0; box-shadow:none; }
+html[data-era="2000"] .desktop-owner,html[data-era="2000"] .desktop-directory>p,html[data-era="2000"] .desktop-sidebar-note { color:white; }
+html[data-era="2000"] .desktop-directory nav { background:transparent; border:0; display:grid; gap:12px; padding:4px; }
+html[data-era="2000"] .desktop-directory nav a { display:flex; flex-direction:column; align-items:center; gap:8px; color:white; text-align:center; padding:10px 4px; font:13px/1.3 Tahoma,sans-serif; border:1px solid transparent; }
+html[data-era="2000"] .desktop-directory nav a:hover,html[data-era="2000"] .desktop-directory nav a:focus-visible { background:#006565; border:1px dotted white; }
+html[data-era="2000"] .desktop-directory nav a::before { width:32px; height:24px; margin:0; background:linear-gradient(#fff1b4 25%,#e9bc51 25%); border:1px solid #614d13; box-shadow:2px 2px #004949,inset 2px 2px #fff6cd; }
+html[data-era="2000"] .desktop-directory nav a:first-child::before { background:#003d63; border:4px ridge #eee; height:23px; box-shadow:0 5px #d4d0c8,0 8px #535353; }
+html[data-era="2000"] .desktop-directory nav a:nth-child(5)::before { background:repeating-linear-gradient(#fff 0 5px,#aebfd4 5px 6px); width:24px; height:30px; border-color:#777; }
+html[data-era="2000"] .desktop-directory nav a:last-child::before { background:linear-gradient(32deg,transparent 49%,#8897a1 50%,transparent 53%),linear-gradient(-32deg,#fff 49%,#8897a1 50%,#fff 53%); }
+html[data-era="2000"] .desktop-workspace { border-top:4px solid #fff; }
+html[data-era="2000"] .desktop-workspace::before { content:"Humberto Villanueva · Personal website"; display:block; padding:8px 10px; background:linear-gradient(90deg,#000080,#1084d0); color:white; font:700 13px Tahoma,sans-serif; }
+html[data-era="2000"] .desktop-menubar { padding:4px; }
+html[data-era="2000"] .desktop-titlebar { border-bottom:1px solid #808080; }
+html[data-era="2000"] .desktop-taskbar { position:fixed; inset:auto 0 0; z-index:100; display:flex; align-items:center; gap:8px; height:44px; padding:4px; background:#d4d0c8; border-top:2px solid white; color:#111; font:12px Tahoma,sans-serif; box-shadow:0 -1px #808080; }
+.desktop-start summary { cursor:pointer; display:flex; align-items:center; gap:7px; list-style:none; padding:6px 10px; border:2px outset white; font:bold 15px Tahoma,sans-serif; }
+.desktop-start summary::-webkit-details-marker { display:none; }
+.desktop-start[open] summary { border-style:inset; }
+.desktop-mark { display:grid; grid-template-columns:repeat(2,8px); gap:2px; transform:skewY(-8deg); }
+.desktop-mark i { height:8px; background:#e74628; }.desktop-mark i:nth-child(2) { background:#238a39; }.desktop-mark i:nth-child(3) { background:#255eb8; }.desktop-mark i:nth-child(4) { background:#f0d341; }
+.desktop-start nav { position:absolute; bottom:43px; left:4px; width:min(300px,calc(100vw - 8px)); display:grid; padding:4px; background:#d4d0c8; border:2px outset white; box-shadow:2px 2px #333; }
+.desktop-start nav strong { padding:14px 10px; background:linear-gradient(90deg,#000080,#1084d0); color:white; font-size:13px; }
+.desktop-start nav a { padding:13px 12px; color:#111; font:13px Tahoma,sans-serif; }
+.desktop-start nav a:hover,.desktop-start nav a:focus-visible { background:#000080; color:white; outline:1px dotted white; outline-offset:-3px; }
+.desktop-active-window { border:2px inset white; padding:7px 12px; width:240px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; text-transform:capitalize; font-weight:bold; }
+.desktop-tray { margin-left:auto; border:2px inset white; padding:7px 10px; display:flex; gap:12px; white-space:nowrap; }
+html[data-era="2000"] .music-toggle { bottom:56px; }
+html[data-era="2000"] .worldcup-player { bottom:56px; }
+@media(max-width:760px) {
+ html[data-era="2000"] .desktop-directory nav { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+ html[data-era="2000"] .desktop-directory nav a { font-size:12px; }
+ html[data-era="2000"] .desktop-intro { min-height:0; }
+ .desktop-active-window { flex:1; width:0; }
+ .desktop-tray { padding:7px 5px; }.desktop-tray>span { display:none; }
+}
+html[data-era="2000"] .desktop-owner>span { color:white; }

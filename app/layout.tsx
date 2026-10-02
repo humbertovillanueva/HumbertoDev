@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./eras.css";
 import "./studio.css";
+import { DesktopTaskbar } from "./desktop-taskbar";
 import { EraSelector } from "./era-selector";
 
 const siteUrl = "https://humbertovillanueva.dev";
@@ -126,6 +127,7 @@ export default function RootLayout({
         />
         <EraSelector />
         {children}
+        <DesktopTaskbar />
       </body>
     </html>
   );
