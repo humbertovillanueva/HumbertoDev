@@ -12,7 +12,7 @@ try {
     for (const path of paths) {
       const response = await page.goto(base+path, {waitUntil:'domcontentloaded',timeout:60000});
       expect(response.status()).toBe(200);
-      await expect(page.locator('h1')).toHaveCount(1);
+      await expect(page.locator('h1:visible')).toHaveCount(1);
       expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 2), `${path} overflows at ${width}px`).toBe(true);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href',`https://humbertovillanueva.dev${path === '/' ? '' : path}`);
       for (const image of await page.locator('img:visible').all()) {

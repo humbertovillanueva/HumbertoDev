@@ -23,11 +23,11 @@ export function EraSelector() {
     document.documentElement.setAttribute("data-era", next);
     setEra(next);
     try { localStorage.setItem("portfolio-era", next); } catch { /* Switching still works without storage. */ }
-    if (section && offset !== undefined) {
+    if (section && offset !== undefined && section.getBoundingClientRect().height > 0) {
       const restore = () => window.scrollBy({top:section.getBoundingClientRect().top-offset,behavior:"instant"});
       restore();
       void document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(restore)));
     }
   }
-  return <div className="era-selector" role="group" aria-label="Choose your era"><span>CHOOSE YOUR ERA</span>{(["1986", "2000"] as const).map(value => <button key={value} type="button" aria-pressed={era === value} onClick={() => choose(value)}>{value}<span className="era-description"> {value === "1986" ? "Arcade" : "Desktop"}</span></button>)}</div>;
+  return <div className="era-selector"><select aria-label="Choose website year" value={era} onChange={event => choose(event.target.value as Era)}><option value="1986">1986</option><option value="2000">2000</option></select></div>;
 }
