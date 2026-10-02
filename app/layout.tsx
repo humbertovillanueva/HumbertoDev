@@ -2,6 +2,7 @@ import { socialProfileUrls } from "./social-profiles";
 import type { Metadata } from "next";
 import "./globals.css";
 import "./eras.css";
+import "./studio.css";
 import { EraSelector } from "./era-selector";
 
 const siteUrl = "https://humbertovillanueva.dev";
@@ -115,7 +116,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: `try{document.documentElement.dataset.era=localStorage.getItem("portfolio-era")==="2000"?"2000":"1986"}catch{}` }} /></head>
+      <head><script dangerouslySetInnerHTML={{ __html: `try{const e=localStorage.getItem("portfolio-era");document.documentElement.dataset.era=e==="2000"||e==="2026"?e:"1986"}catch{}` }} /></head>
       <body>
         <script
           type="application/ld+json"

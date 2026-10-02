@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { StudioHome } from "./studio-home";
 import { DesktopHome } from "./desktop-home";
 import { ProjectPreview } from "./project-evidence";
 import { ContactForm } from "./contact-form";
@@ -140,6 +141,7 @@ export default function Home() {
   }, []);
   return <main className="retro-site">
     <DesktopHome />
+    <StudioHome />
     <div className="skip-links"><a href="#work">Skip to projects</a><a href="#contact">Skip to contact</a></div>
     <MusicPlayer />
     <header className="game-header"><nav className="game-nav" aria-label="Primary navigation"><a href="#work" aria-current={activeSection === "work" ? "location" : undefined}>PROJECTS</a><a href="#experience" aria-current={activeSection === "experience" ? "location" : undefined}>CAREER</a><a href="#skills" aria-current={activeSection === "skills" ? "location" : undefined}>SKILLS</a><a href="#about" aria-current={activeSection === "about" ? "location" : undefined}>PROFILE</a><a href="/writing">WRITING</a></nav><details className="mobile-nav" onClick={(event: MouseEvent<HTMLDetailsElement>) => {
