@@ -167,3 +167,80 @@ html[data-era="2000"] .seo-panel { box-shadow:none; border:1px solid #a8b8c2; ba
 html[data-era="2000"] .seo-page-hero>p { color:#344957; }
 
 html[data-era="2000"] .desktop-file .project-links a { background:none; border:0; box-shadow:none; padding:4px 0; font:12px/1.5 Tahoma,sans-serif; color:#143e72; text-decoration:underline; }
+
+/* Windows 2000 / early personal-web edition. Deliberately scoped to this era. */
+html[data-era="2000"] { --desk-face:#d4d0c8; --desk-blue:#000080; --desk-edge:#808080; }
+html[data-era="2000"] body,html[data-era="2000"] .retro-site,html[data-era="2000"] .seo-page { background:#008080; font-family:Tahoma,Verdana,Arial,sans-serif; }
+html[data-era="2000"] .desktop-home { max-width:1120px; gap:18px; grid-template-columns:180px minmax(0,1fr); padding-top:70px; }
+html[data-era="2000"] .desktop-directory { background:var(--desk-face); padding:12px; border:2px solid; border-color:white #404040 #404040 white; box-shadow:1px 1px #000; }
+html[data-era="2000"] .desktop-owner { font:700 23px Tahoma,Verdana,sans-serif; color:#000080; padding:8px 6px 18px; }
+html[data-era="2000"] .desktop-owner::before { content:""; display:inline-block; width:25px; height:21px; margin-right:8px; vertical-align:middle; background:#008080; border:3px ridge white; box-shadow:0 5px #808080; }
+html[data-era="2000"] .desktop-directory>p { letter-spacing:0; margin:15px 0 6px; color:#202020; font-size:11px; }
+html[data-era="2000"] .desktop-directory nav { gap:0; background:white; border:2px inset #eee; padding:6px 2px; }
+html[data-era="2000"] .desktop-directory nav a { padding:9px 4px; font-size:12px; color:#000; }
+html[data-era="2000"] .desktop-directory nav a::before { content:""; display:inline-block; width:17px; height:12px; margin-right:8px; background:#ffe59a; border:1px solid #806525; box-shadow:inset 1px 1px #fff6cc; }
+html[data-era="2000"] .desktop-directory nav a[aria-current="page"] { color:white; background:#000080; border-color:#000080; }
+html[data-era="2000"] .desktop-sidebar-note { font-size:11px; border-top:2px groove white; margin-top:18px; padding-top:12px; }
+html[data-era="2000"] .desktop-workspace { background:var(--desk-face); border:2px solid; border-color:#fff #404040 #404040 #fff; padding:4px; box-shadow:2px 2px #003f3f; }
+html[data-era="2000"] .desktop-menubar { display:flex; flex-wrap:wrap; gap:2px; border-bottom:2px groove white; padding:0 4px; }
+html[data-era="2000"] .desktop-menubar a { min-height:36px; padding:9px 12px; color:#111; font:12px Tahoma,sans-serif; }
+html[data-era="2000"] .desktop-menubar a:hover { background:#000080; color:white; }
+html[data-era="2000"] .desktop-path { display:flex; align-items:center; gap:8px; margin:0; padding:7px 6px; }
+html[data-era="2000"] .desktop-path>span { margin:0; color:#222; }
+html[data-era="2000"] .desktop-path code { background:white; border:2px inset #eee; padding:5px 8px; flex:1; min-width:0; font:12px "Courier New",monospace; color:#111; }
+html[data-era="2000"] .desktop-titlebar,html[data-era="2000"] .window-bar,html[data-era="2000"] .preview-dialog-bar { background:linear-gradient(90deg,#000080,#1084d0); padding:6px 9px; font:700 12px Tahoma,sans-serif; }
+html[data-era="2000"] .desktop-document-type { font-size:10px; font-weight:400; }
+html[data-era="2000"] .desktop-welcome,html[data-era="2000"] .desktop-files { border:2px inset #eee; box-shadow:none; background:#fff; }
+html[data-era="2000"] .desktop-intro { padding:26px 22px; grid-template-columns:minmax(0,1fr) 140px; gap:22px; align-items:start; }
+html[data-era="2000"] .desktop-intro h1 { font:700 clamp(27px,3vw,42px)/1.12 Tahoma,Verdana,Arial,sans-serif; letter-spacing:-.045em; color:#000080; margin:12px 0 16px; }
+html[data-era="2000"] .desktop-intro p { font:14px/1.65 Verdana,Arial,sans-serif; color:#222; }
+html[data-era="2000"] .desktop-eyebrow { font:11px "Courier New",monospace; letter-spacing:.02em; color:#555; }
+html[data-era="2000"] .desktop-intro figure { transform:none; background:var(--desk-face); border:2px outset white; box-shadow:none; padding:5px; }
+html[data-era="2000"] .desktop-intro img { height:160px; filter:none; border:1px solid #888; }
+html[data-era="2000"] .desktop-actions { margin-top:20px; gap:8px; }
+html[data-era="2000"] .desktop-actions a { border:2px outset white; background:var(--desk-face); box-shadow:1px 1px #404040; color:#111; padding:8px 12px; font:12px Tahoma,sans-serif; }
+html[data-era="2000"] .desktop-actions a:active { border-style:inset; box-shadow:none; }
+html[data-era="2000"] .desktop-status { padding:4px; gap:4px; background:var(--desk-face); border:0; }
+html[data-era="2000"] .desktop-status span { border:1px inset #fff; padding:5px 8px; flex:1; color:#222; font:11px Tahoma,sans-serif; }
+html[data-era="2000"] .desktop-current { margin:12px 0; padding:14px; border:2px inset #fff; background:#ffffe1; gap:6px 16px; }
+html[data-era="2000"] .desktop-current h2 { font:700 22px Tahoma,sans-serif; color:#000080; }
+html[data-era="2000"] .desktop-current p { color:#222; font:13px/1.65 Verdana,sans-serif; }
+html[data-era="2000"] .desktop-file-head { background:var(--desk-face); border:2px outset white; padding:6px 12px; color:#111; }
+html[data-era="2000"] .desktop-file { padding:16px 12px; gap:12px; grid-template-columns:28px minmax(0,1fr) 120px; border-bottom:1px dotted #aaa; }
+html[data-era="2000"] .desktop-file-icon { height:32px; background:#fff; border:1px solid #555; color:#000080; box-shadow:inset 3px 0 #ddd; font:11px "Courier New",monospace; }
+html[data-era="2000"] .desktop-file h3 { font:700 15px Tahoma,sans-serif; color:#000080; }
+html[data-era="2000"] .desktop-file p { font:12px/1.65 Verdana,sans-serif; color:#333; }
+html[data-era="2000"] .desktop-file .project-links a,html[data-era="2000"] .desktop-current a { color:#0000aa; }
+html[data-era="2000"] .desktop-bottom { gap:10px; margin:12px 0 0; }
+html[data-era="2000"] .desktop-bottom a { border:2px outset white; background:var(--desk-face); padding:14px; color:#111; }
+html[data-era="2000"] .desktop-bottom strong { font:700 14px Tahoma,sans-serif; color:#000080; }
+html[data-era="2000"] .desktop-bottom span { font:12px/1.6 Tahoma,sans-serif; }
+html[data-era="2000"] .seo-page-header { background:var(--desk-face); padding:12px; border:2px outset white; }
+html[data-era="2000"] .seo-page-header nav { background:white; border:2px inset #eee; gap:0; }
+html[data-era="2000"] .seo-page-header nav a { font:12px Tahoma,sans-serif; color:#000080; }
+html[data-era="2000"] .seo-page-header nav a[aria-current] { background:#000080; color:white; }
+html[data-era="2000"] .seo-page-hero { border:3px outset #eee; background:var(--desk-face); padding:22px; }
+html[data-era="2000"] .seo-page-hero h1 { background:#000080; color:white; padding:12px; font:700 clamp(25px,3vw,38px)/1.2 Tahoma,sans-serif; letter-spacing:-.035em; }
+html[data-era="2000"] .seo-page-intro { font:14px/1.7 Verdana,sans-serif; }
+html[data-era="2000"] :is(.seo-panel,.seo-article,.contact-terminal,.preview-dialog) { border:3px outset #eee; background:#fff; box-shadow:2px 2px #004040; }
+html[data-era="2000"] :is(.seo-panel,.seo-article) :is(h2,h3) { font-family:Tahoma,Verdana,sans-serif; letter-spacing:0; }
+html[data-era="2000"] :is(.seo-panel,.seo-article) :is(p,li) { font-family:Verdana,Arial,sans-serif; font-size:14px; line-height:1.8; color:#222; }
+html[data-era="2000"] .continue-screen>h2 { background:#000080; color:white; padding:10px 16px; font:700 25px Tahoma,sans-serif; margin-bottom:0; }
+html[data-era="2000"] .message-form,html[data-era="2000"] .contact-channel { background:var(--desk-face); }
+html[data-era="2000"] .message-form :is(input,textarea) { border:2px inset white; border-radius:0; font:14px Verdana,sans-serif; }
+html[data-era="2000"] .era-selector select { border-radius:0; background:var(--desk-face); color:#111; border:2px outset white; }
+@media(max-width:760px) {
+ html[data-era="2000"] .desktop-home { grid-template-columns:1fr; gap:12px; padding:62px 10px 24px; }
+ html[data-era="2000"] .desktop-directory { padding:4px; }
+ html[data-era="2000"] .desktop-directory nav { padding:0; border:0; }
+ html[data-era="2000"] .desktop-directory nav a { font-size:11px; padding:8px; }
+ html[data-era="2000"] .desktop-intro { grid-template-columns:1fr; padding:22px 16px; }
+ html[data-era="2000"] .desktop-file { grid-template-columns:25px minmax(0,1fr); }
+ html[data-era="2000"] .desktop-file .project-links { grid-column:2; }
+ html[data-era="2000"] .desktop-status { flex-direction:column; }
+ html[data-era="2000"] .desktop-current { grid-template-columns:1fr; }
+ html[data-era="2000"] .desktop-current a { grid-column:1; }
+ html[data-era="2000"] .seo-page-header { padding:4px; margin-bottom:14px; }
+}
+html[data-era="2000"] :is(.seo-panel,.seo-article) p a { text-decoration:underline; color:#0000aa; }
+html[data-era="2000"] a.seo-inline-link { background:#d4d0c8; color:#000080; border:2px outset white; box-shadow:1px 1px #404040; }
