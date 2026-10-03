@@ -7,6 +7,7 @@ import { ProjectPreview } from "./project-evidence";
 import { ContactForm } from "./contact-form";
 import { SocialProfileLinks } from "./social-profile-links";
 import { spectaHighlights, spectaArticle } from "./specta";
+import { skills } from "./skills";
 
 import projects from "./projects.json";
 import { ProjectLinks } from "./project-links";
@@ -33,16 +34,7 @@ const experience = [
 
 
 
-// One scale for every skill so visitors can compare them at a glance.
-const DAILY = "DAILY AT WORK", SHIPPED = "SHIPPED IN PROJECTS", COMFORTABLE = "COMFORTABLE";
-const skills = [
-  { name: "Fantom", context: DAILY }, { name: "Svelte 5", context: DAILY },
-  { name: "TypeScript", context: DAILY }, { name: "LLM systems", context: DAILY },
-  { name: "Semantic search", context: DAILY }, { name: "JavaScript", context: SHIPPED },
-  { name: "Java", context: SHIPPED }, { name: "AWS", context: SHIPPED },
-  { name: "REST APIs", context: SHIPPED }, { name: "Python", context: COMFORTABLE },
-  { name: "SQL", context: COMFORTABLE }, { name: "Docker", context: COMFORTABLE },
-];
+
 
 
 

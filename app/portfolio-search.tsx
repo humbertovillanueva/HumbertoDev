@@ -5,11 +5,20 @@ type Result = { title: string; href: string; category: string; description: stri
 export function PortfolioSearch() {
   const dialog = useRef<HTMLDialogElement>(null);
   const launcher = useRef<HTMLButtonElement>(null);
+  const returnFocus = useRef<HTMLElement | null>(null);
   const [open,setOpen] = useState(false);
   const [query,setQuery] = useState('');
   const [results,setResults] = useState<Result[]>([]);
   const [status,setStatus] = useState('');
   const [retry,setRetry] = useState(0);
+  // ⌘K / Ctrl+K opens search in every era; the 2026 nav button sends portfolio-search:open.
+  useEffect(()=>{
+    const show=()=>{if(!dialog.current?.open){returnFocus.current=document.activeElement instanceof HTMLElement?document.activeElement:null;dialog.current?.showModal();setOpen(true);}};
+    const onKey=(event:KeyboardEvent)=>{if((event.metaKey||event.ctrlKey)&&event.key.toLowerCase()==='k'){event.preventDefault();show();}};
+    window.addEventListener('keydown',onKey);
+    window.addEventListener('portfolio-search:open',show);
+    return ()=>{window.removeEventListener('keydown',onKey);window.removeEventListener('portfolio-search:open',show);};
+  },[]);
   useEffect(()=>{
     if(!open) return;
     const controller=new AbortController();
@@ -23,8 +32,8 @@ export function PortfolioSearch() {
     return ()=>{clearTimeout(timer);controller.abort();};
   },[open,query,retry]);
   return <div className="portfolio-search">
-    <button ref={launcher} className="search-launcher" type="button" aria-label="Find in portfolio" onClick={()=>{dialog.current?.showModal();setOpen(true);}}>Find in portfolio <span aria-hidden="true">⌕</span></button>
-    <dialog ref={dialog} className="search-dialog" onKeyDown={event=>{if(event.key === "Escape"){event.preventDefault();dialog.current?.close();}}} aria-labelledby="search-title" onClose={()=>{setOpen(false);launcher.current?.focus();}}>
+    <button ref={launcher} className="search-launcher" type="button" aria-label="Find in portfolio" onClick={()=>{returnFocus.current=launcher.current;dialog.current?.showModal();setOpen(true);}}>Find in portfolio <span aria-hidden="true">⌕</span></button>
+    <dialog ref={dialog} className="search-dialog" onKeyDown={event=>{if(event.key === "Escape"){event.preventDefault();dialog.current?.close();}}} aria-labelledby="search-title" onClose={()=>{setOpen(false);const target=returnFocus.current&&returnFocus.current.offsetParent!==null?returnFocus.current:launcher.current;target?.focus();}}>
       <header><h2 id="search-title">Portfolio directory</h2><button type="button" onClick={()=>dialog.current?.close()} aria-label="Close search">×</button></header>
       <div className="search-body"><label htmlFor="portfolio-query">Find a project, skill, or topic</label><input id="portfolio-query" autoFocus type="search" maxLength={100} value={query} onChange={event=>{setQuery(event.target.value);setResults([]);setStatus('Searching…');}} placeholder="Try React, cloud, or experience" />
       <p role="status">{status}</p>{status.includes('unavailable') && <button type="button" onClick={()=>setRetry(value=>value+1)}>Retry search</button>}
