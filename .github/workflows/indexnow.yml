@@ -1,0 +1,25 @@
+name: Notify search engines
+# After each successful production deploy on Vercel, tell IndexNow search engines (Bing, Yandex,
+# Seznam, Naver, Yep and others; Bing also feeds DuckDuckGo and Yahoo) which pages exist, so
+# changes are recrawled within hours instead of weeks. Google does not use IndexNow; it reads the
+# sitemap through Search Console. The key file lives at public/<key>.txt.
+on:
+  deployment_status:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  indexnow:
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      SITE: https://humbertovillanueva.dev
+      KEY: 19b2cc937d0f8b57d4f0395a853b81f5
+    steps:
+      - name: Submit sitemap URLs
+        run: |
+          set -euo pipefail
+          curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl >[^<]*</loc>' | sed -e 's#<loc          curl -fsS "$SITEp           curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl -fsS "$SITE/$KEY.txt" | grep od          curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl -fsS "$SITE/$KEY.txt" | g,\          curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl -fsS "$SITE/$KEY.txt" | grep -'%          curl -fsS "$SITE/$KEY.txt" | grep -qx "$K          curl -fsS " appli          curl -rset=utf-8' -d "$body")
+          cat /          cat /t || tru            echo "IndexNow responded $status"
+          case "$status" in 200|202) ;; *) exit 1 ;; esac
