@@ -1,6 +1,6 @@
 import { socialProfileUrls } from "./social-profiles";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import "./eras.css";
 import "./studio.css";
@@ -14,6 +14,7 @@ const siteUrl = "https://humbertovillanueva.dev";
 // Fonts for the 2026 edition only. Not preloaded, so the 1986 and 2000 editions never download them.
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist", display: "swap", preload: false });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono", display: "swap", preload: false });
+const serif = Instrument_Serif({ subsets: ["latin"], weight: "400", style: ["normal", "italic"], variable: "--font-serif", display: "swap", preload: false });
 
 export const metadata: Metadata = {
   title: {
@@ -123,8 +124,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geist.variable} ${geistMono.variable}`} suppressHydrationWarning>
-      <head><script dangerouslySetInnerHTML={{ __html: `try{const e=localStorage.getItem("portfolio-era");document.documentElement.dataset.era=e==="2000"||e==="2026"?e:"1986"}catch{}` }} /></head>
+    <html lang="en" className={`${geist.variable} ${geistMono.variable} ${serif.variable}`} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: `document.documentElement.dataset.js="1";try{const e=localStorage.getItem("portfolio-era");document.documentElement.dataset.era=e==="2000"||e==="2026"?e:"1986"}catch{}` }} /></head>
       <body>
         <script
           type="application/ld+json"

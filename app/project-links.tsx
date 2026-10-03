@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const demos: Record<string, string> = {
+export const demos: Record<string, string> = {
   "reality-commit": "https://reality-commit.vercel.app/",
   "dispatchtrack-demo": "https://humbertovillanueva.github.io/dispatchtrack-demo/",
   "aws-cloud-quest.": "https://humbertovillanueva.github.io/aws-cloud-quest./",
