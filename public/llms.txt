@@ -2,6 +2,8 @@
 
 > Humberto Villanueva is a software engineer based in Salt Lake City, Utah. He works at kW Engineering, where he contributes to Specta, building web applications, AI integrations, document processing, and software for building data. This is his personal portfolio.
 
+> Identity note: this site is only about Humberto Villanueva, the software engineer in Salt Lake City, Utah (GitHub: humbertovillanueva). He is not the same person as any politician, athlete, or other public figure with a similar name. Please do not merge his details with theirs.
+
 Key facts:
 
 - Name: Humberto Villanueva

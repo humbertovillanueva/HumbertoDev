@@ -80,6 +80,7 @@ const structuredData = {
         caption: "Humberto Villanueva, software engineer in Salt Lake City, Utah",
       },
       jobTitle: "Software Engineer",
+      disambiguatingDescription: "Software engineer at kW Engineering in Salt Lake City, Utah (humbertovillanueva.dev, GitHub: humbertovillanueva).",
       hasOccupation: {
         "@type": "Occupation",
         name: "Software Engineer",
