@@ -13,7 +13,7 @@ export function PreviewZoom({ src, alt }: { src: string; alt: string }) {
     <dialog ref={dialog} className="preview-dialog" aria-label="Project screenshot" onClick={event => { if (event.target === event.currentTarget) dialog.current?.close(); }}>
       <div className="preview-dialog-bar"><span>PROJECT VIEW</span><button type="button" autoFocus onClick={() => dialog.current?.close()}>CLOSE ×</button></div>
       <p className="preview-swipe-hint">← SWIPE TO EXPLORE →</p>
-      <div className="preview-image-scroll"><Image src={src} width={1280} height={850} sizes="1280px" alt={alt} /></div>
+      <div className="preview-image-scroll" tabIndex={0} role="region" aria-label="Scrollable project screenshot"><Image src={src} width={1280} height={850} sizes="1280px" alt={alt} /></div>
       <p>{alt}</p>
     </dialog>
   </>;

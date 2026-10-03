@@ -71,7 +71,7 @@ export default function PortableAiArticle() {
         <p>A useful abstraction does more than rename one provider&apos;s API methods. It defines what the product needs: generate a response, stream tokens, call tools, produce structured data, or create embeddings. Provider SDKs belong behind that boundary.</p>
         <p>This keeps the rest of the application focused on user workflows. A document assistant should ask for a grounded answer with citations; it should not need to know which provider names its token limit field differently.</p>
 
-        <pre><code>{`Product workflow
+        <pre tabIndex={0} aria-label="Code example"><code>{`Product workflow
   → AI capability interface
     → provider adapter
       → hosted API or local model

@@ -139,7 +139,7 @@ export default function Home() {
     window.addEventListener("resize", schedule);
     return () => { cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); };
   }, []);
-  return <main className="retro-site">
+  return <main className="retro-site" id="top">
     <DesktopHome />
     <StudioHome />
     <div className="skip-links"><a href="#work">Skip to projects</a><a href="#contact">Skip to contact</a></div>
@@ -153,7 +153,7 @@ export default function Home() {
       }
     }}><summary>MENU</summary><nav aria-label="Mobile navigation"><a href="#work" aria-current={activeSection === "work" ? "location" : undefined}>Projects</a><a href="#experience" aria-current={activeSection === "experience" ? "location" : undefined}>Career</a><a href="#skills" aria-current={activeSection === "skills" ? "location" : undefined}>Skills</a><a href="#about" aria-current={activeSection === "about" ? "location" : undefined}>Profile</a><a href="/writing">Writing</a><a href="#contact" aria-current={activeSection === "contact" ? "location" : undefined}>Contact</a></nav></details><a className="header-cta" href="#contact" aria-current={activeSection === "contact" ? "location" : undefined}>CONTACT</a></header>
 
-    <section className="title-screen" id="top">
+    <section className="title-screen">
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true" data-name="HUMBERTO">HUMBERTO</span><strong aria-hidden="true" data-name="VILLANUEVA">VILLANUEVA</strong></h1></div>
       <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build web applications, connect AI tools, and help people make sense of building data.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span><a className="hero-scroll" href="#work">TAKE A LOOK AT MY WORK <span aria-hidden="true">↓</span></a></div>
 

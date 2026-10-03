@@ -189,3 +189,5 @@ html[data-era="2026"] .soccer-panel .soccer-dialog-heading h2 { color:#edf3ff; }
 html[data-era="2026"] .orbit-coordinate { bottom:90px; }
 html[data-era="2026"] :is(.music-toggle,.worldcup-player,.worldcup-player *,.seo-page-footer *) { font-family:Arial,Helvetica,sans-serif; text-shadow:none; }
 html[data-era="2026"] .studio-person { grid-template-columns:1fr; }
+html[data-era="2026"] .game-hud strong { background:#76bdff; color:#07111f; }
+html[data-era="2026"] .preview-image-scroll:focus-visible { outline:3px solid #91caff; outline-offset:-3px; }

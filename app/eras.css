@@ -305,3 +305,6 @@ html[data-era="2000"] .worldcup-player { bottom:56px; }
  .desktop-tray { padding:7px 5px; }.desktop-tray>span { display:none; }
 }
 html[data-era="2000"] .desktop-owner>span { color:white; }
+/* Short viewports must retain access to every Start-menu destination. */
+.desktop-start nav { max-height:calc(100dvh - 52px); overflow-y:auto; }
+html[data-era="2000"] .preview-image-scroll:focus-visible { outline:2px dotted #000080; outline-offset:-3px; }

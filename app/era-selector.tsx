@@ -19,7 +19,7 @@ export function EraSelector() {
     return () => window.removeEventListener("storage", storage);
   }, []);
   function choose(next: Era) {
-    const section = [...document.querySelectorAll<HTMLElement>("main section[id], .seo-page-hero, .seo-page-content")].reverse().find(el => el.getBoundingClientRect().top <= 180);
+    const section = [...document.querySelectorAll<HTMLElement>("main section[id], .seo-page-hero, .seo-page-content")].reverse().find(el => el.getBoundingClientRect().height > 0 && el.getBoundingClientRect().top <= 180);
     const offset = section?.getBoundingClientRect().top;
     document.documentElement.setAttribute("data-era", next);
     setEra(next);
@@ -28,6 +28,8 @@ export function EraSelector() {
       const restore = () => window.scrollBy({top:section.getBoundingClientRect().top-offset,behavior:"instant"});
       restore();
       void document.fonts.ready.then(() => requestAnimationFrame(() => requestAnimationFrame(restore)));
+    } else if (section) {
+      window.scrollTo({ top: 0, behavior: "instant" });
     }
   }
   return <div className="era-selector"><select aria-label="Choose website year" value={era} onChange={event => choose(event.target.value as Era)}><option value="1986">1986</option><option value="2000">2000</option><option value="2026">2026</option></select></div>;
