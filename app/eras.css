@@ -308,3 +308,35 @@ html[data-era="2000"] .desktop-owner>span { color:white; }
 /* Short viewports must retain access to every Start-menu destination. */
 .desktop-start nav { max-height:calc(100dvh - 52px); overflow-y:auto; }
 html[data-era="2000"] .preview-image-scroll:focus-visible { outline:2px dotted #000080; outline-offset:-3px; }
+/* Find window, themed for the two classic editions only. */
+.portfolio-search { position:fixed; left:12px; bottom:16px; z-index:160; }
+html[data-era="2026"] .portfolio-search { display:none; }
+.search-launcher { padding:12px 16px; min-height:44px; background:var(--yellow); color:#080c08; border:3px solid var(--cream); box-shadow:4px 4px #000; font:700 13px var(--pixel); cursor:pointer; }
+.search-launcher span { margin-left:12px; }
+.search-dialog { width:min(660px,calc(100vw - 24px)); max-height:calc(100dvh - 40px); padding:0; border:4px solid var(--cream); background:#093c7e; color:#fff5c8; box-shadow:8px 8px #000; }
+.search-dialog::backdrop { background:#000b; }
+.search-dialog header { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 16px; background:#080c08; }
+.search-dialog h2 { margin:0; font:700 17px var(--pixel); }
+.search-dialog header button { min-width:44px; min-height:44px; border:2px solid #fff5c8; background:#f4e727; color:#080c08; font-size:24px; cursor:pointer; }
+.search-body { padding:20px; }.search-body label { display:block; margin-bottom:10px; font:700 14px Arial,sans-serif; }
+.search-body input { width:100%; padding:13px; color:#111; background:#fffbea; border:3px solid #080c08; font:16px Arial,sans-serif; }
+.search-body>p { font:14px/1.5 Arial,sans-serif; }.search-body ul { list-style:none; padding:0; margin:0; display:grid; gap:10px; }
+.search-body li a { display:grid; gap:7px; padding:16px; border:2px solid #fff5c8; background:#080c08; color:#fff5c8; }
+.search-body li a:focus-visible { outline:3px solid #f4e727; outline-offset:2px; }
+.search-body small { color:#f4e727; font:12px Arial,sans-serif; }.search-body strong { font:700 18px Arial,sans-serif; }.search-body li span { font:14px/1.6 Arial,sans-serif; }
+html[data-era="2000"] .portfolio-search { bottom:56px; }
+html[data-era="2000"] .search-launcher,html[data-era="2000"] .search-dialog header button { background:#d4d0c8; color:#111; border:2px outset white; box-shadow:1px 1px #333; font:13px Tahoma,sans-serif; }
+html[data-era="2000"] .search-dialog { background:#d4d0c8; color:#111; border:3px outset white; box-shadow:3px 3px #333; }
+html[data-era="2000"] .search-dialog header { background:linear-gradient(90deg,#000080,#1084d0); color:white; padding:6px 10px; }
+html[data-era="2000"] .search-dialog h2 { font:700 15px Tahoma,sans-serif; }
+html[data-era="2000"] .search-body input { border:2px inset white; background:white; }
+html[data-era="2000"] .search-body li a { border:2px inset white; background:white; color:#111; }
+html[data-era="2000"] .search-body small { color:#000080; }
+html[data-era="2000"] .desktop-file-toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:10px; background:#d4d0c8; border-bottom:2px groove white; font:12px Tahoma,sans-serif; color:#111; }
+.desktop-file-toolbar label { display:flex; align-items:center; gap:8px; }
+.desktop-file-toolbar :is(button,select) { min-height:36px; background:#d4d0c8; color:#111; border:2px outset white; padding:6px 10px; font:12px Tahoma,sans-serif; }
+.desktop-file-toolbar button[aria-pressed="true"] { border-style:inset; background:#eee; }.desktop-file-toolbar>span { margin-left:auto; }
+.files-compact .desktop-file p { display:none; }
+@media(max-width:420px) { .search-launcher { font-size:11px; padding:10px; }.search-launcher span { display:none; } }
+.search-dialog { margin:auto; }
+.search-body>p { margin:12px 0; }

@@ -4,6 +4,7 @@ import "./globals.css";
 import "./eras.css";
 import "./studio.css";
 import { DesktopTaskbar } from "./desktop-taskbar";
+import { PortfolioSearch } from "./portfolio-search";
 import { EraSelector } from "./era-selector";
 
 const siteUrl = "https://humbertovillanueva.dev";
@@ -128,6 +129,7 @@ export default function RootLayout({
         <EraSelector />
         {children}
         <DesktopTaskbar />
+        <PortfolioSearch />
       </body>
     </html>
   );
