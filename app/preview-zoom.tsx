@@ -6,7 +6,7 @@ import { useRef } from "react";
 export function PreviewZoom({ src, alt }: { src: string; alt: string }) {
   const dialog = useRef<HTMLDialogElement>(null);
   return <>
-    <button className="preview-open" type="button" aria-label={`Enlarge screenshot: ${alt}`} onClick={() => dialog.current?.showModal()}>
+    <button className="preview-open" type="button" aria-label={`View screenshot: ${alt}`} onClick={() => dialog.current?.showModal()}>
       <Image src={src} width={1280} height={850} sizes="(max-width: 760px) 100vw, 50vw" alt={alt} />
       <span>VIEW SCREENSHOT ↗</span>
     </button>

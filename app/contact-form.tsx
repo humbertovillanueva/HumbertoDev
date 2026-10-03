@@ -115,7 +115,7 @@ export function ContactForm() {
     submissionRef.current = null;
     setStatus("");
   }}>
-    <p className="contact-help">{checkingDelivery ? "Checking message delivery…" : canSend ? "Send a message to Humberto’s inbox. Your details are used to respond to your inquiry and processed by our email provider. " : "Prepare an email draft or copy your message. Direct sending is currently unavailable."}</p>
+    <p className="contact-help">{checkingDelivery ? "Checking message delivery…" : canSend ? "Send a message to Humberto’s inbox. Your details are used to respond to your inquiry and processed by my email provider. " : "Prepare an email draft or copy your message. Direct sending is currently unavailable."}</p>
     <fieldset disabled={sending} className="contact-fields">
     <div className="contact-trap" aria-hidden="true"><label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label></div>
     <label><span>YOUR NAME *</span><input type="text" name="name" autoComplete="name" maxLength={100} required /></label>

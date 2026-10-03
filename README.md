@@ -1,17 +1,19 @@
 # HumbertoDev
 
-Humberto Villanueva's personal software-engineering portfolio, presented as an early-2000s pixel-football broadcast. The experience connects his work across AI systems, building intelligence, full-stack products, and cloud software.
+Humberto Villanueva's personal software-engineering portfolio. Visitors can switch the whole site between three designs: a 1986 pixel-football game, a 2000 personal desktop, and a 2026 studio. The content connects his work across AI systems, building intelligence, full-stack products, and cloud software.
 
 Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 
 ## Experience
 
-- A playable Peru number-7 football introduction with keyboard and touch controls
+- A year picker (1986, 2000, 2026) that restyles every page and remembers the visitor's choice
+- A playable Peru number-7 football mini-game on the About page, with keyboard and touch controls
 - An opt-in World Cup music-preview player; no catalog request is made until a visitor loads previews
-- A clearly attributed summary of professional work on Specta
+- A clearly attributed summary of professional work on Specta, with public-level highlights
 - Experience, projects, skills, personal story, and contact sections
 - An engineering-writing hub with long-form technical articles
-- A dedicated DispatchTrack Lite architecture case study
+- Case studies for Reality Commit and DispatchTrack Lite
+- A portfolio search directory
 - Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
 - Actual demo screenshots, engineering decisions, and prototype limits
 - Resend contact delivery with validation and bot protection, plus email-draft and clipboard fallbacks
@@ -20,6 +22,8 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 
 - [Engineering writing](https://humbertovillanueva.dev/writing)
 - [Designing Portable AI Integrations Without Model Lock-In](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations)
+- [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly)
+- [Reality Commit case study](https://humbertovillanueva.dev/case-studies/reality-commit)
 - [DispatchTrack Lite case study](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite)
 
 ## Stack

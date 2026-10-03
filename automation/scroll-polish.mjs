@@ -11,14 +11,14 @@ try {
   }
   await page.evaluate(()=>window.scrollTo(0,0));
   await expect(page.locator('.game-header [aria-current]')).toHaveCount(0);
-  await page.locator('.preview-open').first().click();
+  await page.locator('.preview-open:visible').first().click();
   const hint=page.locator('dialog[open] .preview-swipe-hint');
   if(width===390) await expect(hint).toBeVisible(); else await expect(hint).toBeHidden();
   await page.keyboard.press('Escape');
-  const reduced=await page.locator('h1 span').evaluate(el=>getComputedStyle(el,'::after').animationName);
+  const reduced=await page.locator('.title-lockup h1 span').evaluate(el=>getComputedStyle(el,'::after').animationName);
   expect(reduced).toBe('none');
   await page.emulateMedia({reducedMotion:'no-preference'});
-  const shine=await page.locator('h1 span').evaluate(el=>({duration:getComputedStyle(el,'::after').animationDuration,delay:getComputedStyle(el,'::after').animationDelay}));
+  const shine=await page.locator('.title-lockup h1 span').evaluate(el=>({duration:getComputedStyle(el,'::after').animationDuration,delay:getComputedStyle(el,'::after').animationDelay}));
   expect(shine).toEqual({duration:'6s',delay:'0s'});
   await page.close();
  }

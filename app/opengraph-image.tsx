@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Humberto Villanueva | Software Engineer portfolio in a retro 1993 football stadium";
+export const alt = "Humberto Villanueva | Software Engineer portfolio in a retro 1986 football stadium";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -66,7 +66,7 @@ export default function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex" }}>HUMBERTO_07 // PORTFOLIO</div>
-        <div style={{ display: "flex", color: "#f5e42b" }}>1993 MODE · PLAYER ONE</div>
+        <div style={{ display: "flex", color: "#f5e42b" }}>1986 MODE · PLAYER ONE</div>
       </div>
 
       <div

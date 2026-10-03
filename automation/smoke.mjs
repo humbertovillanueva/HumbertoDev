@@ -9,26 +9,15 @@ try {
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
     await page.goto(process.env.PREVIEW_URL || 'http://127.0.0.1:3000', {waitUntil:'networkidle'});
-    const pitch = page.locator('#pitch');
-    await pitch.scrollIntoViewIfNeeded();
-    const player = page.locator('.controlled-player');
-    const before = await player.getAttribute('style');
-    await page.locator('body').click({position: {x: 1, y: 1}});
-    await page.keyboard.press('ArrowRight');
-    if (await player.getAttribute('style') !== before) throw new Error('Game captured a page navigation key');
-    await pitch.focus();
-    await page.keyboard.press('ArrowRight');
-    if (await player.getAttribute('style') === before) throw new Error('Focused game did not respond');
-    await page.keyboard.press('Tab');
-    if (await pitch.evaluate(el => el === document.activeElement)) throw new Error('Game traps keyboard focus');
-    for (const project of projects) {
+    // The football game now lives behind a launcher on /about; automation/game-launcher.mjs covers it.
+    for (const project of projects.filter(item => item.repo)) {
       const card = page.locator('.game-cartridge').filter({has: page.getByRole('heading', {name:project.title, exact:true})});
       if (await card.count() !== 1) throw new Error('Missing or duplicate card: ' + project.title);
       await card.scrollIntoViewIfNeeded();
       if (!(await card.innerText()).includes(project.text)) throw new Error('Missing project description');
       if (['reality-commit', 'dispatchtrack-demo', 'aws-cloud-quest.'].includes(project.repo) && await card.getByRole('link', {name:'Try the demo'}).count() !== 1) throw new Error('Missing live demo link');
       if (project.repo) {
-        const link = card.getByRole('link', {name:'View project'});
+        const link = card.getByRole('link', {name:'View source code'});
         if (await link.getAttribute('href') !== `https://github.com/humbertovillanueva/${project.repo}`) throw new Error('Incorrect source link');
       }
     }
@@ -42,4 +31,5 @@ try {
     if (errors.length) throw new Error(errors.join('\n'));
     await page.close();
   }
+  console.log('Homepage project cards, demo and source links, overflow, and Projects page entries passed.');
 } finally { await browser.close(); }

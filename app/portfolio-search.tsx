@@ -23,7 +23,7 @@ export function PortfolioSearch() {
     return ()=>{clearTimeout(timer);controller.abort();};
   },[open,query,retry]);
   return <div className="portfolio-search">
-    <button ref={launcher} className="search-launcher" type="button" onClick={()=>{dialog.current?.showModal();setOpen(true);}}>Find in portfolio <span aria-hidden="true">⌕</span></button>
+    <button ref={launcher} className="search-launcher" type="button" aria-label="Find in portfolio" onClick={()=>{dialog.current?.showModal();setOpen(true);}}>Find in portfolio <span aria-hidden="true">⌕</span></button>
     <dialog ref={dialog} className="search-dialog" onKeyDown={event=>{if(event.key === "Escape"){event.preventDefault();dialog.current?.close();}}} aria-labelledby="search-title" onClose={()=>{setOpen(false);launcher.current?.focus();}}>
       <header><h2 id="search-title">Portfolio directory</h2><button type="button" onClick={()=>dialog.current?.close()} aria-label="Close search">×</button></header>
       <div className="search-body"><label htmlFor="portfolio-query">Find a project, skill, or topic</label><input id="portfolio-query" autoFocus type="search" maxLength={100} value={query} onChange={event=>{setQuery(event.target.value);setResults([]);setStatus('Searching…');}} placeholder="Try React, cloud, or experience" />

@@ -1,0 +1,98 @@
+/* Site polish, October 2026. Loaded last so these fixes win over earlier layers.
+   Each block names the problem it fixes. */
+
+/* Year picker: a small caption on the border says what the dropdown does. */
+.era-selector { position:fixed; }
+.era-caption { position:absolute; top:-7px; left:7px; padding:0 4px; background:#090b09; color:#f5e42b; font:700 8px/1.2 "Courier New",monospace; letter-spacing:.14em; pointer-events:none; }
+html[data-era="2000"] .era-caption { background:var(--desk-face,#d4d0c8); color:#000080; font-family:Tahoma,sans-serif; }
+html[data-era="2026"] .era-caption { background:#080c14; color:#91caff; font-family:Arial,sans-serif; letter-spacing:.1em; }
+
+/* Specta highlights, shared by all three eras and the projects page. */
+.specta-highlights { margin:6px 0 18px; padding:0; list-style:none; display:grid; gap:12px; }
+.specta-highlights li { position:relative; padding-left:18px; font:400 15px/1.65 Arial,Helvetica,sans-serif; }
+.specta-highlights li::before { content:""; position:absolute; left:0; top:.62em; width:8px; height:8px; background:currentColor; opacity:.7; }
+.specta-highlights strong { display:block; font-weight:700; }
+.specta-links { display:flex; flex-wrap:wrap; gap:6px 22px; margin:0 0 18px; }
+.specta-links a { display:inline-flex; align-items:center; min-height:44px; font:700 14px/1.4 Arial,Helvetica,sans-serif; text-decoration:underline; text-underline-offset:3px; }
+.mission-copy .specta-highlights li { color:#2b2b25; }
+.mission-copy .specta-links a { color:var(--blue-dark,#073a85); }
+.mission-copy .specta-highlights li::before { background:var(--red,#b8291f); opacity:1; }
+.seo-project .specta-links a { color:inherit; }
+/* 2000 desktop: Specta panel keeps its two-column layout. */
+.desktop-current .specta-highlights,.desktop-current .specta-links { grid-column:2; margin:4px 0 0; }
+.desktop-current .specta-highlights li { font:13px/1.6 Verdana,Tahoma,sans-serif; color:#222; }
+.desktop-current .specta-links a { min-height:32px; font:700 12px/1.6 Tahoma,sans-serif; color:#0000aa; }
+@media(max-width:760px) { .desktop-current .specta-highlights,.desktop-current .specta-links { grid-column:1; } }
+/* 2026 studio: same content, quieter type. */
+.studio-employer .specta-highlights { margin:18px 0 6px; max-width:620px; }
+.studio-employer .specta-highlights li { color:#a5b3cc; font-size:14px; }
+.studio-employer .specta-highlights strong { color:#edf3ff; font-weight:500; }
+.studio-employer .specta-highlights li::before { width:6px; height:6px; border-radius:50%; background:#5aa7ff; }
+.studio-employer .specta-links { margin:12px 0 0; gap:6px 28px; }
+.studio-employer .specta-links a { font:500 13px Arial,sans-serif; color:#edf3ff; text-decoration:none; border-bottom:1px solid #415571; min-height:40px; }
+/* The "My role" link moved under the copy, away from the floating Music button. */
+.studio-employer { grid-template-columns:180px minmax(0,1fr); }
+@media(max-width:760px) { .studio-employer { grid-template-columns:1fr; } }
+
+/* 2026 hero: the small "SYSTEM / HV.2026" label sat on top of the tagline and button. */
+html[data-era="2026"] .orbit-coordinate { bottom:auto; top:56px; right:170px; }
+
+/* 2026 nav: "Let's talk" looked permanently selected; make it read as a button. */
+.studio-nav nav a:last-child { border:1px solid #415571; border-radius:999px; padding:0 16px; }
+.studio-nav nav a:last-child:hover { border-color:#91caff; }
+
+/* 2026 contact: align with the rest of the page grid and top-align the side column. */
+html[data-era="2026"] .continue-screen { align-items:stretch; padding-left:max(48px,calc((100% - 1344px)/2)); padding-right:max(48px,calc((100% - 1344px)/2)); }
+html[data-era="2026"] .continue-screen .contact-terminal { width:100%; }
+html[data-era="2026"] .contact-channel { justify-content:flex-start; }
+@media(max-width:760px) { html[data-era="2026"] .continue-screen { padding-left:22px; padding-right:22px; } }
+
+/* 2000 contact: "Professional" and "Personal" inherited the 27px card heading size. */
+html[data-era="2000"] .contact-channel .social-group-label { font:700 13px/1.5 Tahoma,sans-serif; letter-spacing:.06em; }
+
+/* 2000 project list: links stacked in a narrow column made each row very tall. */
+html[data-era="2000"] .desktop-file { grid-template-columns:28px minmax(0,1fr) 160px; }
+.desktop-file .project-links { justify-content:flex-start; gap:2px; }
+html .desktop-file .project-links a { min-height:30px; margin:0; white-space:nowrap; }
+@media(max-width:760px) { html[data-era="2000"] .desktop-file { grid-template-columns:25px minmax(0,1fr); } .desktop-file .project-links a { white-space:normal; } }
+
+/* 1986 home: three project cards left an empty slot. The odd card out spans the row,
+   with its screenshot on the left and the details on the right. */
+@media(min-width:900px) {
+  html:not([data-era="2000"]):not([data-era="2026"]) .cartridge-grid>.game-cartridge:last-child:nth-child(odd) { grid-column:1/-1; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); column-gap:36px; align-content:start; }
+  html:not([data-era="2000"]):not([data-era="2026"]) .cartridge-grid>.game-cartridge:last-child:nth-child(odd)>* { grid-column:2; }
+  html:not([data-era="2000"]):not([data-era="2026"]) .cartridge-grid>.game-cartridge:last-child:nth-child(odd)>.project-preview { grid-column:1; grid-row:1/span 7; align-self:start; margin-top:0; }
+  html:not([data-era="2000"]):not([data-era="2026"]) .cartridge-grid>.game-cartridge:last-child:nth-child(odd)>.cartridge-number { position:absolute; }
+}
+
+/* 1986 profile: four tall tiles held a few words each. Now a single compact row. */
+@media(min-width:761px) {
+  .profile-window { grid-template-columns:1fr; }
+  .profile-facts { grid-template-columns:repeat(4,1fr); border-right:0; border-bottom:5px solid var(--cream); }
+  .profile-facts span { min-height:0; padding:20px 24px; border-bottom:0; border-right:3px solid var(--cream); }
+  .profile-facts span:nth-child(2n) { border-right:3px solid var(--cream); }
+  .profile-facts span:last-child { border-right:0; }
+  .profile-story { display:grid; grid-template-columns:160px minmax(0,1fr); column-gap:40px; align-items:start; justify-content:start; }
+  .profile-story>* { grid-column:2; }
+  .profile-story>.profile-portrait { grid-column:1; grid-row:1/span 5; margin:0; }
+  .profile-story>.profile-about-link { justify-self:start; }
+}
+@media(max-width:760px) { .profile-facts span { min-height:0; padding:16px 14px; } }
+html:is([data-era="2000"],[data-era="2026"]) .profile-story { grid-template-columns:minmax(0,1fr); }
+
+/* Floating buttons: keep page-end content clear of "Find in portfolio", "Music" and the 2000 taskbar. */
+.game-footer,.seo-page-footer { padding-bottom:96px; }
+html[data-era="2000"] :is(.game-footer,.seo-page-footer) { padding-bottom:140px; }
+html[data-era="2026"] :is(.game-footer,.seo-page-footer) { padding-bottom:84px; }
+/* On phones the search launcher shrinks to its icon; the button keeps its full accessible name. */
+@media(max-width:760px) {
+  .search-launcher { font-size:0 !important; width:48px; min-width:48px; height:48px; padding:0 !important; display:grid; place-items:center; }
+  html .search-launcher>span { display:block; margin:0; font-size:22px; line-height:1; }
+}
+html[data-era="2000"] .seo-page-footer { padding-bottom:24px; margin-bottom:116px; }
+
+/* An open music panel sits above the search button (the search button covered its Play control on phones). */
+.worldcup-player.music-expanded { z-index:170; }
+
+/* Subpages, 1986 edition: the year picker covered the "HV · 07" home button below 1100px. */
+@media(max-width:1100px) { html:not([data-era="2000"]):not([data-era="2026"]) .seo-home-link { margin-left:84px; } }

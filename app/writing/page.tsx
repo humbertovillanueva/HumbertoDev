@@ -25,12 +25,23 @@ const collectionData = {
   author: { "@id": "https://humbertovillanueva.dev/#person" },
   hasPart: [{
     "@type": "Article",
+    headline: "Make Document Pipelines Fail Loudly",
+    url: "https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly",
+  }, {
+    "@type": "Article",
     headline: "Designing Portable AI Integrations Without Locking the Product to One Model",
     url: "https://humbertovillanueva.dev/writing/designing-portable-ai-integrations",
   }],
 };
 
 const articles = [{
+  category: "DATA RELIABILITY · DOCUMENT PROCESSING",
+  date: "OCTOBER 2, 2026",
+  title: "Make Document Pipelines Fail Loudly",
+  summary: "The worst bug in a document pipeline is the one that looks like success. Honest failure states, visible reasons, retries that survive restarts, and tests that catch silent data loss.",
+  href: "/writing/make-document-pipelines-fail-loudly",
+  readingTime: "6 MIN READ",
+}, {
   category: "APPLIED AI · ARCHITECTURE",
   date: "SEPTEMBER 16, 2026",
   title: "Designing Portable AI Integrations Without Locking the Product to One Model",
