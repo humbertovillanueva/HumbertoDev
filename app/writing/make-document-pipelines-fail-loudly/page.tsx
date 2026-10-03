@@ -59,7 +59,7 @@ const breadcrumbData = {
 
 export default function FailLoudlyArticle() {
   return (
-    <SeoPageShell stage="FIELD NOTE · 02" eyebrow="DATA RELIABILITY · DOCUMENT PROCESSING" title="FAIL LOUDLY" intro="The worst bug in a document pipeline is the one that looks like success. Here is how I make failures impossible to miss.">
+    <SeoPageShell stage="FIELD NOTE · 02" eyebrow="DATA RELIABILITY · DOCUMENT PROCESSING" title="Fail Loudly" intro="The worst bug in a document pipeline is the one that looks like success. Here is how I make failures impossible to miss.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData).replace(/</g, "\\u003c") }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData).replace(/</g, "\\u003c") }} />
       <article className="seo-panel seo-article">

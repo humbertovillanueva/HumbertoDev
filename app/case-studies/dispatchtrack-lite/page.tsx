@@ -29,7 +29,7 @@ const caseStudyData = {
 
 export default function DispatchTrackCaseStudy() {
   return (
-    <SeoPageShell stage="CASE STUDY · 01" eyebrow="INDEPENDENT FULL-STACK PROJECT" title="DISPATCHTRACK LITE" intro="Create deliveries, assign drivers, and resolve exceptions in a browser demo. This case study also covers the separate Java API.">
+    <SeoPageShell stage="CASE STUDY · 01" eyebrow="INDEPENDENT FULL-STACK PROJECT" title="DispatchTrack Lite" intro="Create deliveries, assign drivers, and resolve exceptions in a browser demo. This case study also covers the separate Java API.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(caseStudyData).replace(/</g, "\\u003c") }} />
       <section className="seo-case-summary">
         <article className="seo-panel"><span className="seo-label">ROLE</span><h2>Full-stack engineer</h2><p>Product flow, interface, API contracts, serverless deployment, and end-to-end troubleshooting.</p></article>

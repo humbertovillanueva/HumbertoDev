@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function RealityCommitCaseStudy() {
-  return <SeoPageShell stage="CASE STUDY · 02" eyebrow="INDEPENDENT PROJECT · WORKING PROTOTYPE" title="REALITY COMMIT" intro="A photo shows a moment. I built Reality Commit to compare visits and keep a record of what a reviewer can actually confirm.">
+  return <SeoPageShell stage="CASE STUDY · 02" eyebrow="INDEPENDENT PROJECT · WORKING PROTOTYPE" title="Reality Commit" intro="A photo shows a moment. I built Reality Commit to compare visits and keep a record of what a reviewer can actually confirm.">
     <section className="seo-panel seo-panel-wide">
       <span className="seo-label">REACT · TYPESCRIPT · VITE · INDEXEDDB</span>
       <h2>From two photographs to a reviewed change</h2>

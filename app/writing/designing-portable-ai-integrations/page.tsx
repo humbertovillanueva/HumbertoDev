@@ -59,7 +59,7 @@ const breadcrumbData = {
 
 export default function PortableAiArticle() {
   return (
-    <SeoPageShell stage="FIELD NOTE · 01" eyebrow="APPLIED AI · SOFTWARE ARCHITECTURE" title="PORTABLE AI INTEGRATIONS" intro="How I would organize an AI integration so changing providers does not mean rewriting the product.">
+    <SeoPageShell stage="FIELD NOTE · 01" eyebrow="APPLIED AI · SOFTWARE ARCHITECTURE" title="Portable AI Integrations" intro="How I would organize an AI integration so changing providers does not mean rewriting the product.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleData).replace(/</g, "\\u003c") }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbData).replace(/</g, "\\u003c") }} />
       <article className="seo-panel seo-article">

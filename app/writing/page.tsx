@@ -39,7 +39,7 @@ const collectionData = {
 
 export default function WritingPage() {
   return (
-    <SeoPageShell stage="STAGE 03" eyebrow="FIELD NOTES FROM THE BUILD" title="WRITING" intro="Notes on software I’m building, decisions I’ve worked through, and things I’ve learned along the way.">
+    <SeoPageShell stage="STAGE 03" eyebrow="FIELD NOTES FROM THE BUILD" title="Writing" stats={[{ label: "Field notes", value: String(articles.length).padStart(2, "0") }, { label: "Latest", value: articles[0].date.charAt(0) + articles[0].date.slice(1).toLowerCase() }, { label: "Topics", value: "AI · Reliability · Architecture" }]} intro="Notes on software I’m building, decisions I’ve worked through, and things I’ve learned along the way.">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionData).replace(/</g, "\\u003c") }} />
       <section className="seo-writing-list">
         {articles.map((article, index) => (

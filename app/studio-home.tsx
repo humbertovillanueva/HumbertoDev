@@ -9,21 +9,14 @@ import { articles } from "./articles";
 import { professionalProfiles } from "./social-profiles";
 import { StudioMotion } from "./studio-motion";
 import { StudioShader } from "./studio-shader";
-import { StudioClock, StudioSearchButton } from "./studio-widgets";
+import { StudioClock } from "./studio-widgets";
+import { StudioNav } from "./studio-chrome";
 
 const shortDate = (date: string) => date.replace(/^(\w{3})\w*\s(\d+),\s(\d{4})$/, "$1 $2, $3");
 const host = (url?: string) => url ? url.replace(/^https?:\/\//, "").replace(/\/$/, "") : "github.com/humbertovillanueva";
 const ticker = ["AI systems", "Document intelligence", "Full-stack product", "Building intelligence", ...skillGroups.flatMap(group => group.items)];
 const chunk = <T,>(items: T[], size: number) => Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size));
 const toolkitKeys: Record<string, string> = { "DAILY AT WORK": "dailyAtWork", "SHIPPED IN PROJECTS": "shippedInProjects", "COMFORTABLE": "comfortable" };
-
-function StudioMark() {
-  return <svg className="studio-mark" viewBox="0 0 64 64" aria-hidden="true">
-    <rect width="64" height="64" rx="14" fill="#d9ff57" />
-    <path d="M15 14h12v14h10V14h12v36H37V37H27v13H15z" fill="#0a0a0b" />
-    <path d="M28 28h10l-4 9H24z" fill="#e54848" />
-  </svg>;
-}
 
 // Each letter animates in on its own; screen readers get the plain name from aria-label.
 function Letters({ text, offset = 0 }: { text: string; offset?: number }) {
@@ -55,18 +48,7 @@ export function StudioHome() {
     <div className="studio-progress" aria-hidden="true" />
     <a className="page-skip" href="#studio-content">Skip to content</a>
 
-    <header className="studio-nav">
-      <div className="studio-nav-inner">
-        <Link className="studio-signature" href="/" aria-label="Humberto Villanueva home"><StudioMark /><span>Humberto Villanueva</span></Link>
-        <nav aria-label="Studio navigation">
-          <Link href="#studio-work">Work</Link>
-          <Link href="/writing">Writing</Link>
-          <Link href="/about">About</Link>
-          <StudioSearchButton />
-          <Link className="studio-nav-cta" href="#contact">Contact</Link>
-        </nav>
-      </div>
-    </header>
+    <StudioNav home />
 
     <section className="studio-hero" id="studio-content" tabIndex={-1} aria-labelledby="studio-name">
       <StudioShader />

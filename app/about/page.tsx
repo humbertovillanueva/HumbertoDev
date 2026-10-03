@@ -44,7 +44,8 @@ export default function AboutPage() {
     <SeoPageShell
       stage="PLAYER PROFILE · 07"
       eyebrow="SOFTWARE ENGINEER · UTAH, USA"
-      title="ABOUT HUMBERTO VILLANUEVA"
+      title="About Humberto Villanueva"
+      stats={[{ label: "Based in", value: "Utah, USA" }, { label: "Role", value: "Software Engineer, kW Engineering" }, { label: "Focus", value: "AI · Full stack · Building data" }]}
       intro="I’m a software engineer in Utah. I like understanding how things work, finding the problem, and building a fix."
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileData).replace(/</g, "\\u003c") }} />

@@ -25,7 +25,7 @@ const projects = [
 
 export default function ProjectsPage() {
   return (
-    <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="PROJECTS" intro="My work includes web applications, mobile apps, APIs, and AI integrations. Each project below explains my role and its current scope.">
+    <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="Projects" stats={[{ label: "Projects", value: String(projects.length).padStart(2, "0") }, { label: "Case studies", value: "02" }, { label: "Built with", value: "React · TypeScript · Java · AWS · AI" }]} intro="My work includes web applications, mobile apps, APIs, and AI integrations. Each project below explains my role and its current scope.">
       <section className="seo-project-list">
         {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2>{project.title}</h2><ProjectPreview repo={project.repo} /><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}{project.highlights && <><ul className="specta-highlights">{spectaHighlights.map(item => <li key={item.title}><strong>{item.title}</strong> {item.text}</li>)}</ul><div className="specta-links"><Link href={spectaArticle.href}>{spectaArticle.label} →</Link></div></>}<ProjectEvidence repo={project.repo} /><strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
       </section>

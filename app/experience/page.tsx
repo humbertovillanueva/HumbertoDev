@@ -19,7 +19,7 @@ const roles = [
 
 export default function ExperiencePage() {
   return (
-    <SeoPageShell stage="STAGE 02" eyebrow="CAREER + EDUCATION" title="EXPERIENCE" intro="I started in IT support, helping people troubleshoot their systems. Today I work as a software engineer at kW Engineering.">
+    <SeoPageShell stage="STAGE 02" eyebrow="CAREER + EDUCATION" title="Experience" stats={[{ label: "Now", value: `${roles[0].role}, ${roles[0].company}` }, { label: "Degree", value: "B.S. Software Engineering · 2026" }, { label: "Started in", value: `IT support · ${roles[roles.length - 1].years.slice(0, 4)}` }]} intro="I started in IT support, helping people troubleshoot their systems. Today I work as a software engineer at kW Engineering.">
       <section className="seo-timeline">
         {roles.map((item, index) => <article className="seo-panel seo-role" key={item.company}><span className="seo-number">0{index + 1}</span><span className="seo-label">{item.years}</span><h2>{item.role}</h2><h3>{item.company}</h3><p>{item.detail}</p></article>)}
       </section>
