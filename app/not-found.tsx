@@ -7,6 +7,9 @@ export const metadata: Metadata = {
   description: "This page does not exist. Find Humberto Villanueva’s projects, experience, and writing from here.",
   alternates: { canonical: null },
   robots: { index: false, follow: true },
+  // Without this the 404 page inherits the homepage og:url, and link previews of a mistyped
+  // address silently turn into the homepage.
+  openGraph: { title: "Page not found | Humberto Villanueva", description: "This page does not exist. Find Humberto Villanueva’s projects, experience, and writing from here." },
 };
 
 export default function NotFound() {
