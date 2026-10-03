@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Humberto Villanueva",
   },
   description:
-    "Humberto Villanueva is a software engineer based in Utah, building web applications, AI integrations, and software for building data at kW Engineering.",
+    "Humberto Villanueva is a software engineer in Salt Lake City, Utah, building web applications, AI integrations, and software for building data at kW Engineering.",
   metadataBase: new URL(siteUrl),
   authors: [{ name: "Humberto Villanueva", url: siteUrl }],
   creator: "Humberto Villanueva",

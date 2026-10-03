@@ -6,7 +6,7 @@ import { articles } from "../articles";
 const pageUrl = "https://humbertovillanueva.dev/writing";
 
 export const metadata: Metadata = {
-  title: "Engineering Writing | AI, Full Stack & Smart Buildings",
+  title: "Engineering Writing on AI & Software",
   description: "First-hand engineering notes from Humberto Villanueva about applied AI, reliable software systems, full-stack development, and smart-building technology.",
   alternates: { canonical: pageUrl, types: { "application/rss+xml": [{ url: "/writing/feed.xml", title: "Humberto Villanueva · Field notes" }] } },
   openGraph: {

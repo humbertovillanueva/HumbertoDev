@@ -9,9 +9,9 @@ import { SeoPageShell } from "../seo-page-shell";
 const pageUrl = "https://humbertovillanueva.dev/about";
 
 export const metadata: Metadata = {
-  title: "About | Software Engineer in Utah",
+  title: { absolute: "About Humberto Villanueva | Software Engineer in Utah" },
   description:
-    "Meet Humberto Villanueva, a software engineer based in Utah and focused on AI systems, full-stack products, cloud software, and building intelligence.",
+    "Meet Humberto Villanueva, a software engineer at kW Engineering in Salt Lake City, Utah, working on AI integrations, full-stack web applications, data reliability, and software for building data.",
   alternates: { canonical: pageUrl },
   openGraph: {
     title: "About Humberto Villanueva | Software Engineer in Utah",
@@ -34,7 +34,7 @@ const profileData = {
     jobTitle: "Software Engineer",
     url: "https://humbertovillanueva.dev",
     image: "https://humbertovillanueva.dev/humberto-villanueva.jpg",
-    description: "Software engineer based in Utah, working across AI systems, full-stack products, data reliability, and building intelligence.",
+    description: "Software engineer in Salt Lake City, Utah, working across AI integrations, full-stack products, data reliability, and software for building data.",
     sameAs: socialProfileUrls,
   },
 };

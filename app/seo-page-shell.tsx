@@ -34,7 +34,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, stats, children }: 
     <main className="seo-page">
       <a className="page-skip" href="#page-content">Skip to content</a>
       <header className="seo-page-header">
-        <Link href="/" className="seo-home-link" aria-label="Humberto Villanueva home">HV · 07</Link>
+        <Link href="/" className="seo-home-link" aria-label="HV · 07, Humberto Villanueva home">HV · 07</Link>
         <PageNavigation />
       </header>
       <StudioNav />

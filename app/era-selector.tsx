@@ -32,5 +32,5 @@ export function EraSelector() {
       window.scrollTo({ top: 0, behavior: "instant" });
     }
   }
-  return <div className="era-selector"><span className="era-caption" aria-hidden="true">YEAR</span><select aria-label="Choose website year" title="Switch the site between its 1986, 2000 and 2026 designs" value={era} onChange={event => choose(event.target.value as Era)}><option value="1986">1986</option><option value="2000">2000</option><option value="2026">2026</option></select></div>;
+  return <aside className="era-selector" aria-label="Site design"><span className="era-caption" aria-hidden="true">YEAR</span><select aria-label="Choose website year" title="Switch the site between its 1986, 2000 and 2026 designs" value={era} onChange={event => choose(event.target.value as Era)}><option value="1986">1986</option><option value="2000">2000</option><option value="2026">2026</option></select></aside>;
 }

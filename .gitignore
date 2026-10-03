@@ -46,3 +46,6 @@ next-env.d.ts
 # Python automation caches
 __pycache__/
 *.pyc
+
+# Local working files that should never be committed
+/Claude outputs/

@@ -473,3 +473,5 @@ body:has(.soccer-dialog[open]) { overflow:hidden; }
 .header-cta[aria-current="location"] { outline:3px solid var(--yellow); outline-offset:3px; }
 .preview-dialog .preview-swipe-hint { display:none; }
 @media(max-width:800px) { .preview-dialog .preview-swipe-hint { display:block; padding:8px 12px; color:var(--yellow); border-bottom:2px solid var(--cream); font:700 11px/1.5 var(--pixel); } }
+/* Comfortable tap target for the direct email link (WCAG 2.2 target size). */
+.contact-channel>a { display:inline-block; padding-block:3px; }

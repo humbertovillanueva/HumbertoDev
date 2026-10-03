@@ -22,8 +22,8 @@ export function DesktopTaskbar() {
     return () => { clearInterval(interval); document.removeEventListener("pointerdown", dismiss); document.removeEventListener("keydown", escape); };
   }, []);
   const title = pathname === "/" ? "Welcome" : knownPaths.has(pathname) ? pathname.split("/").filter(Boolean).at(-1)?.replaceAll("-", " ") : "Page not found";
-  return <div className="desktop-taskbar">
+  return <aside className="desktop-taskbar" aria-label="Desktop taskbar">
     <details ref={menu} className="desktop-start"><summary><span className="desktop-mark" aria-hidden="true"><i /><i /><i /><i /></span>Start</summary><nav aria-label="Start menu" onClick={() => { if (menu.current) menu.current.open = false; }}><strong>Humberto / Personal desktop</strong><Link href="/">My desktop</Link><Link href="/projects">Project folder</Link><Link href="/experience">Work experience</Link><Link href="/writing">Notebook</Link><Link href="/about">About Humberto</Link><Link href="/#contact">Write a message</Link></nav></details>
     <span className="desktop-active-window">{title}</span><span className="desktop-tray"><span aria-hidden="true">◈</span><time>{time || "Local time"}</time></span>
-  </div>;
+  </aside>;
 }

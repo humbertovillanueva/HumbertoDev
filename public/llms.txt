@@ -18,7 +18,8 @@ Key facts:
 - [Home](https://humbertovillanueva.dev/): Overview, current work, selected projects, and contact
 - [About](https://humbertovillanueva.dev/about): Who Humberto is and what he works on
 - [Projects](https://humbertovillanueva.dev/projects): Web applications, mobile apps, APIs, and AI integrations, with his role in each
-- [Experience](https://humbertovillanueva.dev/experience): Career history and education
+- [Experience](https://humbertovillanueva.dev/experience): Career history, education, and training
+- [Writing](https://humbertovillanueva.dev/writing): Engineering notes ([RSS feed](https://humbertovillanueva.dev/writing/feed.xml))
 
 ## Writing
 

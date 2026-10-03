@@ -13,6 +13,7 @@ import projects from "./projects.json";
 import { ProjectLinks } from "./project-links";
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
+import { experience } from "./experience-data";
 
 const featuredProjects = projects.filter(project => project.repo);
 
@@ -25,18 +26,6 @@ const worldCupTracks = [
   { year: "2026", title: "Dai Dai", artist: "Shakira & Burna Boy" },
   { year: "ANTHEM", title: "We Are the Champions", artist: "Queen" },
 ];
-
-const experience = [
-  { years: "2026 to present", company: "kW Engineering", role: "Software Engineer", detail: "Contributing to kW Engineering’s Specta product across AI architecture, document intelligence, data reliability, ontology tooling, and production interfaces." },
-  { years: "2024 to May 2026", company: "Ryder Last Mile", role: "IT & Customer Specialist", detail: "Troubleshot logistics systems and helped customers resolve technical issues." },
-  { years: "2023 to 2024", company: "Weber State University", role: "IT Support Specialist", detail: "Helped students and faculty with technical issues and supported campus computer labs." },
-];
-
-
-
-
-
-
 
 function SpectaMark() {
   return <svg className="specta-mark" viewBox="0 0 320 320" aria-hidden="true"><path d="M96 82 262 18l-14 43-166 64 14-43Z" /><path d="m66 144 152-58-14 43-152 58 14-43Z" /><path d="m138 151 136-52-14 43-136 52 14-43Z" /><path d="m82 219 166-64-14 43-166 64 14-43Z" /></svg>;
