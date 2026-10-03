@@ -11,17 +11,17 @@ try {
    await page.locator('.seo-home-link').click();
   }
   for(const route of ['/case-studies/reality-commit','/case-studies/dispatchtrack-lite']) {
-   await page.locator(`a[href="${route}"]`).first().click();
+   await page.locator(`a[href="${route}"]:visible`).first().click();
    await expect(page).toHaveURL(base+route);
    await page.locator('.seo-home-link').click();
   }
   await page.locator('.game-footer a[href="/writing"]').click();
-  await page.locator('a[href="/writing/designing-portable-ai-integrations"]').first().click();
+  await page.locator('a[href="/writing/designing-portable-ai-integrations"]:visible').first().click();
   await expect(page.locator('h1')).toBeVisible();
   await page.locator('.seo-home-link').click();
   for(const route of ['/','/projects']) {
    await page.goto(base+route);
-   for(const trigger of await page.locator('.preview-open').all()) {
+   for(const trigger of await page.locator('.preview-open:visible').all()) {
     await trigger.click();
     const dialog=page.locator('dialog[open]');
     await expect(dialog).toBeVisible();

@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./eras.css";
 import "./studio.css";
+import "./polish.css";
 import { DesktopTaskbar } from "./desktop-taskbar";
 import { PortfolioSearch } from "./portfolio-search";
 import { EraSelector } from "./era-selector";

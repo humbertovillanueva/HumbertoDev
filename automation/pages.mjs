@@ -1,7 +1,7 @@
 import { chromium, expect } from 'playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 const base = process.env.PREVIEW_URL || 'http://127.0.0.1:3000';
-const paths = ['/', '/about', '/projects', '/experience', '/writing', '/writing/designing-portable-ai-integrations', '/case-studies/dispatchtrack-lite', '/case-studies/reality-commit'];
+const paths = ['/', '/about', '/projects', '/experience', '/writing', '/writing/designing-portable-ai-integrations', '/writing/make-document-pipelines-fail-loudly', '/case-studies/dispatchtrack-lite', '/case-studies/reality-commit'];
 const browser = await chromium.launch();
 try {
   for (const width of [320, 390, 768, 1440]) {

@@ -10,13 +10,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/experience", priority: 0.8 },
     { path: "/writing", priority: 0.8 },
     { path: "/writing/designing-portable-ai-integrations", priority: 0.8 },
+    { path: "/writing/make-document-pipelines-fail-loudly", priority: 0.8 },
     { path: "/case-studies/reality-commit", priority: 0.8 },
     { path: "/case-studies/dispatchtrack-lite", priority: 0.8 },
   ];
 
   return pages.map(({ path, priority }) => ({
     url: `${siteUrl}${path}`,
-    lastModified: path === "/case-studies/reality-commit" ? "2026-09-30" : ["", "/about", "/projects", "/case-studies/dispatchtrack-lite"].includes(path) ? "2026-09-27" : path === "/writing/designing-portable-ai-integrations" ? "2026-09-17" : "2026-09-16",
+    lastModified: ["/writing", "/writing/make-document-pipelines-fail-loudly", "/projects", ""].includes(path) ? "2026-10-02" : path === "/case-studies/reality-commit" ? "2026-09-30" : ["", "/about", "/projects", "/case-studies/dispatchtrack-lite"].includes(path) ? "2026-09-27" : path === "/writing/designing-portable-ai-integrations" ? "2026-09-17" : "2026-09-16",
     changeFrequency: "monthly",
     priority,
     ...(path === "" ? { images: [`${siteUrl}/humbertopic.jpeg`] } : {}),

@@ -6,6 +6,7 @@ import { DesktopHome } from "./desktop-home";
 import { ProjectPreview } from "./project-evidence";
 import { ContactForm } from "./contact-form";
 import { SocialProfileLinks } from "./social-profile-links";
+import { spectaHighlights, spectaArticle } from "./specta";
 
 import projects from "./projects.json";
 import { ProjectLinks } from "./project-links";
@@ -32,13 +33,15 @@ const experience = [
 
 
 
+// One scale for every skill so visitors can compare them at a glance.
+const DAILY = "DAILY AT WORK", SHIPPED = "SHIPPED IN PROJECTS", COMFORTABLE = "COMFORTABLE";
 const skills = [
-  { name: "Fantom", context: "PRODUCTION" }, { name: "Svelte 5", context: "PRODUCTION" },
-  { name: "TypeScript", context: "PRODUCT" }, { name: "JavaScript", context: "PRODUCT" },
-  { name: "Java", context: "FULL STACK" }, { name: "Python", context: "WORKING" },
-  { name: "SQL", context: "WORKING" }, { name: "AWS", context: "DEPLOYED" },
-  { name: "Docker", context: "FOUNDATION" }, { name: "REST APIs", context: "DEPLOYED" },
-  { name: "LLM systems", context: "PRODUCTION" }, { name: "Semantic search", context: "PRODUCTION" },
+  { name: "Fantom", context: DAILY }, { name: "Svelte 5", context: DAILY },
+  { name: "TypeScript", context: DAILY }, { name: "LLM systems", context: DAILY },
+  { name: "Semantic search", context: DAILY }, { name: "JavaScript", context: SHIPPED },
+  { name: "Java", context: SHIPPED }, { name: "AWS", context: SHIPPED },
+  { name: "REST APIs", context: SHIPPED }, { name: "Python", context: COMFORTABLE },
+  { name: "SQL", context: COMFORTABLE }, { name: "Docker", context: COMFORTABLE },
 ];
 
 
@@ -161,7 +164,7 @@ export default function Home() {
 
     <div className="game-ticker" aria-hidden="true"><div><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i><span>FULL-STACK ENGINEERING</span><i>★</i><span>AI SYSTEMS</span><i>★</i><span>BUILDING INTELLIGENCE</span><i>★</i><span>PRODUCT DESIGN</span><i>★</i></div></div>
 
-    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Projects you can try, with notes on how they work and what still needs work.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note">Built at kW Engineering · My role: Software Engineer.</p><p>At kW Engineering, I work on Specta’s AI integrations, document processing, data reliability, and interfaces for building operators.</p><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02 to {String(featuredProjects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{featuredProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div><a className="all-projects-link" href="/projects">View all projects →</a></section>
+    <section className="game-screen projects-screen" id="work" tabIndex={-1}><div className="screen-heading"><span>STAGE 01</span><h2>SELECTED WORK</h2><p>Projects you can try, with notes on how they work and what still needs work.</p></div><article className="active-mission"><div className="window-bar"><span>ACTIVE CLUB MISSION</span><b>01</b></div><div className="mission-body"><div className="mission-logo"><SpectaMark /><span>SPECTA</span></div><div className="mission-copy"><span className="mission-status"><i /> ONGOING AT kW ENGINEERING</span><h3>SPECTA</h3><p className="ownership-note">Built at kW Engineering · My role: Software Engineer.</p><p>At kW Engineering, I work on Specta’s AI integrations, document processing, data reliability, and interfaces for building operators.</p><ul className="specta-highlights">{spectaHighlights.map(item => <li key={item.title}><strong>{item.title}</strong> {item.text}</li>)}</ul><div className="specta-links"><a href={spectaArticle.href}>{spectaArticle.label} →</a><a href="/experience">Role and experience →</a></div><div className="mission-skills"><span>AI SYSTEMS</span><span>DOCUMENT INTELLIGENCE</span><span>FULL-STACK PRODUCT</span></div></div></div></article><div className="select-label"><span>SELECT A BUILD</span><b>02 to {String(featuredProjects.length + 1).padStart(2, "0")}</b></div><div className="cartridge-grid">{featuredProjects.map((project, index) => <ProjectCard project={project} index={index} key={project.title} />)}</div><a className="all-projects-link" href="/projects">View all projects →</a></section>
 
     <section className="game-screen career-screen" id="experience"><div className="screen-heading light-heading"><span>STAGE 02</span><h2>EXPERIENCE</h2><p>From practical IT support to production software engineering.</p></div><div className="save-window"><div className="window-bar"><span>SAVE FILE // HUMBERTO_07</span><b>ACTIVE</b></div><div className="career-head"><span>SEASON</span><span>TEAM</span><span>POSITION</span><span>MATCH NOTES</span></div>{experience.map((item, index) => <article className="career-row" key={item.company}><span className="save-slot">0{index + 1}</span><span className="career-years">{item.years}</span><strong>{item.company}</strong><h3>{item.role}</h3><p>{item.detail}</p></article>)}</div><div className="education-window"><span>TRAINING CAMP</span><div><strong>B.S. SOFTWARE ENGINEERING</strong><small>Ensign College · 2026 · GPA 3.5</small></div><div><strong>COMPUTER SCIENCE CERTIFICATE</strong><small>Weber State University · 2024</small></div></div><a className="all-projects-link" href="/experience">Full career and education →</a></section>
 
