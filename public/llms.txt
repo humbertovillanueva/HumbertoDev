@@ -35,3 +35,4 @@ Key facts:
 
 - [GitHub](https://github.com/humbertovillanueva)
 - [LinkedIn](https://www.linkedin.com/in/humberto-villanueva-dev/)
+- [DEV Community](https://dev.to/humbertovillanueva)
