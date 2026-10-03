@@ -6,8 +6,9 @@ export const contentType = ogContentType;
 
 export default function OpenGraphImage() {
   return ogCard({
-    eyebrow: "Field note · Data reliability",
-    title: "Make Document Pipelines Fail Loudly",
+    lines: ["MAKE PIPELINES", "FAIL LOUDLY"],
+    lineSize: 104,
+    label: "FIELD NOTE · HUMBERTO VILLANUEVA",
     description: "Honest failure states, visible reasons, retries that survive restarts, and tests that catch silent data loss.",
   });
 }

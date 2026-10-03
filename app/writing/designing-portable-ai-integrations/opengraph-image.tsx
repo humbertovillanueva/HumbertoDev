@@ -6,8 +6,9 @@ export const contentType = ogContentType;
 
 export default function OpenGraphImage() {
   return ogCard({
-    eyebrow: "Field note · Applied AI",
-    title: "Designing Portable AI Integrations",
+    lines: ["PORTABLE AI", "INTEGRATIONS"],
+    lineSize: 104,
+    label: "FIELD NOTE · HUMBERTO VILLANUEVA",
     description: "Separating product behavior from model providers, handling capability differences, and keeping reliability visible.",
   });
 }

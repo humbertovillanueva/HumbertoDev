@@ -6,9 +6,9 @@ export const contentType = ogContentType;
 
 export default function OpenGraphImage() {
   return ogCard({
-    hero: true,
-    eyebrow: "Software engineer · Salt Lake City, Utah",
-    title: "Humberto Villanueva",
-    description: "I build web applications, connect AI to real work, and help people make sense of building data.",
+    lines: ["HUMBERTO", "VILLANUEVA"],
+    lineSize: 128,
+    label: "SOFTWARE ENGINEER · AI + FULL STACK",
+    description: "I build web applications, connect AI tools, and help people make sense of building data.",
   });
 }
