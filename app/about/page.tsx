@@ -33,7 +33,7 @@ const profileData = {
     name: "Humberto Villanueva",
     jobTitle: "Software Engineer",
     url: "https://humbertovillanueva.dev",
-    image: "https://humbertovillanueva.dev/humbertopic.jpeg",
+    image: "https://humbertovillanueva.dev/humberto-villanueva.jpg",
     description: "Software engineer based in Utah, working across AI systems, full-stack products, data reliability, and building intelligence.",
     sameAs: socialProfileUrls,
   },
@@ -50,7 +50,7 @@ export default function AboutPage() {
     >
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(profileData).replace(/</g, "\\u003c") }} />
       <section className="seo-panel seo-panel-wide">
-        <Image className="profile-portrait" src="/humbertopic.jpeg" width={160} height={160} sizes="160px" alt="Humberto Villanueva, software engineer based in Utah" />
+        <Image className="profile-portrait" src="/humberto-villanueva.jpg" width={160} height={160} sizes="160px" alt="Humberto Villanueva, software engineer based in Utah" />
         <span className="seo-label">THE PERSON BEHIND THE WORK</span>
         <h2>What I work on</h2>
         <p>I’m a software engineer based in Utah, where I work across product interfaces, AI integration, document intelligence, data reliability, and software for the built environment.</p>

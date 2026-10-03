@@ -1,0 +1,34 @@
+# Humberto Villanueva
+
+> Humberto Villanueva is a software engineer based in Salt Lake City, Utah. He works at kW Engineering, where he contributes to Specta, building web applications, AI integrations, document processing, and software for building data. This is his personal portfolio.
+
+Key facts:
+
+- Name: Humberto Villanueva
+- Role: Software Engineer at kW Engineering
+- Location: Salt Lake City, Utah, USA
+- Education: B.S. Software Engineering, Ensign College (2026); Computer Science Certificate, Weber State University (2024)
+- Focus: AI integrations, document intelligence, data reliability, full-stack web applications, building data
+- Stack: TypeScript, React, Svelte, Java, Python, AWS
+
+## Pages
+
+- [Home](https://humbertovillanueva.dev/): Overview, current work, selected projects, and contact
+- [About](https://humbertovillanueva.dev/about): Who Humberto is and what he works on
+- [Projects](https://humbertovillanueva.dev/projects): Web applications, mobile apps, APIs, and AI integrations, with his role in each
+- [Experience](https://humbertovillanueva.dev/experience): Career history and education
+
+## Writing
+
+- [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly): Honest failure states, visible reasons, retries that survive restarts, and tests that catch silent data loss
+- [Designing Portable AI Integrations Without Locking the Product to One Model](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations): Separating product behavior from model providers
+
+## Case studies
+
+- [Reality Commit](https://humbertovillanueva.dev/case-studies/reality-commit): A browser prototype for comparing site visits and keeping a reviewed change history
+- [DispatchTrack Lite](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite): A delivery workflow demo with a separate Java API
+
+## Profiles
+
+- [GitHub](https://github.com/humbertovillanueva)
+- [LinkedIn](https://www.linkedin.com/in/humberto-villanueva-dev/)

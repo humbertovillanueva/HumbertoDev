@@ -104,7 +104,7 @@ failed          a person needs to act (with a reason)`}</code></pre>
         <p>A pipeline that fails loudly is less impressive in a demo, because it admits what it could not do. It is far more useful in production, because the people relying on it know which answers they can trust.</p>
 
         <aside className="seo-author-card" aria-label="About the author">
-          <Image src="/humbertopic.jpeg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />
+          <Image src="/humberto-villanueva.jpg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />
           <div>
             <span className="seo-label">ABOUT THE AUTHOR</span>
             <h2>Humberto Villanueva</h2>

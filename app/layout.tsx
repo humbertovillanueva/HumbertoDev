@@ -30,6 +30,7 @@ export const metadata: Metadata = {
   category: "technology",
   alternates: {
     canonical: "/",
+    types: { "application/rss+xml": [{ url: "/writing/feed.xml", title: "Humberto Villanueva · Field notes" }] },
   },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png", sizes: "192x192" }],
@@ -69,9 +70,22 @@ const structuredData = {
       "@type": "Person",
       "@id": `${siteUrl}/#person`,
       name: "Humberto Villanueva",
+      givenName: "Humberto",
+      familyName: "Villanueva",
       url: siteUrl,
-      image: `${siteUrl}/humbertopic.jpeg`,
+      image: {
+        "@type": "ImageObject",
+        "@id": `${siteUrl}/#portrait`,
+        url: `${siteUrl}/humberto-villanueva.jpg`,
+        caption: "Humberto Villanueva, software engineer in Salt Lake City, Utah",
+      },
       jobTitle: "Software Engineer",
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Software Engineer",
+        occupationLocation: { "@type": "State", name: "Utah" },
+        skills: "TypeScript, React, Svelte, Java, Python, AWS, AI integrations, document processing",
+      },
       description:
         "Software engineer based in Utah, building web applications, AI integrations, and software for building data.",
       sameAs: socialProfileUrls,
@@ -93,8 +107,8 @@ const structuredData = {
         },
       ],
       homeLocation: {
-        "@type": "State",
-        name: "Utah",
+        "@type": "Place",
+        address: { "@type": "PostalAddress", addressLocality: "Salt Lake City", addressRegion: "UT", addressCountry: "US" },
       },
       knowsAbout: [
         "Software engineering",
@@ -103,6 +117,14 @@ const structuredData = {
         "Data reliability",
         "Full-stack development",
         "Cloud computing",
+        "TypeScript",
+        "React",
+        "Svelte",
+        "Java",
+        "Python",
+        "Amazon Web Services",
+        "Large language models",
+        "Building intelligence",
       ],
     },
     {
@@ -114,6 +136,7 @@ const structuredData = {
         "The software engineering portfolio of Humberto Villanueva.",
       inLanguage: "en-US",
       author: { "@id": `${siteUrl}/#person` },
+      publisher: { "@id": `${siteUrl}/#person` },
     },
   ],
 };

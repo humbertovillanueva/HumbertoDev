@@ -2,24 +2,25 @@ import type { MetadataRoute } from "next";
 
 const siteUrl = "https://humbertovillanueva.dev";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = [
-    { path: "", priority: 1 },
-    { path: "/about", priority: 0.9 },
-    { path: "/projects", priority: 0.9 },
-    { path: "/experience", priority: 0.8 },
-    { path: "/writing", priority: 0.8 },
-    { path: "/writing/designing-portable-ai-integrations", priority: 0.8 },
-    { path: "/writing/make-document-pipelines-fail-loudly", priority: 0.8 },
-    { path: "/case-studies/reality-commit", priority: 0.8 },
-    { path: "/case-studies/dispatchtrack-lite", priority: 0.8 },
-  ];
+// lastModified is the date each page's content last changed. Update it when you edit a page.
+const pages: { path: string; priority: number; lastModified: string }[] = [
+  { path: "", priority: 1, lastModified: "2026-10-02" },
+  { path: "/about", priority: 0.9, lastModified: "2026-10-02" },
+  { path: "/projects", priority: 0.9, lastModified: "2026-10-02" },
+  { path: "/experience", priority: 0.8, lastModified: "2026-10-02" },
+  { path: "/writing", priority: 0.8, lastModified: "2026-10-02" },
+  { path: "/writing/make-document-pipelines-fail-loudly", priority: 0.8, lastModified: "2026-10-02" },
+  { path: "/writing/designing-portable-ai-integrations", priority: 0.8, lastModified: "2026-10-02" },
+  { path: "/case-studies/reality-commit", priority: 0.8, lastModified: "2026-10-02" },
+  { path: "/case-studies/dispatchtrack-lite", priority: 0.8, lastModified: "2026-10-02" },
+];
 
-  return pages.map(({ path, priority }) => ({
+export default function sitemap(): MetadataRoute.Sitemap {
+  return pages.map(({ path, priority, lastModified }) => ({
     url: `${siteUrl}${path}`,
-    lastModified: ["/writing", "/writing/make-document-pipelines-fail-loudly", "/projects", ""].includes(path) ? "2026-10-02" : path === "/case-studies/reality-commit" ? "2026-09-30" : ["", "/about", "/projects", "/case-studies/dispatchtrack-lite"].includes(path) ? "2026-09-27" : path === "/writing/designing-portable-ai-integrations" ? "2026-09-17" : "2026-09-16",
+    lastModified,
     changeFrequency: "monthly",
     priority,
-    ...(path === "" ? { images: [`${siteUrl}/humbertopic.jpeg`] } : {}),
+    ...(path === "" || path === "/about" ? { images: [`${siteUrl}/humberto-villanueva.jpg`] } : {}),
   }));
 }

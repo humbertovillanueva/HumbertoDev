@@ -110,7 +110,7 @@ Shared layers
         <p>Before switching providers, run the same evaluation cases against both adapters. Check the outputs, latency, and failure handling. Keep the adapter boundary small enough that you can explain what changed and why.</p>
 
         <aside className="seo-author-card" aria-label="About the author">
-          <Image src="/humbertopic.jpeg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />
+          <Image src="/humberto-villanueva.jpg" alt="Humberto Villanueva" width={112} height={112} sizes="112px" />
           <div>
             <span className="seo-label">ABOUT THE AUTHOR</span>
             <h2>Humberto Villanueva</h2>

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
+import { JsonLd, breadcrumbs, personRef } from "../../json-ld";
 
 const pageUrl = "https://humbertovillanueva.dev/case-studies/reality-commit";
 export const metadata: Metadata = {
@@ -11,8 +12,27 @@ export const metadata: Metadata = {
   openGraph: { title: "Reality Commit | Reviewing changes between site visits", url: pageUrl, description: "Photo comparisons, manual observations, and review history built with React, TypeScript, and IndexedDB." },
 };
 
+const caseStudyData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": `${pageUrl}/#case-study`,
+      name: "Reality Commit Software Engineering Case Study",
+      url: pageUrl,
+      datePublished: "2026-09-30",
+      inLanguage: "en-US",
+      creator: personRef,
+      image: "https://humbertovillanueva.dev/projects/reality-commit.webp",
+      about: ["React", "TypeScript", "IndexedDB", "Site visit review", "Change history"],
+    },
+    breadcrumbs([["Projects", "/projects"], ["Reality Commit", "/case-studies/reality-commit"]]),
+  ],
+};
+
 export default function RealityCommitCaseStudy() {
   return <SeoPageShell stage="CASE STUDY · 02" eyebrow="INDEPENDENT PROJECT · WORKING PROTOTYPE" title="Reality Commit" intro="A photo shows a moment. I built Reality Commit to compare visits and keep a record of what a reviewer can actually confirm.">
+    <JsonLd data={caseStudyData} />
     <section className="seo-panel seo-panel-wide">
       <span className="seo-label">REACT · TYPESCRIPT · VITE · INDEXEDDB</span>
       <h2>From two photographs to a reviewed change</h2>
