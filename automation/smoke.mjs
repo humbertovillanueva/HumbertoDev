@@ -15,7 +15,7 @@ try {
       if (await card.count() !== 1) throw new Error('Missing or duplicate card: ' + project.title);
       await card.scrollIntoViewIfNeeded();
       if (!(await card.innerText()).includes(project.text)) throw new Error('Missing project description');
-      if (['reality-commit', 'dispatchtrack-demo', 'aws-cloud-quest.'].includes(project.repo) && await card.getByRole('link', {name:'Try the demo'}).count() !== 1) throw new Error('Missing live demo link');
+      if (['reality-commit', 'dispatchtrack-demo', 'aws-cloud-quest'].includes(project.repo) && await card.getByRole('link', {name:'Try the demo'}).count() !== 1) throw new Error('Missing live demo link');
       if (project.repo) {
         const link = card.getByRole('link', {name:'View source code'});
         if (await link.getAttribute('href') !== `https://github.com/humbertovillanueva/${project.repo}`) throw new Error('Incorrect source link');

@@ -3,12 +3,12 @@ import Link from "next/link";
 export const demos: Record<string, string> = {
   "reality-commit": "https://reality-commit.vercel.app/",
   "dispatchtrack-demo": "https://humbertovillanueva.github.io/dispatchtrack-demo/",
-  "aws-cloud-quest.": "https://humbertovillanueva.github.io/aws-cloud-quest./",
+  "aws-cloud-quest": "https://humbertovillanueva.github.io/aws-cloud-quest/",
 };
 
 export function ProjectLinks({ repo }: { repo: string }) {
   if (!repo) return null;
-  const name = ({ "reality-commit": "Reality Commit", "dispatchtrack-demo": "DispatchTrack Lite", "aws-cloud-quest.": "AWS Cloud Quest" } as Record<string, string>)[repo] ?? repo;
+  const name = ({ "reality-commit": "Reality Commit", "dispatchtrack-demo": "DispatchTrack Lite", "aws-cloud-quest": "AWS Cloud Quest" } as Record<string, string>)[repo] ?? repo;
   return <div className="project-links">
     {demos[repo] && <a className="project-source" aria-label={`Try the demo: ${name}`} href={demos[repo]}>Try the demo ↗</a>}
     <a className="project-source" aria-label={`View source code: ${name}`} href={`https://github.com/humbertovillanueva/${repo}`}>View source code ↗</a>

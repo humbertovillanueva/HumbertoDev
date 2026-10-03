@@ -20,7 +20,7 @@
     "type": "Interactive cloud study game",
     "text": "Practice 50 cloud questions with shuffled answers, immediate feedback, and score and streak tracking. Runs directly in your browser.",
     "stack": "HTML · CSS · JAVASCRIPT",
-    "repo": "aws-cloud-quest.",
+    "repo": "aws-cloud-quest",
     "status": "DEMO"
   },
   {
