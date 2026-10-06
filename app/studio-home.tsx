@@ -159,7 +159,7 @@ export function StudioHome() {
         <p>I like finding the reason something broke, working through a fix, and making sure it holds up. Away from the screen, it’s family and football.</p>
         <div className="studio-links">
           <Link href="/about">More about me <span aria-hidden="true">↗</span></Link>
-          {professionalProfiles.map(profile => <a key={profile.name} href={profile.url} target="_blank" rel="me noopener noreferrer"><BrandIcon name={profile.icon} className="brand-icon studio-brand-icon" />{profile.name} <span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span></a>)}
+          {professionalProfiles.map(profile => <a key={profile.name} className="studio-icon-link" href={profile.url} target="_blank" rel="me noopener noreferrer" aria-label={`${profile.name} (opens in a new tab)`} title={profile.name}><BrandIcon name={profile.icon} className="brand-icon studio-brand-icon" /></a>)}
         </div>
       </div>
     </section>

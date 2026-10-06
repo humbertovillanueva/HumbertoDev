@@ -62,6 +62,9 @@ html[data-era="2026"] .studio-home { display:block; max-width:1200px; margin:0 a
 .studio-links a { display:inline-flex; align-items:center; gap:6px; min-height:40px; color:var(--s-text); font:500 15px var(--s-font); background:linear-gradient(var(--s-accent),var(--s-accent)) 0 100%/0 1px no-repeat,linear-gradient(var(--s-border-strong),var(--s-border-strong)) 0 100%/100% 1px no-repeat; transition:background-size .4s var(--s-ease),color .2s; }
 .studio-links a:hover { color:var(--s-accent); background-size:100% 1px,100% 1px; }
 .studio-links .studio-brand-icon { width:15px; height:15px; flex:none; fill:currentColor; opacity:.85; }
+.studio-links a.studio-icon-link { width:40px; justify-content:center; border:1px solid var(--s-border-strong); border-radius:999px; background:none; }
+.studio-links a.studio-icon-link:hover { border-color:var(--s-accent); }
+.studio-links a.studio-icon-link .studio-brand-icon { width:18px; height:18px; opacity:1; }
 
 /* Floating glass nav */
 .studio-nav { position:sticky; top:12px; z-index:150; margin:12px 0 0; }
