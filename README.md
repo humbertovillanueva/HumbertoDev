@@ -12,8 +12,9 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - A clearly attributed summary of professional work on Specta, with public-level highlights
 - Experience, projects, skills, personal story, and contact sections
 - An engineering-writing hub with long-form technical articles
-- Case studies for Reality Commit and DispatchTrack Lite
+- Case studies for Reality Commit, DispatchTrack Lite and AWS Cloud Quest
 - A portfolio search directory
+- Profile links with each network's own logo (Font Awesome Free brand icons, CC BY 4.0)
 - Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
 - Actual demo screenshots, engineering decisions, and prototype limits
 - Resend contact delivery with validation and bot protection, plus email-draft and clipboard fallbacks
@@ -25,6 +26,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly)
 - [Reality Commit case study](https://humbertovillanueva.dev/case-studies/reality-commit)
 - [DispatchTrack Lite case study](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite)
+- [AWS Cloud Quest case study](https://humbertovillanueva.dev/case-studies/aws-cloud-quest)
 
 ## Stack
 
@@ -62,7 +64,14 @@ node automation/pages.mjs
 python3 automation/test_sync.py
 ```
 
-Set `PREVIEW_URL` to test a different server. Page checks cover seven routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
+Set `PREVIEW_URL` to test a different server. Page checks cover all ten routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
+
+## Search presence
+
+- Structured data (Person, WebSite, articles, case studies, breadcrumbs) on every page
+- A link-preview image for every page, drawn in the 1986 style with `app/og-card.tsx`
+- `sitemap.xml`, `robots.txt`, an RSS feed at `/writing/feed.xml`, and `llms.txt`
+- The **Notify search engines** GitHub Action pings IndexNow after each production deploy
 
 ## Contact delivery
 
@@ -75,8 +84,12 @@ app/
   layout.tsx          Site metadata and document shell
   page.tsx            Portfolio content, music player, and football game
   globals.css         Visual system, responsive layout, and pixel artwork
-  writing/            Engineering-writing hub and articles
+  studio-*.tsx        The 2026 edition: navigation, homepage, motion and shader
+  seo-page-shell.tsx  Shared layout for every subpage in every era
+  og-card.tsx         Link-preview image template
+  writing/            Engineering-writing hub, articles and RSS feed
   case-studies/       Long-form project case studies
+automation/           Browser, accessibility and contact tests
 public/               Static assets
 ```
 
