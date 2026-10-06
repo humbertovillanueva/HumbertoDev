@@ -269,6 +269,8 @@ html[data-era="2026"] .contact-channel :is(p,small) { color:var(--s-muted); font
 html[data-era="2026"] .contact-channel>a { margin-top:14px; color:var(--s-accent); font:500 13px/1.5 var(--s-mono); text-transform:lowercase; }
 html[data-era="2026"] .social-profile-groups .social-group-label { color:var(--s-dim); font:500 11px/1.4 var(--s-mono); letter-spacing:.08em; }
 html[data-era="2026"] .social-profile-groups a { min-height:36px; padding:0 12px; border:1px solid var(--s-border-strong); border-radius:10px; background:var(--s-surface); box-shadow:none; color:var(--s-text); font:500 13px var(--s-font); transform:none; }
+html[data-era="2026"] .social-profile-groups a.social-icon-link { width:44px; height:44px; min-height:44px; padding:0; justify-content:center; border-radius:999px; }
+html[data-era="2026"] .social-profile-groups a.social-icon-link .brand-icon { width:19px; height:19px; }
 html[data-era="2026"] .social-profile-groups a:hover { border-color:var(--s-accent); color:var(--s-accent); box-shadow:none; transform:none; }
 
 /* ---------- Footer ---------- */

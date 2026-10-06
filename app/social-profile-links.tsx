@@ -9,8 +9,8 @@ export function SocialProfileLinks() {
           <h3 className="social-group-label">{group.label}</h3>
           <div className="continue-options">
             {group.profiles.map(profile => (
-              <a key={profile.name} href={profile.url} target="_blank" rel="me noopener noreferrer">
-                <BrandIcon name={profile.icon} />{profile.name}<span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span>
+              <a key={profile.name} className="social-icon-link" href={profile.url} target="_blank" rel="me noopener noreferrer" aria-label={`${profile.name} (opens in a new tab)`} title={profile.name}>
+                <BrandIcon name={profile.icon} />
               </a>
             ))}
           </div>

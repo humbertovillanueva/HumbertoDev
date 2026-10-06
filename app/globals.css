@@ -179,6 +179,8 @@ section[id] { scroll-margin-top:120px; }
 .continue-options a:hover { transform:translate(2px,2px); box-shadow:2px 2px 0 #000; }
 .continue-options svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.8; }
 .continue-options .brand-icon { width:16px; height:16px; flex:none; fill:currentColor; stroke:none; }
+.continue-options a.social-icon-link { width:52px; min-height:52px; padding:0; justify-content:center; }
+.continue-options a.social-icon-link .brand-icon { width:24px; height:24px; }
 .game-footer { min-height:84px; display:grid; grid-template-columns:1fr auto 1fr; align-items:center; gap:20px; padding:0 max(18px,calc((100% - 1200px)/2)); border-top:4px solid var(--cream); color:var(--cream); background:var(--black); font:950 9px/1 var(--pixel); letter-spacing:.08em; }.game-footer nav{display:flex;gap:18px}.game-footer a{color:var(--yellow)}.game-footer>a{justify-self:end}
 
 /* Search-friendly companion pages */
