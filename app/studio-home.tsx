@@ -6,6 +6,7 @@ import { ProjectLinks, demos } from "./project-links";
 import { spectaHighlights, spectaArticle } from "./specta";
 import { skillGroups } from "./skills";
 import { articles } from "./articles";
+import { BrandIcon } from "./brand-icon";
 import { professionalProfiles } from "./social-profiles";
 import { StudioMotion } from "./studio-motion";
 import { StudioShader } from "./studio-shader";
@@ -158,7 +159,7 @@ export function StudioHome() {
         <p>I like finding the reason something broke, working through a fix, and making sure it holds up. Away from the screen, it’s family and football.</p>
         <div className="studio-links">
           <Link href="/about">More about me <span aria-hidden="true">↗</span></Link>
-          {professionalProfiles.map(profile => <a key={profile.name} href={profile.url} target="_blank" rel="me noopener noreferrer">{profile.name} <span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span></a>)}
+          {professionalProfiles.map(profile => <a key={profile.name} href={profile.url} target="_blank" rel="me noopener noreferrer"><BrandIcon name={profile.icon} className="brand-icon studio-brand-icon" />{profile.name} <span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span></a>)}
         </div>
       </div>
     </section>
