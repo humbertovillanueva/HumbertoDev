@@ -14,5 +14,6 @@ export function ProjectLinks({ repo }: { repo: string }) {
     <a className="project-source" aria-label={`View source code: ${name}`} href={`https://github.com/humbertovillanueva/${repo}`}>View source code ↗</a>
     {repo === "reality-commit" && <Link className="project-source" aria-label={`Read the case study: ${name}`} href="/case-studies/reality-commit">Read the case study →</Link>}
     {repo === "dispatchtrack-demo" && <Link className="project-source" aria-label={`Read the case study: ${name}`} href="/case-studies/dispatchtrack-lite">Read the case study →</Link>}
+    {repo === "aws-cloud-quest" && <Link className="project-source" aria-label={`Read the case study: ${name}`} href="/case-studies/aws-cloud-quest">Read the case study →</Link>}
   </div>;
 }
