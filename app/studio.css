@@ -444,6 +444,7 @@ html[data-era="2026"] .seo-article .seo-callout { margin:32px 0; padding:22px 24
 html[data-era="2026"] .seo-article .seo-callout p { font-size:17px; color:var(--s-text); }
 html[data-era="2026"] :is(.seo-author-card,.seo-disclosure,.seo-architecture) { padding:24px; border:1px solid var(--s-glass-border); border-radius:var(--s-radius); background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.015)); box-shadow:none; color:var(--s-muted); font-family:var(--s-font); }
 html[data-era="2026"] .seo-author-card { margin-top:72px; }
+html[data-era="2026"] .seo-author-card a.author-icon-link { width:48px; padding:0; justify-content:center; border-radius:999px; }
 html[data-era="2026"] .seo-disclosure { margin-top:16px; font-size:13.5px; line-height:1.6; }
 html[data-era="2026"] .seo-disclosure :is(p,strong,a) { font-size:13.5px; }
 html[data-era="2026"] .seo-article-byline { margin-bottom:36px; }

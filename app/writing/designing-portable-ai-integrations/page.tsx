@@ -2,6 +2,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
+import { BrandIcon } from "../../brand-icon";
+import { professionalProfiles } from "../../social-profiles";
 
 const pageUrl = "https://humbertovillanueva.dev/writing/designing-portable-ai-integrations";
 
@@ -117,9 +119,7 @@ Shared layers
             <p>Software engineer in Utah building applied AI integrations, reliable data systems, APIs, and smart-building technology.</p>
             <nav aria-label="Author links">
               <Link href="/about">About Humberto</Link>
-              <a href="https://github.com/humbertovillanueva" rel="me">GitHub</a>
-              <a href="https://www.linkedin.com/in/humberto-villanueva-dev/" rel="me">LinkedIn</a>
-              <a href="https://dev.to/humbertovillanueva" rel="me">DEV</a>
+              {professionalProfiles.map(profile => <a key={profile.name} className="author-icon-link" href={profile.url} rel="me" aria-label={profile.name} title={profile.name}><BrandIcon name={profile.icon} /></a>)}
             </nav>
           </div>
         </aside>

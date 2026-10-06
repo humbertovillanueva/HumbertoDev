@@ -258,6 +258,7 @@ html[data-era="2000"] .social-group-label { font:700 13px Tahoma,sans-serif; tex
 html[data-era="2000"] :is(.seo-article-meta span,.seo-article-byline span,.seo-author-card,.seo-disclosure,.seo-architecture,.seo-architecture span) { background:#d4d0c8; color:#111; border:2px outset white; border-radius:0; box-shadow:none; font-family:Tahoma,sans-serif; }
 html[data-era="2000"] .seo-architecture i { color:#000080; }
 html[data-era="2000"] .seo-author-card a { background:#d4d0c8; color:#000080; border:2px outset white; font:12px Tahoma,sans-serif; }
+html[data-era="2000"] .seo-author-card a.author-icon-link { width:40px; height:40px; padding:0; }
 html[data-era="2000"] .seo-article pre { background:#fff; color:#111; border:2px inset white; box-shadow:none; }
 html[data-era="2000"] :is(.seo-panel,.seo-article) h2 { font-size:25px; line-height:1.25; }
 html[data-era="2000"] :is(.seo-panel,.seo-article) h3 { font-size:18px; line-height:1.4; }
