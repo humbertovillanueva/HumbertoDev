@@ -119,6 +119,7 @@ Shared layers
               <Link href="/about">About Humberto</Link>
               <a href="https://github.com/humbertovillanueva" rel="me">GitHub</a>
               <a href="https://www.linkedin.com/in/humberto-villanueva-dev/" rel="me">LinkedIn</a>
+              <a href="https://dev.to/humbertovillanueva" rel="me">DEV</a>
             </nav>
           </div>
         </aside>
