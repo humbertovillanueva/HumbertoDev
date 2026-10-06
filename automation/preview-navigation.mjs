@@ -10,7 +10,7 @@ try {
    await expect(page).toHaveURL(base+route);
    await page.locator('.seo-home-link').click();
   }
-  for(const route of ['/case-studies/reality-commit','/case-studies/dispatchtrack-lite']) {
+  for(const route of ['/case-studies/reality-commit','/case-studies/dispatchtrack-lite','/case-studies/aws-cloud-quest']) {
    await page.locator(`a[href="${route}"]:visible`).first().click();
    await expect(page).toHaveURL(base+route);
    await page.locator('.seo-home-link').click();
