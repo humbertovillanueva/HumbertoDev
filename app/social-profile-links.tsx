@@ -1,3 +1,4 @@
+import { BrandIcon } from "./brand-icon";
 import { personalProfiles, professionalProfiles } from "./social-profiles";
 
 export function SocialProfileLinks() {
@@ -9,7 +10,7 @@ export function SocialProfileLinks() {
           <div className="continue-options">
             {group.profiles.map(profile => (
               <a key={profile.name} href={profile.url} target="_blank" rel="me noopener noreferrer">
-                {profile.name}<span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span>
+                <BrandIcon name={profile.icon} />{profile.name}<span aria-hidden="true">↗</span><span className="social-sr-only"> (opens in a new tab)</span>
               </a>
             ))}
           </div>
