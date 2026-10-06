@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 // Unknown paths share one label so the prerendered 404 page matches the browser (avoids a hydration mismatch).
-const knownPaths = new Set(["/about", "/projects", "/experience", "/writing", "/writing/designing-portable-ai-integrations", "/writing/make-document-pipelines-fail-loudly", "/case-studies/reality-commit", "/case-studies/dispatchtrack-lite"]);
+const knownPaths = new Set(["/about", "/projects", "/experience", "/writing", "/writing/designing-portable-ai-integrations", "/writing/make-document-pipelines-fail-loudly", "/case-studies/reality-commit", "/case-studies/dispatchtrack-lite", "/case-studies/aws-cloud-quest"]);
 
 export function DesktopTaskbar() {
   const pathname = usePathname();

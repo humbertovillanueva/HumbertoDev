@@ -5,7 +5,7 @@ const entries = [
   { title: 'Experience at kW Engineering', href: '/experience', category: 'Experience', description: 'Specta, AI integrations, document processing, data reliability and career history.' },
   { title: 'Make document pipelines fail loudly', href: '/writing/make-document-pipelines-fail-loudly', category: 'Writing', description: 'Engineering notes on data reliability: failure states, visible reasons, retries that survive restarts, and silent data loss.' },
   { title: 'Designing portable AI integrations', href: '/writing/designing-portable-ai-integrations', category: 'Writing', description: 'Engineering notes on provider boundaries, validation and reliable integrations.' },
-  ...projects.map(project => ({ title: project.title, category: 'Project', description: `${project.text} ${project.stack}`, href: project.repo === 'reality-commit' ? '/case-studies/reality-commit' : project.repo === 'dispatchtrack-demo' ? '/case-studies/dispatchtrack-lite' : '/projects' })),
+  ...projects.map(project => ({ title: project.title, category: 'Project', description: `${project.text} ${project.stack}`, href: project.repo === 'reality-commit' ? '/case-studies/reality-commit' : project.repo === 'dispatchtrack-demo' ? '/case-studies/dispatchtrack-lite' : project.repo === 'aws-cloud-quest' ? '/case-studies/aws-cloud-quest' : '/projects' })),
 ];
 export function searchPortfolio(query: string) {
   const terms = query.trim().toLowerCase().split(/\s+/).filter(Boolean);

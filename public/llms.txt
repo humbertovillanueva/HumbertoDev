@@ -30,6 +30,7 @@ Key facts:
 
 - [Reality Commit](https://humbertovillanueva.dev/case-studies/reality-commit): A browser prototype for comparing site visits and keeping a reviewed change history
 - [DispatchTrack Lite](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite): A delivery workflow demo with a separate Java API
+- [AWS Cloud Quest](https://humbertovillanueva.dev/case-studies/aws-cloud-quest): A browser study game for AWS Cloud Practitioner review
 
 ## Profiles
 
