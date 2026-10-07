@@ -87,6 +87,8 @@ html[data-era="2026"] .studio-home { display:block; max-width:1200px; margin:0 a
 
 /* Hero */
 .studio-hero { position:relative; isolation:isolate; display:flex; min-height:min(calc(100svh - 64px),920px); margin-top:-64px; padding-top:64px; }
+html[data-era="2026"] .era-selector select { color-scheme:dark; }
+html[data-era="2026"] .era-selector option { background:#16161a; color:#f4f4f5; }
 html[data-era="2026"] .studio-shader { display:block; }
 /* Devices without usable graphics acceleration: keep the look, skip the costly blur. */
 html[data-era="2026"][data-low-gpu] * { -webkit-backdrop-filter:none!important; backdrop-filter:none!important; }

@@ -78,6 +78,9 @@ html { overflow-anchor:none; }
 /* Each era has its own composition; the year control stays out of the header. */
 .era-selector { position:fixed; top:12px; left:8px; min-height:0; padding:0; border:0; background:transparent; z-index:180; }
 .era-selector select { width:76px; height:38px; border:2px solid #fff5c8; background:#090b09; color:#fff5c8; font:700 13px "Courier New",monospace; padding:6px; cursor:pointer; }
+/* Windows draws the open list with the page's colors, so set them explicitly for every era. */
+.era-selector option { background:#090b09; color:#fff5c8; }
+html[data-era="2000"] .era-selector option { background:#fff; color:#111; }
 .game-header { top:0; }
 html[data-era="2000"] .era-selector { background:transparent; border:0; }
 html[data-era="2000"] .era-selector select { color:#172c45; background:#e5e2db; border:2px outset white; font-family:Tahoma,sans-serif; }
