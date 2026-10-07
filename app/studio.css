@@ -88,6 +88,10 @@ html[data-era="2026"] .studio-home { display:block; max-width:1200px; margin:0 a
 /* Hero */
 .studio-hero { position:relative; isolation:isolate; display:flex; min-height:min(calc(100svh - 64px),920px); margin-top:-64px; padding-top:64px; }
 html[data-era="2026"] .studio-shader { display:block; }
+/* Devices without usable graphics acceleration: keep the look, skip the costly blur. */
+html[data-era="2026"][data-low-gpu] * { -webkit-backdrop-filter:none!important; backdrop-filter:none!important; }
+html[data-era="2026"][data-low-gpu] .studio-nav-inner { background:rgba(14,14,17,.94); }
+html[data-era="2026"][data-low-gpu] :is(.studio-button-glow,.seo-next-links a:first-child,.soccer-launcher,.studio-dot,.code-caret) { animation:none!important; }
 .studio-shader { position:absolute; z-index:-2; top:-12px; bottom:0; left:calc(50% - 50vw); width:100vw; height:calc(100% + 12px);
   background:radial-gradient(ellipse 50% 60% at 72% 38%,#8b7bff38,transparent 70%),radial-gradient(ellipse 40% 50% at 58% 60%,#2de2c428,transparent 70%),radial-gradient(ellipse 30% 40% at 80% 70%,#d9ff5726,transparent 70%),var(--s-bg); }
 .studio-hero::after { content:""; position:absolute; z-index:-1; inset:auto calc(50% - 50vw) 0; height:42%; background:linear-gradient(transparent,var(--s-bg)); pointer-events:none; }

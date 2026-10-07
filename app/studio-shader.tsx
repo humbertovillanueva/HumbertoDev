@@ -4,6 +4,12 @@ import { useEffect, useRef } from "react";
 // Animated aurora behind the 2026 hero. A small WebGL fragment shader: domain-warped noise in the
 // logo's lime with violet and teal, nudged by the cursor. It only runs while the 2026 edition is
 // selected and the hero is on screen; reduced-motion visitors get a single still frame.
+// The aurora is soft, so it renders at a small, capped resolution and about 30 frames a second.
+// On slow graphics (common on Windows laptops with integrated GPUs) it settles on a still frame
+// instead of making the page stutter, and if WebGL is missing or lost the CSS gradient shows.
+const RENDER_SCALE = .5;
+const PIXEL_BUDGET = 360_000;
+const FRAME_MS = 1000 / 30;
 const vertex = `attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}`;
 const fragment = `precision mediump float;
 uniform vec2 r;uniform float t;uniform vec2 m;
@@ -56,11 +62,20 @@ export function StudioShader() {
     let frame = 0, visible = false, start = performance.now();
     const isActive = () => document.documentElement.dataset.era === "2026" && visible && !document.hidden;
 
+    // Software rendering (no usable GPU, remote desktops, blocked drivers) gets a single still frame.
+    const info = gl.getExtension("WEBGL_debug_renderer_info");
+    const renderer = String(info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
+    let lastDraw = 0, slowFrames = 0, settled = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer), lost = false;
+    // Also drop the glass blur effects, which are expensive without a GPU.
+    const calmDown = () => { settled = true; canvas.dataset.settled = "true"; document.documentElement.dataset.lowGpu = "true"; };
+    if (settled) calmDown();
     const resize = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5) * (window.innerWidth < 760 ? .75 : 1);
       const { width, height } = canvas.getBoundingClientRect();
-      canvas.width = Math.max(1, Math.round(width * dpr));
-      canvas.height = Math.max(1, Math.round(height * dpr));
+      let w = width * RENDER_SCALE, h = height * RENDER_SCALE;
+      const shrink = Math.min(1, Math.sqrt(PIXEL_BUDGET / Math.max(1, w * h)));
+      w *= shrink; h *= shrink;
+      canvas.width = Math.max(1, Math.round(w));
+      canvas.height = Math.max(1, Math.round(h));
       gl.viewport(0, 0, canvas.width, canvas.height);
     };
     const draw = (now: number) => {
@@ -72,18 +87,27 @@ export function StudioShader() {
     };
     const loop = (now: number) => {
       frame = 0;
-      if (!isActive()) return;
-      draw(now);
-      if (!reduce.matches) frame = requestAnimationFrame(loop);
+      if (lost || !isActive()) return;
+      const still = reduce.matches || settled;
+      if (still || now - lastDraw >= FRAME_MS) {
+        // A frame that arrives far later than planned means the device is struggling.
+        if (lastDraw && !still) slowFrames = now - lastDraw > FRAME_MS * 2.2 ? slowFrames + 1 : Math.max(0, slowFrames - 1);
+        if (slowFrames > 12) calmDown();
+        lastDraw = now;
+        draw(now);
+      }
+      if (!reduce.matches && !settled) frame = requestAnimationFrame(loop);
     };
-    const kick = () => { if (!frame && isActive()) frame = requestAnimationFrame(loop); };
+    const kick = () => { if (!frame && isActive()) { lastDraw = 0; frame = requestAnimationFrame(loop); } };
+    const onLost = (event: Event) => { event.preventDefault(); lost = true; cancelAnimationFrame(frame); frame = 0; canvas.dataset.fallback = "true"; };
+    canvas.addEventListener("webglcontextlost", onLost);
     const onPointer = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.tx = (event.clientX - rect.left) / rect.width;
       mouse.ty = 1 - (event.clientY - rect.top) / rect.height;
     };
 
-    const sizeObserver = new ResizeObserver(() => { resize(); if (reduce.matches) { start = performance.now(); kick(); } });
+    const sizeObserver = new ResizeObserver(() => { resize(); if (reduce.matches || settled) kick(); });
     sizeObserver.observe(canvas);
     const viewObserver = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; kick(); });
     viewObserver.observe(canvas);
@@ -95,6 +119,7 @@ export function StudioShader() {
     canvas.dataset.ready = "true";
     return () => {
       cancelAnimationFrame(frame);
+      canvas.removeEventListener("webglcontextlost", onLost);
       sizeObserver.disconnect(); viewObserver.disconnect(); eraObserver.disconnect();
       document.removeEventListener("visibilitychange", kick);
       window.removeEventListener("pointermove", onPointer);
