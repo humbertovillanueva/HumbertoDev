@@ -20,13 +20,15 @@ export const metadata: Metadata = {
   },
 };
 
+const updated = { iso: "2026-10-15", label: "October 15, 2026" };
+
 const profileData = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   "@id": `${pageUrl}/#profile-page`,
   url: pageUrl,
   name: "About Humberto Villanueva",
-  dateModified: "2026-10-14",
+  dateModified: updated.iso,
   mainEntity: {
     "@type": "Person",
     "@id": "https://humbertovillanueva.dev/#person",
@@ -61,9 +63,9 @@ export default function AboutPage() {
         <article className="seo-panel"><span className="seo-label">CURRENT ROLE</span><h2>Software Engineer</h2><p>I contribute to Specta at kW Engineering, working on AI integrations, document processing, and product interfaces.</p></article>
         <article className="seo-panel"><span className="seo-label">EDUCATION</span><h2>Software Engineering</h2><p>B.S. Software Engineering from Ensign College and a Computer Science Certificate from Weber State University.</p></article>
         <article className="seo-panel"><span className="seo-label">FOCUS</span><h2>AI + Full Stack</h2><p>AI systems and agents, document intelligence, cloud services, reliable APIs, product interfaces, and building data.</p></article>
-        <article className="seo-panel"><span className="seo-label">BEYOND CODE</span><h2>Family · Football</h2><p>Family and faith keep me grounded. Football keeps me competitive. I follow Real Madrid, and number 7 is my favorite.</p><SoccerGame /></article>
+        <article className="seo-panel"><span className="seo-label">BEYOND CODE</span><h2>Family · Faith · Football</h2><p>Family and faith keep me grounded. Football keeps me competitive. I follow Real Madrid, and number 7 is my favorite.</p><SoccerGame /></article>
       </section>
-      <section className="seo-panel seo-panel-wide"><h2>Find Humberto Villanueva online</h2><p>Professional work and personal interests, each in their own place.</p><SocialProfileLinks /></section>
+      <section className="seo-panel seo-panel-wide"><h2>Find Humberto Villanueva online</h2><p>Professional work and personal interests, each in their own place.</p><SocialProfileLinks /><p className="seo-disclosure">Last updated {updated.label}.</p></section>
       <div className="seo-next-links"><Link href="/projects">Explore selected projects →</Link><Link href="/experience">View career and education →</Link></div>
     </SeoPageShell>
   );
