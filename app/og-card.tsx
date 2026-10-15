@@ -44,7 +44,7 @@ type OgCardProps = {
 
 export async function ogCard({ label, lines, lineSize, description }: OgCardProps) {
   const [regular, black, mono] = await fonts;
-  const ticker = ["HUMBERTOVILLANUEVA.DEV", "SOFTWARE ENGINEERING", "AI SYSTEMS", "BUILDING INTELLIGENCE", "FULL-STACK"];
+  const ticker = ["HUMBERTOVILLANUEVA.DEV", "SOFTWARE ENGINEERING", "AI SYSTEMS", "AI AGENTS", "BUILDING INTELLIGENCE", "FULL-STACK"];
   return new ImageResponse(
     <div style={{ position: "relative", width: "100%", height: "100%", display: "flex", flexDirection: "column", background: c.field, color: c.cream, fontFamily: "Geist" }}>
       {/* Scoreboard bar */}
