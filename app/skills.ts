@@ -5,6 +5,7 @@ export const skills = [
   { name: "Fantom", context: DAILY }, { name: "Svelte 5", context: DAILY },
   { name: "TypeScript", context: DAILY }, { name: "LLM systems", context: DAILY },
   { name: "Semantic search", context: DAILY }, { name: "JavaScript", context: SHIPPED },
+  { name: "Node.js", context: SHIPPED }, { name: "MCP servers", context: SHIPPED },
   { name: "Java", context: SHIPPED }, { name: "AWS", context: SHIPPED },
   { name: "REST APIs", context: SHIPPED }, { name: "Python", context: COMFORTABLE },
   { name: "SQL", context: COMFORTABLE }, { name: "Docker", context: COMFORTABLE },
