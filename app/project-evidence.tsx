@@ -15,13 +15,13 @@ const evidence: Record<string, { image: string; alt: string; captured: string; d
   },
   "dispatchtrack-demo": {
     image: "dispatchtrack", alt: "DispatchTrack delivery dashboard showing fictional assignments, exceptions, and driver capacity",
-    captured: "September 2026",
+    captured: "October 2026",
     decision: "Model delivery states explicitly. Require a driver before dispatch and a note when recording an outcome.",
     limit: "The public demo uses browser storage and fictional data. Shared accounts and a hosted Java API are not connected.",
   },
   "aws-cloud-quest": {
     image: "cloud-quest", alt: "AWS Cloud Quest start screen with 50 questions, randomized choices, and streak tracking",
-    captured: "September 2026",
+    captured: "October 2026",
     decision: "Use immediate feedback and shuffled answers to turn passive study into active recall.",
     limit: "A dependency-free study game with 50 questions, not an official AWS exam or certification predictor.",
   },
