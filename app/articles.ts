@@ -1,5 +1,29 @@
 // Field notes listed on /writing and the 2026 homepage, newest first.
 export const articles = [{
+  category: "AI AGENTS · RUNTIME DESIGN",
+  date: "OCTOBER 15, 2026",
+  published: "2026-10-15",
+  title: "A Policy Kernel, Not a Prompt",
+  summary: "Telling a model “never delete files” is a wish. Where the rules for an agent live in Garu, how they are read, allow, ask or block by tool and by argument, hidden tools, a sandbox, and the one thing none of it stops.",
+  href: "/writing/a-policy-kernel-not-a-prompt",
+  readingTime: "7 MIN READ",
+}, {
+  category: "AI AGENTS · APPROVALS",
+  date: "OCTOBER 15, 2026",
+  published: "2026-10-15",
+  title: "What a Decline Should Teach an Agent",
+  summary: "My agent found the wrong repository, I said no, and it posted the wrong numbers anyway. A decline that carries a note, approvals that write the policy, and an approval flow that assumes the owner is asleep.",
+  href: "/writing/what-a-decline-should-teach",
+  readingTime: "6 MIN READ",
+}, {
+  category: "PRODUCT · LOCALIZATION",
+  date: "OCTOBER 15, 2026",
+  published: "2026-10-15",
+  title: "A Spanish-First Phone App From One Codebase",
+  summary: "My family reads email in Spanish. One rule for every sentence, a test that fails on a missing translation, agents that answer in the language of the email, and one Svelte codebase on the desktop, Android and iPhone.",
+  href: "/writing/a-spanish-first-phone-app-from-one-codebase",
+  readingTime: "6 MIN READ",
+}, {
   category: "DATA RELIABILITY · DOCUMENT PROCESSING",
   date: "OCTOBER 2, 2026",
   published: "2026-10-02",

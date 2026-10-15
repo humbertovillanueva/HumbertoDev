@@ -24,15 +24,7 @@ const collectionData = {
   name: "Engineering Writing by Humberto Villanueva",
   description: "First-hand engineering notes about applied AI, full-stack systems, and smart-building technology.",
   author: { "@id": "https://humbertovillanueva.dev/#person" },
-  hasPart: [{
-    "@type": "Article",
-    headline: "Make Document Pipelines Fail Loudly",
-    url: "https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly",
-  }, {
-    "@type": "Article",
-    headline: "Designing Portable AI Integrations Without Locking the Product to One Model",
-    url: "https://humbertovillanueva.dev/writing/designing-portable-ai-integrations",
-  }],
+  hasPart: articles.map(article => ({ "@type": "Article", headline: article.title, url: `https://humbertovillanueva.dev${article.href}` })),
 };
 
 
