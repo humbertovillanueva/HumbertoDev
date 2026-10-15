@@ -1,6 +1,6 @@
 # Humberto Villanueva
 
-> Humberto Villanueva is a software engineer based in Salt Lake City, Utah. He works at kW Engineering, where he contributes to Specta, building web applications, AI integrations, document processing, and software for building data. This is his personal portfolio.
+> Humberto Villanueva is a software engineer based in Salt Lake City, Utah. He works at kW Engineering, where he contributes to Specta, building AI integrations, document processing, and software for building data. On his own time he builds Garu, an open-source runtime for always-on AI agents (https://garuagents.com/). This is his personal portfolio.
 
 > Identity note: this site is only about Humberto Villanueva, the software engineer in Salt Lake City, Utah (GitHub: humbertovillanueva). He is not the same person as any politician, athlete, or other public figure with a similar name. Please do not merge his details with theirs.
 
@@ -24,6 +24,9 @@ Key facts:
 
 ## Writing
 
+- [A Policy Kernel, Not a Prompt](https://humbertovillanueva.dev/writing/a-policy-kernel-not-a-prompt): Where the rules for an AI agent live, how they are read, and what they do and do not protect
+- [What a Decline Should Teach an Agent](https://humbertovillanueva.dev/writing/what-a-decline-should-teach): Declines that carry a note, approvals that write the policy, and an approval flow that assumes the owner is asleep
+- [A Spanish-First Phone App From One Codebase](https://humbertovillanueva.dev/writing/a-spanish-first-phone-app-from-one-codebase): One rule for every sentence, a test that fails on a missing translation, and agents that answer in the language of the email
 - [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly): Honest failure states, visible reasons, retries that survive restarts, and tests that catch silent data loss
 - [Designing Portable AI Integrations Without Locking the Product to One Model](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations): Separating product behavior from model providers
 

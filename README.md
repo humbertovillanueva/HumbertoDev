@@ -22,6 +22,9 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 ## Featured pages
 
 - [Engineering writing](https://humbertovillanueva.dev/writing)
+- [A Policy Kernel, Not a Prompt](https://humbertovillanueva.dev/writing/a-policy-kernel-not-a-prompt)
+- [What a Decline Should Teach an Agent](https://humbertovillanueva.dev/writing/what-a-decline-should-teach)
+- [A Spanish-First Phone App From One Codebase](https://humbertovillanueva.dev/writing/a-spanish-first-phone-app-from-one-codebase)
 - [Designing Portable AI Integrations Without Model Lock-In](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations)
 - [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly)
 - [Garu case study](https://humbertovillanueva.dev/case-studies/garu)
@@ -65,7 +68,7 @@ node automation/pages.mjs
 python3 automation/test_sync.py
 ```
 
-Set `PREVIEW_URL` to test a different server. Page checks cover all eleven routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
+Set `PREVIEW_URL` to test a different server. Page checks cover all fourteen routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
 
 ## Search presence
 
