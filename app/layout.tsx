@@ -126,6 +126,8 @@ const structuredData = {
         "Python",
         "Amazon Web Services",
         "Large language models",
+        "AI agents",
+        "Model Context Protocol",
         "Building intelligence",
       ],
     },

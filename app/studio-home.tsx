@@ -15,7 +15,7 @@ import { StudioNav } from "./studio-chrome";
 
 const shortDate = (date: string) => date.replace(/^(\w{3})\w*\s(\d+),\s(\d{4})$/, "$1 $2, $3");
 const host = (url?: string) => url ? url.replace(/^https?:\/\//, "").replace(/\/$/, "") : "github.com/humbertovillanueva";
-const ticker = ["AI systems", "Document intelligence", "Full-stack product", "Building intelligence", ...skillGroups.flatMap(group => group.items)];
+const ticker = ["AI systems", "AI agents", "Document intelligence", "Full-stack product", "Building intelligence", ...skillGroups.flatMap(group => group.items)];
 const chunk = <T,>(items: T[], size: number) => Array.from({ length: Math.ceil(items.length / size) }, (_, index) => items.slice(index * size, index * size + size));
 const toolkitKeys: Record<string, string> = { "DAILY AT WORK": "dailyAtWork", "SHIPPED IN PROJECTS": "shippedInProjects", "COMFORTABLE": "comfortable" };
 

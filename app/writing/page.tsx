@@ -58,7 +58,7 @@ export default function WritingPage() {
         <h2>Experience before volume</h2>
         <p>I write about problems I’ve worked through and explain the choices I made. I keep private work details out of these articles.</p>
       </section>
-      <div className="seo-next-links"><Link href="/case-studies/dispatchtrack-lite">Read a project case study →</Link><Link href="/projects">Explore all projects →</Link></div>
+      <div className="seo-next-links"><Link href="/case-studies/garu">Read a project case study →</Link><Link href="/projects">Explore all projects →</Link></div>
     </SeoPageShell>
   );
 }
