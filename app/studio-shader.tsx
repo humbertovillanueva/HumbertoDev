@@ -59,7 +59,8 @@ export function StudioShader() {
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mouse = { x: .62, y: .55, tx: .62, ty: .55 };
-    let frame = 0, visible = false, start = performance.now();
+    let frame = 0, visible = false;
+    const start = performance.now();
     const isActive = () => document.documentElement.dataset.era === "2026" && visible && !document.hidden;
 
     // Software rendering (no usable GPU, remote desktops, blocked drivers) gets a single still frame.
