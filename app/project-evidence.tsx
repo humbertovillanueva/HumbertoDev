@@ -9,7 +9,7 @@ const evidence: Record<string, { image: string; alt: string; captured: string; d
   },
   "reality-commit": {
     image: "reality-commit", alt: "Reality Commit comparing before and after photographs in a sample pump-maintenance workspace",
-    captured: "September 2026",
+    captured: "October 2026",
     decision: "Keep observations separate from conclusions. Reviewers verify proposed changes before saving a history entry.",
     limit: "Manual annotations, IndexedDB storage, and JSON export. No automated inspection or image diagnosis.",
   },

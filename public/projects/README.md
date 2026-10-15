@@ -1,6 +1,6 @@
 # Portfolio screenshots
 
-Captured from the public demonstration applications, using fresh browser sessions and fictional/sample records (`reality-commit.webp` on September 27, 2026; `dispatchtrack.webp` and `cloud-quest.webp` refreshed on October 14, 2026). Optimized to WebP for the portfolio; these are screenshots, not product mockups.
+Captured October 14, 2026 from the public demonstration applications, using fresh browser sessions and fictional/sample records. Optimized to WebP for the portfolio; these are screenshots, not product mockups.
 
 - `dispatchtrack.webp`: https://humbertovillanueva.github.io/dispatchtrack-demo/
 - `cloud-quest.webp`: https://humbertovillanueva.github.io/aws-cloud-quest/
