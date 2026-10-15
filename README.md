@@ -12,7 +12,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - A clearly attributed summary of professional work on Specta, with public-level highlights
 - Experience, projects, skills, personal story, and contact sections
 - An engineering-writing hub with long-form technical articles
-- Case studies for Reality Commit, DispatchTrack Lite and AWS Cloud Quest
+- Case studies for Garu, Reality Commit, DispatchTrack Lite and AWS Cloud Quest
 - A portfolio search directory
 - Profile links with each network's own logo (Font Awesome Free brand icons, CC BY 4.0)
 - Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
@@ -24,6 +24,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - [Engineering writing](https://humbertovillanueva.dev/writing)
 - [Designing Portable AI Integrations Without Model Lock-In](https://humbertovillanueva.dev/writing/designing-portable-ai-integrations)
 - [Make Document Pipelines Fail Loudly](https://humbertovillanueva.dev/writing/make-document-pipelines-fail-loudly)
+- [Garu case study](https://humbertovillanueva.dev/case-studies/garu)
 - [Reality Commit case study](https://humbertovillanueva.dev/case-studies/reality-commit)
 - [DispatchTrack Lite case study](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite)
 - [AWS Cloud Quest case study](https://humbertovillanueva.dev/case-studies/aws-cloud-quest)
@@ -64,7 +65,7 @@ node automation/pages.mjs
 python3 automation/test_sync.py
 ```
 
-Set `PREVIEW_URL` to test a different server. Page checks cover all ten routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
+Set `PREVIEW_URL` to test a different server. Page checks cover all eleven routes at 320, 390, 768, and 1440 pixels, image loading, canonical URLs, 404 recovery, and an automated WCAG A/AA scan. Automated accessibility checks do not replace manual keyboard and screen-reader review.
 
 ## Search presence
 

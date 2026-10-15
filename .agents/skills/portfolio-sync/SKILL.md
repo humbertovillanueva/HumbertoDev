@@ -21,6 +21,8 @@ Select substantive independent work relevant to a software-engineering portfolio
 
 Do not publish private data, employer/customer information, credentials, private screenshots, invented metrics, unsupported production claims, or inferred expertise. Do not alter employment history, professional profile, site layout, workflow configuration or other files. Broader site changes require a separate task. Return current cards unchanged when no meaningful update is supported.
 
+Garu (repository garu, website https://garuagents.com/) is Humberto's main independent project: an open-source runtime for always-on AI agents with a policy kernel in front of every tool call, a flight recorder, budget caps, a sandbox and a phone app. Its card stays first. It has no hosted version and its phone app is not in a public store; describe only what its README states.
+
 Reality Commit was an early local-first prototype at initial setup: manual asset annotations, capture comparison, reviewed history and JSON export, with IndexedDB storage. Its README did not claim AI recognition, cloud sync or authentication. Always re-read current evidence before describing its capabilities.
 
 ## Publication and failures
