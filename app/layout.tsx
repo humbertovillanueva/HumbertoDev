@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Humberto Villanueva",
   },
   description:
-    "Humberto Villanueva is a software engineer in Salt Lake City, Utah, building web applications, AI integrations, and software for building data at kW Engineering, and Garu, an open-source runtime for always-on AI agents.",
+    "Humberto Villanueva is a software engineer in Salt Lake City, Utah, building web applications, AI integrations, and software for building data at kW Engineering, and Garu, an open-source runtime for AI agents that ask before they act.",
   metadataBase: new URL(siteUrl),
   authors: [{ name: "Humberto Villanueva", url: siteUrl }],
   creator: "Humberto Villanueva",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, software for building data, and agents you can leave running overnight.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, software for building data, and AI agents that ask before they act.",
     url: "/",
     siteName: "Humberto Villanueva | Portfolio",
     locale: "en_US",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, software for building data, and agents you can leave running overnight.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, software for building data, and AI agents that ask before they act.",
   },
   robots: {
     index: true,
@@ -89,7 +89,7 @@ const structuredData = {
         skills: "TypeScript, React, Svelte, Java, Python, AWS, AI integrations, document processing",
       },
       description:
-        "Software engineer based in Utah, building web applications, AI integrations, software for building data, and agents you can leave running overnight.",
+        "Software engineer based in Utah, building web applications, AI integrations, software for building data, and AI agents that ask before they act.",
       sameAs: socialProfileUrls,
       worksFor: {
         "@type": "Organization",

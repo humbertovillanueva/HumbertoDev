@@ -137,7 +137,7 @@ export default function Home() {
 
     <section className="title-screen">
       <div className="title-lockup"><h1 aria-label="Humberto Villanueva"><span aria-hidden="true" data-name="HUMBERTO">HUMBERTO</span><strong aria-hidden="true" data-name="VILLANUEVA">VILLANUEVA</strong></h1></div>
-      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build web applications, connect AI to real work, and help people make sense of building data. Lately I also build agents you can leave running overnight.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span><a className="hero-scroll" href="#work">TAKE A LOOK AT MY WORK <span aria-hidden="true">↓</span></a></div>
+      <div className="hero-console"><div className="role-ribbon">SOFTWARE ENGINEER · AI + FULL STACK</div><p className="hero-blurb">I build web applications, connect AI tools, and help people make sense of building data. The agents I build ask before they act.</p><div className="title-actions"><a href="#work">▶ EXPLORE MY WORK</a><a href="#contact">CONTACT</a></div><span className="press-start">UTAH · SOFTWARE ENGINEER AT kW ENGINEERING</span><a className="hero-scroll" href="#work">TAKE A LOOK AT MY WORK <span aria-hidden="true">↓</span></a></div>
 
     </section>
 

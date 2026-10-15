@@ -64,7 +64,7 @@ export function StudioHome() {
           <Letters text="Humberto" />
           <Letters text="Villanueva" offset={8} />
         </h1>
-        <p className="hero-statement">Software engineer. I build web applications, connect <em>AI</em> to real work, and help people make sense of <em>building data</em>. Lately I also build <em>agents</em> you can leave running overnight.</p>
+        <p className="hero-statement">Software engineer. I build web applications, connect <em>AI</em> tools, and help people make sense of <em>building data</em>. The agents I build <em>ask before they act</em>.</p>
         <div className="hero-actions">
           <Link className="studio-button studio-button-glow fx-magnetic" href="#studio-work"><span>Explore the work</span><span aria-hidden="true">↓</span></Link>
           <Link className="studio-button studio-button-ghost fx-magnetic" href="#contact"><span>Get in touch</span><span aria-hidden="true">↗</span></Link>
