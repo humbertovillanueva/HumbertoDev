@@ -64,7 +64,7 @@ export function StudioHome() {
           <Letters text="Humberto" />
           <Letters text="Villanueva" offset={8} />
         </h1>
-        <p className="hero-statement">Software engineer. I build web applications, connect <em>AI</em> to real work, and help people make sense of <em>building data</em>.</p>
+        <p className="hero-statement">Software engineer. I build <em>AI agents</em> people can trust to run unattended, AI integrations that aren’t tied to one model, and the data pipelines behind <em>building intelligence</em>.</p>
         <div className="hero-actions">
           <Link className="studio-button studio-button-glow fx-magnetic" href="#studio-work"><span>Explore the work</span><span aria-hidden="true">↓</span></Link>
           <Link className="studio-button studio-button-ghost fx-magnetic" href="#contact"><span>Get in touch</span><span aria-hidden="true">↗</span></Link>
@@ -158,7 +158,7 @@ export function StudioHome() {
       <Label index="05">Behind the work</Label>
       <h2 id="studio-person-title">Curious by nature. <em>Engineer by practice.</em></h2>
       <div className="person-body">
-        <p>I like finding the reason something broke, working through a fix, and making sure it holds up. Away from the screen, it’s family and football.</p>
+        <p>I like finding the reason something broke, working through a fix, and making sure it holds up. Away from the screen, it’s family, faith and football.</p>
         <div className="studio-links">
           <Link href="/about">More about me <span aria-hidden="true">↗</span></Link>
           {professionalProfiles.map(profile => <a key={profile.name} className="studio-icon-link" href={profile.url} target="_blank" rel="me noopener noreferrer" aria-label={`${profile.name} (opens in a new tab)`} title={profile.name}><BrandIcon name={profile.icon} className="brand-icon studio-brand-icon" /></a>)}

@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: "%s | Humberto Villanueva",
   },
   description:
-    "Humberto Villanueva is a software engineer in Salt Lake City, Utah, building web applications, AI integrations, and software for building data at kW Engineering.",
+    "Humberto Villanueva is a software engineer in Salt Lake City, Utah. He builds Garu, an open-source runtime for always-on AI agents, and the AI integrations and document pipelines behind building data at kW Engineering.",
   metadataBase: new URL(siteUrl),
   authors: [{ name: "Humberto Villanueva", url: siteUrl }],
   creator: "Humberto Villanueva",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, and software for building data.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building AI agents you can trust to run unattended, model-portable AI integrations, and software for building data.",
     url: "/",
     siteName: "Humberto Villanueva | Portfolio",
     locale: "en_US",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Humberto Villanueva | Software Engineer in Utah",
     description:
-      "Portfolio of Humberto Villanueva, a software engineer in Utah building web applications, AI integrations, and software for building data.",
+      "Portfolio of Humberto Villanueva, a software engineer in Utah building AI agents you can trust to run unattended, model-portable AI integrations, and software for building data.",
   },
   robots: {
     index: true,
@@ -89,7 +89,7 @@ const structuredData = {
         skills: "TypeScript, React, Svelte, Java, Python, AWS, AI integrations, document processing",
       },
       description:
-        "Software engineer based in Utah, building web applications, AI integrations, and software for building data.",
+        "Software engineer based in Utah, building AI agents you can trust to run unattended, model-portable AI integrations, and software for building data.",
       sameAs: socialProfileUrls,
       worksFor: {
         "@type": "Organization",

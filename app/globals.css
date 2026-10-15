@@ -171,7 +171,8 @@ section[id] { scroll-margin-top:120px; }
 .contact-channel h3 { margin:22px 0 18px; color:var(--cyan); font:950 36px/.9 "Arial Black",Impact,sans-serif; letter-spacing:-.04em; -webkit-text-stroke:1px var(--cream); text-shadow:4px 4px 0 var(--blue-dark); }
 .contact-channel p { margin:0; color:var(--cream); font:900 11px/1.7 var(--pixel); }
 .contact-channel small { margin-top:16px; color:#c2c4b8; font:900 9px/1.6 var(--pixel); }
-.contact-channel>a { margin-top:20px; color:var(--yellow); font:950 9px/1.5 var(--pixel); overflow-wrap:anywhere; }
+.contact-channel>a { margin-top:8px; color:#c2c4b8; font:900 9px/1.6 var(--pixel); text-decoration:underline; text-underline-offset:3px; overflow-wrap:anywhere; }
+.contact-channel>a:hover,.contact-channel>a:focus-visible { color:var(--yellow); }
 .continue-options { display:flex; gap:10px; margin-top:24px; }
 .continue-options a { min-height:44px; display:flex; align-items:center; gap:9px; padding:0 13px; border:3px solid var(--cream); color:var(--black); background:var(--lime); box-shadow:4px 4px 0 #000; font:950 9px/1 var(--pixel); }
 .continue-options a:last-child { background:var(--cyan); }
