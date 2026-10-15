@@ -1,5 +1,13 @@
 [
   {
+    "title": "Garu",
+    "type": "Always-on AI agent runtime",
+    "text": "Keep AI agents running on a schedule from one YAML file. Every tool call passes a policy you wrote (allow, ask, or block, by tool and by argument), every run is recorded and cost-capped, and anything that needs a yes waits in an inbox on your phone.",
+    "stack": "TYPESCRIPT · SVELTE 5 · NODE.JS · MCP · CAPACITOR",
+    "repo": "garu",
+    "status": "OPEN SOURCE"
+  },
+  {
     "title": "Reality Commit",
     "type": "Site visit review prototype",
     "text": "Compare photos from site visits, label assets, and review proposed changes with verification notes. Save the history in your browser or export it as JSON.",

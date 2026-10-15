@@ -5,6 +5,7 @@ Captured September 27, 2026 from the public demonstration applications, using fr
 - `dispatchtrack.webp`: https://humbertovillanueva.github.io/dispatchtrack-demo/
 - `cloud-quest.webp`: https://humbertovillanueva.github.io/aws-cloud-quest/
 - `reality-commit.webp`: https://reality-commit.vercel.app/#workspace
+- `garu.webp`: the Garu control room (https://github.com/humbertovillanueva/garu) seeded with its demo data, captured October 14, 2026. The agents and rules are the real ones in that repository; the people, meetings and emails are made up.
 
 Reality Commit's pump photographs are educational samples credited to Oldforgefarm under a public-domain dedication. Original provenance and scope: https://github.com/humbertovillanueva/reality-commit/blob/main/docs/image-sources.md
 
