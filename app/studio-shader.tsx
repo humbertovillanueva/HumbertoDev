@@ -40,22 +40,6 @@ export function StudioShader() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "low-power" });
-    if (!gl) { canvas.dataset.fallback = "true"; return; }
-    const compile = (type: number, source: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, source); gl.compileShader(s); return s; };
-    const program = gl.createProgram()!;
-    gl.attachShader(program, compile(gl.VERTEX_SHADER, vertex));
-    gl.attachShader(program, compile(gl.FRAGMENT_SHADER, fragment));
-    gl.linkProgram(program);
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) { canvas.dataset.fallback = "true"; return; }
-    gl.useProgram(program);
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    const loc = gl.getAttribLocation(program, "p");
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    const uRes = gl.getUniformLocation(program, "r"), uTime = gl.getUniformLocation(program, "t"), uMouse = gl.getUniformLocation(program, "m");
 
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
     const mouse = { x: .62, y: .55, tx: .62, ty: .55 };
@@ -63,14 +47,16 @@ export function StudioShader() {
     const start = performance.now();
     const isActive = () => document.documentElement.dataset.era === "2026" && visible && !document.hidden;
 
-    // Software rendering (no usable GPU, remote desktops, blocked drivers) gets a single still frame.
-    const info = gl.getExtension("WEBGL_debug_renderer_info");
-    const renderer = String(info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER));
-    let lastDraw = 0, slowFrames = 0, settled = /swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer), lost = false;
+    // The WebGL context and the shader are set up only once the 2026 edition is on screen. Visitors
+    // on the 1986 or 2000 editions never pay for the compile, which is the slowest thing this page
+    // does on a phone, and the hero still shows its CSS gradient in the meantime.
+    let gl: WebGLRenderingContext | null = null;
+    let uRes: WebGLUniformLocation | null = null, uTime: WebGLUniformLocation | null = null, uMouse: WebGLUniformLocation | null = null;
+    let lastDraw = 0, slowFrames = 0, settled = false, lost = false, tried = false;
     // Also drop the glass blur effects, which are expensive without a GPU.
     const calmDown = () => { settled = true; canvas.dataset.settled = "true"; document.documentElement.dataset.lowGpu = "true"; };
-    if (settled) calmDown();
     const resize = () => {
+      if (!gl) return;
       const { width, height } = canvas.getBoundingClientRect();
       let w = width * RENDER_SCALE, h = height * RENDER_SCALE;
       const shrink = Math.min(1, Math.sqrt(PIXEL_BUDGET / Math.max(1, w * h)));
@@ -79,7 +65,38 @@ export function StudioShader() {
       canvas.height = Math.max(1, Math.round(h));
       gl.viewport(0, 0, canvas.width, canvas.height);
     };
+    const onLost = (event: Event) => { event.preventDefault(); lost = true; cancelAnimationFrame(frame); frame = 0; canvas.dataset.fallback = "true"; };
+    const init = (): boolean => {
+      if (tried) return Boolean(gl) && !lost;
+      tried = true;
+      const context = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "low-power" });
+      if (!context) { canvas.dataset.fallback = "true"; return false; }
+      const compile = (type: number, source: string) => { const s = context.createShader(type)!; context.shaderSource(s, source); context.compileShader(s); return s; };
+      const program = context.createProgram()!;
+      context.attachShader(program, compile(context.VERTEX_SHADER, vertex));
+      context.attachShader(program, compile(context.FRAGMENT_SHADER, fragment));
+      context.linkProgram(program);
+      if (!context.getProgramParameter(program, context.LINK_STATUS)) { canvas.dataset.fallback = "true"; return false; }
+      context.useProgram(program);
+      const buffer = context.createBuffer();
+      context.bindBuffer(context.ARRAY_BUFFER, buffer);
+      context.bufferData(context.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), context.STATIC_DRAW);
+      const loc = context.getAttribLocation(program, "p");
+      context.enableVertexAttribArray(loc);
+      context.vertexAttribPointer(loc, 2, context.FLOAT, false, 0, 0);
+      uRes = context.getUniformLocation(program, "r"); uTime = context.getUniformLocation(program, "t"); uMouse = context.getUniformLocation(program, "m");
+      // Software rendering (no usable GPU, remote desktops, blocked drivers) gets a single still frame.
+      const info = context.getExtension("WEBGL_debug_renderer_info");
+      const renderer = String(info ? context.getParameter(info.UNMASKED_RENDERER_WEBGL) : context.getParameter(context.RENDERER));
+      if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer)) calmDown();
+      canvas.addEventListener("webglcontextlost", onLost);
+      gl = context;
+      resize();
+      canvas.dataset.ready = "true";
+      return true;
+    };
     const draw = (now: number) => {
+      if (!gl) return;
       mouse.x += (mouse.tx - mouse.x) * .04; mouse.y += (mouse.ty - mouse.y) * .04;
       gl.uniform2f(uRes, canvas.width, canvas.height);
       gl.uniform1f(uTime, reduce.matches ? 18 : (now - start) / 1000 + 18);
@@ -99,9 +116,7 @@ export function StudioShader() {
       }
       if (!reduce.matches && !settled) frame = requestAnimationFrame(loop);
     };
-    const kick = () => { if (!frame && isActive()) { lastDraw = 0; frame = requestAnimationFrame(loop); } };
-    const onLost = (event: Event) => { event.preventDefault(); lost = true; cancelAnimationFrame(frame); frame = 0; canvas.dataset.fallback = "true"; };
-    canvas.addEventListener("webglcontextlost", onLost);
+    const kick = () => { if (!frame && isActive() && init()) { lastDraw = 0; frame = requestAnimationFrame(loop); } };
     const onPointer = (event: PointerEvent) => {
       const rect = canvas.getBoundingClientRect();
       mouse.tx = (event.clientX - rect.left) / rect.width;
@@ -116,8 +131,6 @@ export function StudioShader() {
     eraObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-era"] });
     document.addEventListener("visibilitychange", kick);
     window.addEventListener("pointermove", onPointer, { passive: true });
-    resize();
-    canvas.dataset.ready = "true";
     return () => {
       cancelAnimationFrame(frame);
       canvas.removeEventListener("webglcontextlost", onLost);
