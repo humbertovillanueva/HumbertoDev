@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
+import { ProjectLogo } from "../../project-logo";
 import { JsonLd, breadcrumbs, personRef } from "../../json-ld";
 
 const pageUrl = "https://humbertovillanueva.dev/case-studies/garu";
@@ -31,7 +32,7 @@ const caseStudyData = {
 };
 
 export default function GaruCaseStudy() {
-  return <SeoPageShell stage="CASE STUDY · 04" eyebrow="INDEPENDENT PROJECT · OPEN SOURCE" title="Garu" intro="An agent that works all night with access to my email and files should be able to answer three questions: what can it touch, who decided that, and where is the record. I built Garu so the answers are a file I own.">
+  return <SeoPageShell stage="CASE STUDY · 04" mark={<ProjectLogo title="Garu" />} eyebrow="INDEPENDENT PROJECT · OPEN SOURCE" title="Garu" intro="An agent that works all night with access to my email and files should be able to answer three questions: what can it touch, who decided that, and where is the record. I built Garu so the answers are a file I own.">
     <JsonLd data={caseStudyData} />
     <section className="seo-panel seo-panel-wide">
       <span className="seo-label">TYPESCRIPT · SVELTE 5 · NODE.JS · MCP · CAPACITOR</span>

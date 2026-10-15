@@ -1,6 +1,6 @@
 import { PageNavigation } from "./page-navigation";
 import Link from "next/link";
-import type { CSSProperties } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { StudioNav } from "./studio-chrome";
 import { StudioMotion } from "./studio-motion";
 import { StudioShader } from "./studio-shader";
@@ -10,6 +10,8 @@ type SeoPageShellProps = {
   eyebrow: string;
   title: string;
   intro: string;
+  /** The project's mark, drawn before the title on a case study. */
+  mark?: ReactNode;
   /** Small facts shown under the title in the 2026 edition, like the homepage hero. */
   stats?: { label: string; value: string }[];
   children: React.ReactNode;
@@ -29,7 +31,7 @@ function KineticTitle({ text }: { text: string }) {
   </span>;
 }
 
-export function SeoPageShell({ stage, eyebrow, title, intro, stats, children }: SeoPageShellProps) {
+export function SeoPageShell({ stage, eyebrow, title, intro, mark, stats, children }: SeoPageShellProps) {
   return (
     <main className="seo-page">
       <a className="page-skip" href="#page-content">Skip to content</a>
@@ -42,7 +44,7 @@ export function SeoPageShell({ stage, eyebrow, title, intro, stats, children }: 
         <StudioShader />
         <span>{stage}</span>
         <p><span className="studio-dot" aria-hidden="true" />{eyebrow}</p>
-        <h1 aria-label={title}><KineticTitle text={title} /></h1>
+        <h1 aria-label={title}>{mark}<KineticTitle text={title} /></h1>
         <p className="seo-page-intro">{intro}</p>
         {stats && <dl className="hero-hud seo-page-stats">{stats.map(item => <div key={item.label}><dt>{item.label}</dt><dd>{item.value}</dd></div>)}</dl>}
       </section>

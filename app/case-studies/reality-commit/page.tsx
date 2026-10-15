@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
+import { ProjectLogo } from "../../project-logo";
 import { JsonLd, breadcrumbs, personRef } from "../../json-ld";
 
 const pageUrl = "https://humbertovillanueva.dev/case-studies/reality-commit";
@@ -31,7 +32,7 @@ const caseStudyData = {
 };
 
 export default function RealityCommitCaseStudy() {
-  return <SeoPageShell stage="CASE STUDY · 02" eyebrow="INDEPENDENT PROJECT · WORKING PROTOTYPE" title="Reality Commit" intro="A photo shows a moment. I built Reality Commit to compare visits and keep a record of what a reviewer can actually confirm.">
+  return <SeoPageShell stage="CASE STUDY · 02" mark={<ProjectLogo title="Reality Commit" />} eyebrow="INDEPENDENT PROJECT · WORKING PROTOTYPE" title="Reality Commit" intro="A photo shows a moment. I built Reality Commit to compare visits and keep a record of what a reviewer can actually confirm.">
     <JsonLd data={caseStudyData} />
     <section className="seo-panel seo-panel-wide">
       <span className="seo-label">REACT · TYPESCRIPT · VITE · INDEXEDDB</span>

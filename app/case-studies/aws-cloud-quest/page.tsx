@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SeoPageShell } from "../../seo-page-shell";
+import { ProjectLogo } from "../../project-logo";
 import { JsonLd, breadcrumbs, personRef } from "../../json-ld";
 
 const pageUrl = "https://humbertovillanueva.dev/case-studies/aws-cloud-quest";
@@ -31,7 +32,7 @@ const caseStudyData = {
 };
 
 export default function AwsCloudQuestCaseStudy() {
-  return <SeoPageShell stage="CASE STUDY · 03" eyebrow="COURSE PROJECT · LIVE DEMO" title="AWS Cloud Quest" intro="Rereading notes felt like studying without proving anything. I built AWS Cloud Quest so every review session asks for an answer and shows right away whether it was right.">
+  return <SeoPageShell stage="CASE STUDY · 03" mark={<ProjectLogo title="AWS Cloud Quest" />} eyebrow="COURSE PROJECT · LIVE DEMO" title="AWS Cloud Quest" intro="Rereading notes felt like studying without proving anything. I built AWS Cloud Quest so every review session asks for an answer and shows right away whether it was right.">
     <JsonLd data={caseStudyData} />
     <section className="seo-panel seo-panel-wide">
       <span className="seo-label">HTML · CSS · JAVASCRIPT · GITHUB PAGES</span>

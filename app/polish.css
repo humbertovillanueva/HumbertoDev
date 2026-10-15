@@ -71,3 +71,18 @@ html[data-era="2000"] .seo-page-footer { padding-bottom:24px; margin-bottom:116p
 
 /* Subpages, 1986 edition: the year picker covered the "HV · 07" home button below 1100px. */
 @media(max-width:1100px) { html:not([data-era="2000"]):not([data-era="2026"]) .seo-home-link { margin-left:84px; } }
+
+/* Project logos: each project's own mark beside its title, in every era, in the title's color. */
+.project-logo { display:inline-block; flex:none; width:.95em; height:.95em; margin-right:.3em; vertical-align:-.1em; color:inherit; }
+.project-logo svg { display:block; width:100%; height:100%; fill:currentColor; }
+.cartridge-title h3 .project-logo,.seo-project h2 .project-logo { filter:drop-shadow(2px 2px 0 rgba(0,0,0,.28)); }
+.seo-page-hero h1 .project-logo { width:.8em; height:.8em; margin-right:.2em; vertical-align:-.06em; filter:drop-shadow(.06em .06em 0 var(--black)); }
+html[data-era="2000"] .project-logo { filter:none; }
+html[data-era="2026"] .project-logo { filter:none; }
+html[data-era="2026"] .project-copy .project-logo,html[data-era="2026"] .seo-project h2 .project-logo { width:1.2em; height:1.2em; padding:.2em; box-sizing:border-box; border:1px solid var(--s-glass-border); border-radius:.32em; background:var(--s-glass); vertical-align:-.28em; }
+html[data-era="2026"] .seo-page-hero h1 .project-logo { color:var(--s-accent); }
+/* The Garu links in the 2026 hero chips and the 2000 status bar. */
+a.hero-chip { text-decoration:none; transition:border-color .2s,color .2s; }
+a.hero-chip:hover,a.hero-chip:focus-visible { border-color:var(--s-accent); color:var(--s-accent); }
+.desktop-status a { color:inherit; text-decoration:underline; text-underline-offset:2px; }
+html[data-era="2000"] .desktop-status a { color:#0000aa; }

@@ -11,6 +11,8 @@ import { skills } from "./skills";
 
 import projects from "./projects.json";
 import { ProjectLinks } from "./project-links";
+import { ProjectLogo } from "./project-logo";
+import { SpectaMark } from "./specta-mark";
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import { experience } from "./experience-data";
@@ -26,10 +28,6 @@ const worldCupTracks = [
   { year: "2026", title: "Dai Dai", artist: "Shakira & Burna Boy" },
   { year: "ANTHEM", title: "We Are the Champions", artist: "Queen" },
 ];
-
-function SpectaMark() {
-  return <svg className="specta-mark" viewBox="0 0 320 320" aria-hidden="true"><path d="M96 82 262 18l-14 43-166 64 14-43Z" /><path d="m66 144 152-58-14 43-152 58 14-43Z" /><path d="m138 151 136-52-14 43-136 52 14-43Z" /><path d="m82 219 166-64-14 43-166 64 14-43Z" /></svg>;
-}
 
 function MusicPlayer() {
   const [expanded, setExpanded] = useState(false);
@@ -101,7 +99,7 @@ function MusicPlayer() {
 }
 
 function ProjectCard({ project, index }: { project: (typeof projects)[number]; index: number }) {
-  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3>{project.title}</h3></div><ProjectPreview repo={project.repo} /><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span><ProjectLinks repo={project.repo} /><i>{project.status}</i></article>;
+  return <article className="game-cartridge"><span className="cartridge-number">0{index + 2}</span><div className="cartridge-title"><small>{project.type}</small><h3><ProjectLogo title={project.title} />{project.title}</h3></div><ProjectPreview repo={project.repo} /><p>{project.text}</p><span className="cartridge-stack">{project.stack}</span><ProjectLinks repo={project.repo} /><i>{project.status}</i></article>;
 }
 
 export default function Home() {

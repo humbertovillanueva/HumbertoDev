@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ProjectPreview, ProjectEvidence } from "../project-evidence";
 import { ProjectLinks } from "../project-links";
+import { ProjectLogo } from "../project-logo";
 import projectData from "../projects.json";
 import { SeoPageShell } from "../seo-page-shell";
 import { JsonLd, breadcrumbs, personRef } from "../json-ld";
@@ -60,7 +61,7 @@ export default function ProjectsPage() {
     <SeoPageShell stage="STAGE 01" eyebrow="SELECTED SOFTWARE ENGINEERING WORK" title="Projects" stats={[{ label: "Projects", value: String(projects.length).padStart(2, "0") }, { label: "Case studies", value: String(Object.keys(caseStudies).length).padStart(2, "0") }, { label: "Built with", value: "TypeScript · Svelte · React · Java · AWS · AI" }]} intro="My work includes web applications, mobile apps, APIs, and AI integrations. Each project below explains my role and its current scope.">
       <JsonLd data={projectsData} />
       <section className="seo-project-list">
-        {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2>{project.title}</h2><ProjectPreview repo={project.repo} /><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}{project.highlights && <><ul className="specta-highlights">{spectaHighlights.map(item => <li key={item.title}><strong>{item.title}</strong> {item.text}</li>)}</ul><div className="specta-links"><Link href={spectaArticle.href}>{spectaArticle.label} →</Link></div></>}<ProjectEvidence repo={project.repo} /><strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
+        {projects.map((project) => <article className="seo-panel seo-project" key={project.title}><span className="seo-number">{project.number}</span><span className="seo-label">{project.type}</span><h2><ProjectLogo title={project.title} />{project.title}</h2><ProjectPreview repo={project.repo} /><p>{project.summary}</p>{project.note && <p className="seo-note">{project.note}</p>}{project.highlights && <><ul className="specta-highlights">{spectaHighlights.map(item => <li key={item.title}><strong>{item.title}</strong> {item.text}</li>)}</ul><div className="specta-links"><Link href={spectaArticle.href}>{spectaArticle.label} →</Link></div></>}<ProjectEvidence repo={project.repo} /><strong>{project.stack}</strong><ProjectLinks repo={project.repo} /></article>)}
       </section>
       <div className="seo-next-links"><Link href="/experience">Continue to experience →</Link><Link href="/writing">Read engineering notes →</Link></div>
     </SeoPageShell>

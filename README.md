@@ -14,7 +14,7 @@ Live site: [humbertovillanueva.dev](https://humbertovillanueva.dev)
 - An engineering-writing hub with long-form technical articles
 - Case studies for Garu, Reality Commit, DispatchTrack Lite and AWS Cloud Quest
 - A portfolio search directory
-- Profile links with each network's own logo (Font Awesome Free brand icons, CC BY 4.0)
+- Profile links with each network's own logo, and each project's own mark beside its title (Garu and Reality Commit from their repositories; Font Awesome Free brand and solid icons, CC BY 4.0, for the rest)
 - Responsive layouts, keyboard navigation, reduced-motion support, and a custom 404 page
 - Actual demo screenshots, engineering decisions, and prototype limits
 - Resend contact delivery with validation and bot protection, plus email-draft and clipboard fallbacks
