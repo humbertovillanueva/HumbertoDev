@@ -12,6 +12,7 @@ Key facts:
 - Education: B.S. Software Engineering, Ensign College (2026); Computer Science Certificate, Weber State University (2024)
 - Focus: AI integrations, document intelligence, data reliability, full-stack web applications, building data
 - Stack: TypeScript, React, Svelte, Java, Python, AWS
+- Independent project: Garu, an open-source runtime for always-on AI agents (https://garuagents.com/)
 
 ## Pages
 
@@ -28,6 +29,7 @@ Key facts:
 
 ## Case studies
 
+- [Garu](https://humbertovillanueva.dev/case-studies/garu): An open-source runtime for always-on AI agents, with a policy in front of every tool call, a flight recorder, budget caps and approvals from your phone
 - [Reality Commit](https://humbertovillanueva.dev/case-studies/reality-commit): A browser prototype for comparing site visits and keeping a reviewed change history
 - [DispatchTrack Lite](https://humbertovillanueva.dev/case-studies/dispatchtrack-lite): A delivery workflow demo with a separate Java API
 - [AWS Cloud Quest](https://humbertovillanueva.dev/case-studies/aws-cloud-quest): A browser study game for AWS Cloud Practitioner review
