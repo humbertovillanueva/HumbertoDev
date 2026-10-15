@@ -3,6 +3,7 @@ import type { CSSProperties, ReactNode } from "react";
 import projects from "./projects.json";
 import { ProjectPreview } from "./project-evidence";
 import { ProjectLinks, demos } from "./project-links";
+import { ProjectLogo } from "./project-logo";
 import { spectaHighlights, spectaArticle } from "./specta";
 import { skillGroups } from "./skills";
 import { articles } from "./articles";
@@ -56,6 +57,7 @@ export function StudioHome() {
       <div className="studio-hero-inner">
         <div className="hero-chips">
           <span className="hero-chip"><span className="studio-dot" aria-hidden="true" />Building at kW Engineering</span>
+          <Link className="hero-chip" href="/case-studies/garu">Side project: Garu <span aria-hidden="true">↗</span></Link>
           <span className="hero-chip hero-chip-quiet">Utah · <StudioClock /></span>
         </div>
         <h1 id="studio-name" aria-label="Humberto Villanueva">
@@ -116,7 +118,7 @@ export function StudioHome() {
           <div className="project-copy">
             <span className="project-index" aria-hidden="true">0{index + 1}</span>
             <p className="studio-label">{project.type}<span className="studio-pill">{project.status}</span></p>
-            <h3>{project.title}</h3>
+            <h3><ProjectLogo title={project.title} />{project.title}</h3>
             <p className="project-text">{project.text}</p>
             <ul className="studio-chips" aria-label="Built with">{project.stack.split("·").map(item => <li key={item.trim()}>{item.trim()}</li>)}</ul>
             <ProjectLinks repo={project.repo} />

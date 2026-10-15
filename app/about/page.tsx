@@ -26,7 +26,7 @@ const profileData = {
   "@id": `${pageUrl}/#profile-page`,
   url: pageUrl,
   name: "About Humberto Villanueva",
-  dateModified: "2026-09-27",
+  dateModified: "2026-10-14",
   mainEntity: {
     "@type": "Person",
     "@id": "https://humbertovillanueva.dev/#person",
@@ -54,12 +54,13 @@ export default function AboutPage() {
         <span className="seo-label">THE PERSON BEHIND THE WORK</span>
         <h2>What I work on</h2>
         <p>I’m a software engineer based in Utah, where I work across product interfaces, AI integration, document intelligence, data reliability, and software for the built environment.</p>
+        <p>On my own time I build <Link href="/case-studies/garu">Garu</Link>, an open-source runtime for always-on AI agents, with a policy you wrote in front of every tool call.</p>
         <p>When something breaks, I want to know why. I trace the issue through the interface, API, and data, then check that the fix holds up.</p>
       </section>
       <section className="seo-card-grid">
         <article className="seo-panel"><span className="seo-label">CURRENT ROLE</span><h2>Software Engineer</h2><p>I contribute to Specta at kW Engineering, working on AI integrations, document processing, and product interfaces.</p></article>
         <article className="seo-panel"><span className="seo-label">EDUCATION</span><h2>Software Engineering</h2><p>B.S. Software Engineering from Ensign College and a Computer Science Certificate from Weber State University.</p></article>
-        <article className="seo-panel"><span className="seo-label">FOCUS</span><h2>AI + Full Stack</h2><p>AI systems, document intelligence, cloud services, reliable APIs, product interfaces, and building data.</p></article>
+        <article className="seo-panel"><span className="seo-label">FOCUS</span><h2>AI + Full Stack</h2><p>AI systems and agents, document intelligence, cloud services, reliable APIs, product interfaces, and building data.</p></article>
         <article className="seo-panel"><span className="seo-label">BEYOND CODE</span><h2>Family · Football</h2><p>Family and faith keep me grounded. Football keeps me competitive. I follow Real Madrid, and number 7 is my favorite.</p><SoccerGame /></article>
       </section>
       <section className="seo-panel seo-panel-wide"><h2>Find Humberto Villanueva online</h2><p>Professional work and personal interests, each in their own place.</p><SocialProfileLinks /></section>

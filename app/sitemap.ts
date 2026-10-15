@@ -5,7 +5,7 @@ const siteUrl = "https://humbertovillanueva.dev";
 // lastModified is the date each page's content last changed. Update it when you edit a page.
 const pages: { path: string; priority: number; lastModified: string }[] = [
   { path: "", priority: 1, lastModified: "2026-10-14" },
-  { path: "/about", priority: 0.9, lastModified: "2026-10-03" },
+  { path: "/about", priority: 0.9, lastModified: "2026-10-14" },
   { path: "/projects", priority: 0.9, lastModified: "2026-10-14" },
   { path: "/experience", priority: 0.8, lastModified: "2026-10-03" },
   { path: "/writing", priority: 0.8, lastModified: "2026-10-14" },
